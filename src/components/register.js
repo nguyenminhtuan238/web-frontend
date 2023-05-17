@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 
 
 const Register=()=>{
-     const [username, setUsername] = useState('');
-     const [email, setEmail] = useState('');
-     const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -15,8 +17,7 @@ const Register=()=>{
             email:email
         }
         console.log(user)
-        // console.log('Submitted form data:', { username, email, password });
-        // Do something with the form data here, such as sending it to a server
+        // Xử lý dữ liệu
     };
 
     return(
