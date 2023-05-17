@@ -8,7 +8,7 @@ const Register=()=>{
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(username, email, password)
+        console.log(username, email, password);
         // console.log('Submitted form data:', { username, email, password });
         // Do something with the form data here, such as sending it to a server
     };
