@@ -21,8 +21,8 @@ const Forget=()=>{
           Quên Mật Khẩu
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          <Link to="/Register" className="font-medium text-indigo-600 hover:text-indigo-500">
-                Bạn chưa đăng ký tài khoản?
+          <Link to="/Register" className="font-medium text-indigo-600 hover:text-indigo-500 text-red-300">
+              <b>Bạn chưa đăng ký tài khoản?</b>
           </Link>
         </p>
       </div>

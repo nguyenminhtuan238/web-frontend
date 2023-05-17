@@ -26,8 +26,8 @@ const Login=()=>{
           Đăng Nhập Tài Khoản
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          <Link to="/" className="font-medium text-indigo-600 hover:text-indigo-500">
-                Quay lại?
+          <Link to="/" className="font-medium text-indigo-600 hover:text-indigo-500 text-red-300">
+              <b>Quay lại?</b>  
           </Link>
         </p>
       
@@ -95,14 +95,14 @@ const Login=()=>{
             <div className="flex items-center justify-between ">
 
               <div className="text-sm">
-              <Link to="/Register" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  Bạn chưa đăng ký tài khoản?
-                  </Link>
+                <Link to="/Register" className="font-medium text-indigo-600 hover:text-indigo-500">
+                  <b>Bạn chưa đăng ký tài khoản?</b> 
+                </Link>
               </div>
 
               <div className="text-sm">
                   <Link to="/Forget" className="font-medium text-indigo-600 hover:text-indigo-500">
-                    Quên mật khẩu?
+                    <b>Quên mật khẩu?</b> 
                   </Link>
               </div>
 
