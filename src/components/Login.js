@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom"
 import React, { useState } from 'react';
 const Login=()=>{
-    const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
@@ -13,57 +14,65 @@ const Login=()=>{
   };
 
   const handleSubmit = (event) => {
-    console.log(username, password);
+    console.log(email, password);
     event.preventDefault();
     // Xử lý đăng nhập tại đây (gửi thông tin đăng nhập đến server)
   };
 
   return (
     <div className="h-screen flex items-center justify-center bg-gray-100">
-      <div className="max-w-md w-full space-y-8">
+      <div className="max-w-md w-full space-y-12">
         <div>
           <h2 className="text-center text-3xl font-extrabold text-gray-900">
             Đăng Nhập
           </h2>
         </div>
-        <form className="bg-white py-8 px-4 shadow mt-8 space-y-8 sm:rounded-lg sm:px-10" onSubmit={handleSubmit}> 
+        <form className="bg-white py- px-2 shadow mt-4 space-y-4 sm:rounded-lg sm:px-10" onSubmit={handleSubmit}> 
           <input type="hidden" name="remember" value="true" />
-          <div className="rounded-md shadow-sm -space-y-px">
+          <div className="rounded-md py-6 shadow-sm -space-y-px-10 ">
             <div className="form-outline mb-4" >
-              <label htmlFor="username" className="sr-only">
-                Tên đăng nhập
-              </label>
-              <input
-                id="username"
-                name="username"
-                type="text"
-                autoComplete="username"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Tên đăng nhập"
-                value={username}
-                onChange={handleUsernameChange}
-              />
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                  Tài khoản đăng nhập
+                </label>
+
+              <div className="mt-1">
+                <input
+                  id="email"
+                  name="email"
+                  type="text"
+                  autoComplete="email"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Tài khoản đăng nhập"
+                  value={email}
+                  onChange={handleEmailChange}
+                />
+              </div>
             </div>
+
             <div className="form-outline mb-4" >
-              <label htmlFor="password" className="sr-only">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                 Mật khẩu
               </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Mật khẩu"
-                value={password}
-                onChange={handlePasswordChange}
-              />
+
+              <div className="mt-1">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Mật khẩu"
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
+              </div>
+              
             </div>
           </div>
 
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between ">
             <div className="flex items-center">
               <input
                 id="remember_me"
@@ -83,7 +92,7 @@ const Login=()=>{
             </div>
           </div>
 
-          <div>
+          <div className="py-6">
             <button
               type="submit"
               onClick={handleSubmit}
@@ -104,10 +113,10 @@ const Login=()=>{
                   />
                 </svg>
               </span>
-              Đăng nhập
+                Đăng nhập
             </button>
           </div>
-        </form>
+        </form >
       </div>
     </div>
   );
