@@ -28,7 +28,7 @@ const Register=()=>{
         <p className="mt-2 text-center text-sm text-gray-600">
           
           <Link to="/Login" className="font-medium text-indigo-600 hover:text-indigo-500">
-                Quên mật khẩu?
+                Bạn đã có tài khoản?
           </Link>
         </p>
       </div>
