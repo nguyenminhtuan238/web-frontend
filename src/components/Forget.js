@@ -21,7 +21,6 @@ const Forget=()=>{
           Quên Mật Khẩu
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          
           <Link to="/Register" className="font-medium text-indigo-600 hover:text-indigo-500">
                 Bạn chưa đăng ký tài khoản?
           </Link>
@@ -30,7 +29,7 @@ const Forget=()=>{
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md mb-28">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 mb-28">
           <form className="space-y-6" action="#" method="POST">
-            <div className="mb-11">
+            <div className="mb-12">
               <label className="block text-gray-700 font-bold mb-2" htmlFor="email">
                 Email đăng ký
               </label>
