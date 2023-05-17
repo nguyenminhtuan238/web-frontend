@@ -8,7 +8,13 @@ const Register=()=>{
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(username, email, password)
+        
+        const user={
+            username:username,
+            password:password,
+            email:email
+        }
+        console.log(user)
         // console.log('Submitted form data:', { username, email, password });
         // Do something with the form data here, such as sending it to a server
     };
@@ -17,12 +23,12 @@ const Register=()=>{
         <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Create your account
+            Đăng ký tài khoản
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600">
-            Or
+             
             <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                sign in to your account
+                Đăng nhập nếu có tài khoản
             </a>
             </p>
         </div>
@@ -32,7 +38,7 @@ const Register=()=>{
             <form className="space-y-6" action="#" method="POST">
                 <div>
                 <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-                    Username
+                    Tên đăng nhập
                 </label>
                 <div className="mt-1">
                     <input
@@ -50,7 +56,7 @@ const Register=()=>{
 
                 <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                    Email address
+                    Email
                 </label>
                 <div className="mt-1">
                     <input
@@ -68,7 +74,7 @@ const Register=()=>{
 
                 <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                    Password
+                    Mật khẩu
                 </label>
                 <div className="mt-1">
                     <input
@@ -105,7 +111,7 @@ const Register=()=>{
                         />
                     </svg>
                     </span>
-                    Sign up
+                    Đăng ký
                 </button>
                 </div>
             </form>
