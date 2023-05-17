@@ -19,17 +19,17 @@ const Login=()=>{
   };
 
   return (
-    <div className="h-screen flex items-center justify-center bg-gray-50">
+    <div className="h-screen flex items-center justify-center bg-gray-100">
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="text-center text-3xl font-extrabold text-gray-900">
-            Đăng nhập
+            Đăng Nhập
           </h2>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+        <form className="bg-white py-8 px-4 shadow mt-8 space-y-8 sm:rounded-lg sm:px-10" onSubmit={handleSubmit}> 
           <input type="hidden" name="remember" value="true" />
           <div className="rounded-md shadow-sm -space-y-px">
-            <div>
+            <div className="form-outline mb-4" >
               <label htmlFor="username" className="sr-only">
                 Tên đăng nhập
               </label>
@@ -45,7 +45,7 @@ const Login=()=>{
                 onChange={handleUsernameChange}
               />
             </div>
-            <div>
+            <div className="form-outline mb-4" >
               <label htmlFor="password" className="sr-only">
                 Mật khẩu
               </label>
