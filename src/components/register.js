@@ -26,12 +26,10 @@ const Register=()=>{
           Đăng ký tài khoản
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          <a
-            href="#"
-            className="font-medium text-indigo-600 hover:text-indigo-500"
-          >
-            Đăng nhập nếu có tài khoản
-          </a>
+          
+          <Link to="/Login" className="font-medium text-indigo-600 hover:text-indigo-500">
+                Quên mật khẩu?
+          </Link>
         </p>
       </div>
 

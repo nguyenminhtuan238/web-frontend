@@ -93,11 +93,11 @@ const Login=()=>{
             </div>
 
             <div className="text-sm">
-            <Link to="/Forget" className="font-medium text-indigo-600 hover:text-indigo-500">
-                Quên mật khẩu?
+                <Link to="/Forget" className="font-medium text-indigo-600 hover:text-indigo-500">
+                  Quên mật khẩu?
                 </Link>
             </div>
-            
+
           </div>
 
           <div className="py-6">
