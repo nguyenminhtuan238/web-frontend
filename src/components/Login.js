@@ -34,7 +34,7 @@ const Login=()=>{
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md mb-28">
-        <div className="bg-white py-2 px-4 shadow sm:rounded-lg sm:px-10 mb-26">
+        <div className="bg-white py-1 px-4 shadow sm:rounded-lg sm:px-10 mb-26">
           <form className=" space-y-6" action="#" method="POST"> 
             <input type="hidden" name="remember" value="true" />
             <div className="rounded-md py-6 shadow-sm -space-y-px-10">
@@ -58,7 +58,7 @@ const Login=()=>{
                 </div>
               </div>
 
-              <div className="form-outline mb-4" >
+              <div className="form-outline mb-4 mt-6" >
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                   Mật khẩu
                 </label>
