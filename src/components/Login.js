@@ -87,15 +87,17 @@ const Login=()=>{
           <div className="flex items-center justify-between ">
 
             <div className="text-sm">
-            <Link to="/Forget" className="font-medium text-indigo-600 hover:text-indigo-500">
-                Quên mật khẩu?
-                </Link>
-            </div>
-            <div className="text-sm">
             <Link to="/Register" className="font-medium text-indigo-600 hover:text-indigo-500">
                 Bạn chưa đăng ký tài khoản?
                 </Link>
             </div>
+
+            <div className="text-sm">
+            <Link to="/Forget" className="font-medium text-indigo-600 hover:text-indigo-500">
+                Quên mật khẩu?
+                </Link>
+            </div>
+            
           </div>
 
           <div className="py-6">
