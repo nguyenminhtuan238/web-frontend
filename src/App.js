@@ -5,6 +5,7 @@ import Forget from './components/Forget';
 import Login from './components/Login';
 import Register from './components/register';
 import Footer from './components/footer';
+import Header from './components/header';
 function App() {
   return (
     <div className="App">
@@ -13,7 +14,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/Footer" element={<Footer />}></Route>
-            <Route path="/Login" element={<Login />}></Route>
+            <Route path="/Header" element={<Header />}></Route>
+            <Route path="/Login" element={ <SnackbarProvider anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+                      <Login />
+                </SnackbarProvider>}>
+              </Route>
             <Route path="/Register" element={<Register />}></Route>
             <Route path="/Forget" element={<Forget />}></Route>
           </Routes>
