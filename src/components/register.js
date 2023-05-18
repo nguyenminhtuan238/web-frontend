@@ -7,10 +7,9 @@ import * as Yup from "yup";
 
 
 const Register=()=>{
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const { enqueueSnackbar } = useSnackbar();
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
   // const handleSubmit = (event) => {
   //   event.preventDefault();
@@ -185,9 +184,4 @@ const Register=()=>{
     
   );
 };
-
-export default () => (
-  <SnackbarProvider anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
-    <Register />
-  </SnackbarProvider>
-);
+export default Register;
