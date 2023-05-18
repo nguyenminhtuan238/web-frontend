@@ -38,7 +38,7 @@ const Forget=()=>{
                 id="email"
                 type="email"
                 value={email}
-                placeholder="me@gmal.com"
+                placeholder="me@gmail.com"
                 onChange={handleInputChange}
               />
             </div>
