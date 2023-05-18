@@ -140,53 +140,11 @@ const Footer = () => {
             <h3 className="text-lg font-bold text-white mb-4">
               FANPAGE SCADA AUTOMATION
             </h3>
-            <ul className="text-gray-400">
-              <li className="mb-2">
-                <a href="/" className="hover:text-white">
-                  Home
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="/about" className="hover:text-white">
-                  About Us
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="/services" className="hover:text-white">
-                  Services
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="/contact" className="hover:text-white">
-                  Chứng chỉ
-                </a>
-              </li>
-            </ul>
+            
           </div>
           <div className="col-span-1">
-            <h3 className="text-lg font-bold text-white mb-4">Chứng ch</h3>
-            <ul className="text-gray-400">
-              <li className="mb-2">
-                <a href="/" className="hover:text-white">
-                  <i className="fab fa-facebook mr-2"></i>Facebook
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="/" className="hover:text-white">
-                  <i className="fab fa-twitter mr-2"></i>Twitter
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="/" className="hover:text-white">
-                  <i className="fab fa-instagram mr-2"></i>Instagram
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="/" className="hover:text-white">
-                  <i className="fab fa-linkedin mr-2"></i>Linkedin
-                </a>
-              </li>
-            </ul>
+            <h3 className="text-lg font-bold text-white mb-4">Chứng chỉ</h3>
+            
           </div>
         </div>
         <div className="mt-8 border-t border-gray-700 pt-8">
