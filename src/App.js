@@ -13,7 +13,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/Footer" element={<Footer />}></Route>
-            <Route path="/Login" element={<Login />}></Route>
+            <Route path="/Login" element={ <SnackbarProvider anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+                      <Login />
+                </SnackbarProvider>}>
+              </Route>
             <Route path="/Register" element={<Register />}></Route>
             <Route path="/Forget" element={<Forget />}></Route>
           </Routes>

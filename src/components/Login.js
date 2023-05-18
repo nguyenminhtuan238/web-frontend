@@ -1,5 +1,5 @@
-import { SnackbarProvider } from 'notistack';
-import React, { useState } from 'react';
+
+import React from 'react';
 import { useSnackbar } from 'notistack';
 import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
@@ -9,9 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {  
   const { enqueueSnackbar } = useSnackbar();// khởi tạo useSnackbar
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
- 
+
   // const handleEmailChange = (event) => {
   //   setEmail(event.target.value);
   // };
@@ -217,8 +215,4 @@ const Login = () => {
   );
 };
 
-export default () => (
-  <SnackbarProvider anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
-    <Login />
-  </SnackbarProvider>
-);
+export default Login
