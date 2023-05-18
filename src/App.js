@@ -8,7 +8,7 @@ import Footer from './components/footer';
 function App() {
   return (
     <div className="App">
-      <SnackbarProvider maxSnack={3}>
+      <SnackbarProvider maxSnack={5}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />}></Route>
