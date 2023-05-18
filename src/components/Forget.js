@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { SnackbarProvider } from 'notistack';
 import { Link } from "react-router-dom"
+import { useSnackbar } from "notistack";
 
 const Forget=()=>{
-    const [email, setEmail] = useState("");
-
+  const [email, setEmail] = useState("");
+  const { enqueueSnackbar } = useSnackbar();
+  
   const handleInputChange = (event) => {
     setEmail(event.target.value);
   };
@@ -12,6 +15,11 @@ const Forget=()=>{
     event.preventDefault();
     console.log("Email: ", email);
     // Gửi yêu cầu đặt lại mật khẩu tới server
+    // Hiển thị thông báo đăng nhập thành công
+    enqueueSnackbar("Gửi yêu cầu thành công", {
+      variant: "success",
+      autoHideDuration: 3000, // tự động đóng sau 3 giây
+    });
   };
 
   return (
@@ -38,7 +46,7 @@ const Forget=()=>{
                 id="email"
                 type="email"
                 value={email}
-                placeholder="me@gmal.com"
+                placeholder="me@gmail.com"
                 onChange={handleInputChange}
               />
             </div>
@@ -59,4 +67,9 @@ const Forget=()=>{
     </div>
   );
 }
-export default Forget
+
+export default () => (
+  <SnackbarProvider anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+    <Forget />
+  </SnackbarProvider>
+);

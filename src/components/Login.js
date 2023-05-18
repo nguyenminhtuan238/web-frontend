@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom"
-import React, { useState } from 'react';
-const Login=()=>{
-  
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+import React, { useState } from "react";
+import { SnackbarProvider } from 'notistack';
+import { useSnackbar } from "notistack";
+import { Link } from "react-router-dom";
+
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { enqueueSnackbar } = useSnackbar(); // khởi tạo useSnackbar
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -14,9 +17,14 @@ const Login=()=>{
   };
 
   const handleSubmit = (event) => {
-    console.log(email, password);
     event.preventDefault();
     // Xử lý đăng nhập tại đây (gửi thông tin đăng nhập đến server)
+    console.log(email, password);
+    // Hiển thị thông báo đăng nhập thành công
+    enqueueSnackbar("Đăng nhập thành công", {
+      variant: "success",
+      autoHideDuration: 3000, // tự động đóng sau 3 giây
+    });
   };
 
   return (
@@ -26,22 +34,27 @@ const Login=()=>{
           Đăng Nhập Tài Khoản
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          <Link to="/" className="font-medium text-indigo-600 hover:text-indigo-500 text-red-300">
-              <b>Quay lại?</b>  
+          <Link
+            to="/"
+            className="font-medium text-indigo-600 hover:text-indigo-500 text-red-300"
+          >
+            <b>Quay lại?</b>
           </Link>
         </p>
-      
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md mb-28">
         <div className="bg-white py-1 px-4 shadow sm:rounded-lg sm:px-10 mb-26">
-          <form className=" space-y-6" action="#" method="POST"> 
+          <form className=" space-y-6" action="#" method="POST">
             <input type="hidden" name="remember" value="true" />
             <div className="rounded-md py-6 shadow-sm -space-y-px-10">
-              <div className="form-outline mb-4" >
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                    Tài khoản đăng nhập
-                  </label>
+              <div className="form-outline mb-4">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Tài khoản đăng nhập
+                </label>
 
                 <div className="mt-1">
                   <input
@@ -51,15 +64,18 @@ const Login=()=>{
                     autoComplete="email"
                     required
                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                    placeholder="me@gmal.com"
+                    placeholder="me@gmail.com"
                     value={email}
                     onChange={handleEmailChange}
                   />
                 </div>
               </div>
 
-              <div className="form-outline mb-4 mt-6" >
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <div className="form-outline mb-4 mt-6">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Mật khẩu
                 </label>
 
@@ -76,7 +92,6 @@ const Login=()=>{
                     onChange={handlePasswordChange}
                   />
                 </div>
-                
               </div>
 
               <div className="flex items-center">
@@ -86,26 +101,33 @@ const Login=()=>{
                   type="checkbox"
                   className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                 />
-                <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-900">
+                <label
+                  htmlFor="remember_me"
+                  className="ml-2 block text-sm text-gray-900"
+                >
                   Ghi nhớ đăng nhập
                 </label>
               </div>
             </div>
 
             <div className="flex items-center justify-between ">
-
               <div className="text-sm">
-                <Link to="/Register" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  <b>Bạn chưa đăng ký tài khoản?</b> 
+                <Link
+                  to="/Register"
+                  className="font-medium text-indigo-600 hover:text-indigo-500"
+                >
+                  <b>Bạn chưa đăng ký tài khoản?</b>
                 </Link>
               </div>
 
               <div className="text-sm">
-                  <Link to="/Forget" className="font-medium text-indigo-600 hover:text-indigo-500">
-                    <b>Quên mật khẩu?</b> 
-                  </Link>
+                <Link
+                  to="/Forget"
+                  className="font-medium text-indigo-600 hover:text-indigo-500"
+                >
+                  <b>Quên mật khẩu?</b>
+                </Link>
               </div>
-
             </div>
 
             <div className="py-6">
@@ -129,14 +151,18 @@ const Login=()=>{
                     />
                   </svg>
                 </span>
-                  Đăng nhập
+                Đăng nhập
               </button>
             </div>
-          </form >
+          </form>
         </div>
-        
       </div>
     </div>
   );
-}
-export default Login
+};
+
+export default () => (
+  <SnackbarProvider anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+    <Login />
+  </SnackbarProvider>
+);
