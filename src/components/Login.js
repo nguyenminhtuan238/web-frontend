@@ -49,10 +49,7 @@ const Login = () => {
             variant: 'success',
             autoHideDuration: 1000,
           });
-        setTimeout(() => {
-          
-          navigate('/');
-        }, 2000);}
+        setTimeout(() => {navigate('/');}, 1000);}
         // enqueueSnackbar('Đăng nhập thành công!', {
         //   variant: 'success',
         //   autoHideDuration: 3000,
@@ -80,7 +77,7 @@ const Login = () => {
                 to="/"
                 className="font-medium text-indigo-600 hover:text-indigo-500 text-red-300"
               >
-                <b>Quay lại?</b>
+                <b>Quay lại</b>
               </Link>
             </p>
           </div>
