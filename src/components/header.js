@@ -2,11 +2,6 @@ import React, { useState } from 'react';
 
 function Header() {
   const [isVisible, setIsVisible] = useState(true);
-
-  const handleMouseLeave = () => {
-    setIsVisible(false);
-  };
-
   return (
     <div>
         <header>
@@ -28,7 +23,7 @@ function Header() {
                     <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
                         <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                             <li>
-                                <a href="#" class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white" aria-current="page">Home</a>
+                                <a  class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white" aria-current="page" onClick={()=>setIsVisible(!isVisible)}>Home</a>
                             </li>
                             
                         </ul>
@@ -36,7 +31,7 @@ function Header() {
                 </div>
             </nav>
         </header>
-
+        {isVisible &&
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="mb-6 flex justify-center">
             </div>
@@ -75,7 +70,9 @@ function Header() {
             </div>
             </div>
         </div>
+        }
     </div>
+        
   );
 }
 
