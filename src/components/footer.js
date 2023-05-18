@@ -140,11 +140,9 @@ const Footer = () => {
             <h3 className="text-lg font-bold text-white mb-4">
               FANPAGE SCADA AUTOMATION
             </h3>
-            
           </div>
           <div className="col-span-1">
             <h3 className="text-lg font-bold text-white mb-4">Chứng chỉ</h3>
-            
           </div>
         </div>
         <div className="mt-8 border-t border-gray-700 pt-8">

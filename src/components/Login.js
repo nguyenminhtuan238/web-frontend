@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import { SnackbarProvider } from 'notistack';
-import { useSnackbar } from "notistack";
-import { Link } from "react-router-dom";
+import { useSnackbar } from 'notistack';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { enqueueSnackbar } = useSnackbar(); // khởi tạo useSnackbar
 
   const handleEmailChange = (event) => {
@@ -21,8 +21,8 @@ const Login = () => {
     // Xử lý đăng nhập tại đây (gửi thông tin đăng nhập đến server)
     console.log(email, password);
     // Hiển thị thông báo đăng nhập thành công
-    enqueueSnackbar("Đăng nhập thành công", {
-      variant: "success",
+    enqueueSnackbar('Đăng nhập thành công', {
+      variant: 'success',
       autoHideDuration: 3000, // tự động đóng sau 3 giây
     });
   };
