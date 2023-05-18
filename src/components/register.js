@@ -1,3 +1,4 @@
+import { SnackbarProvider } from 'notistack';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Formik } from "formik";
@@ -5,10 +6,11 @@ import { useSnackbar } from "notistack";
 import * as Yup from "yup";
 
 
-const Register = () => {
+const Register=()=>{
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { enqueueSnackbar } = useSnackbar();
 
   // const handleSubmit = (event) => {
   //   event.preventDefault();
@@ -183,4 +185,9 @@ const Register = () => {
     
   );
 };
-export default Register;
+
+export default () => (
+  <SnackbarProvider anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+    <Register />
+  </SnackbarProvider>
+);

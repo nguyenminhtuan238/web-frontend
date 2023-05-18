@@ -1,3 +1,4 @@
+import { SnackbarProvider } from 'notistack';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components';
 import Forget from './components/Forget';
@@ -7,6 +8,7 @@ import Footer from './components/footer';
 function App() {
   return (
     <div className="App">
+    <SnackbarProvider maxSnack={3}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}></Route>
@@ -16,6 +18,7 @@ function App() {
           <Route path="/Forget" element={<Forget />}></Route>
         </Routes>
       </BrowserRouter>
+    </SnackbarProvider>
     </div>
   );
 }
