@@ -1,13 +1,17 @@
+
 import React, { useState } from 'react';
 import { SnackbarProvider } from 'notistack';
-import { Link } from "react-router-dom"
 import { useSnackbar } from "notistack";
+import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom"
 
 const Register=()=>{
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { enqueueSnackbar } = useSnackbar();
+
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -24,6 +28,7 @@ const Register=()=>{
       variant: "success",
       autoHideDuration: 3000, // tự động đóng sau 3 giây
     });
+    navigate('/Login');
   };
 
   return (
