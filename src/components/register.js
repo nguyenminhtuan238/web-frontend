@@ -4,30 +4,14 @@ import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
 import { useSnackbar } from 'notistack';
 import * as Yup from 'yup';
-
 const Register = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-
-  //   const user = {
-  //     username: username,
-  //     password: password,
-  //     email: email,
-  //   };
-  //   console.log(user);
-  //   // Xử lý dữ liệu
-  // };
 
   return (
     <Formik
       initialValues={{ username: '', email: '', password: '' }}
       validationSchema={Yup.object({
         username: Yup.string()
-          .min(3, 'Name needs at least 3 characters')
+          .min(3, 'username needs at least 3 characters')
           .required('This field is required'),
         email: Yup.string()
           .email('Email invalid')
@@ -36,10 +20,11 @@ const Register = () => {
           .min(6, 'Password minimum 6 characters')
           .required('This field is required'),
       })}
-      onSubmit={(values, { setSubmitting }) => {
-        // registerAccount(values.name, values.email, values.password);
+      onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(false);
-        console.log(values);
+        values.username=""
+        values.password=""
+        values.email=""
       }}
     >
       {({
