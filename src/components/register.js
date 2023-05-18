@@ -1,17 +1,10 @@
-
 import React, { useState } from 'react';
-import { SnackbarProvider } from 'notistack';
-import { useSnackbar } from "notistack";
-import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom"
 
 const Register=()=>{
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const { enqueueSnackbar } = useSnackbar();
-
-  const navigate = useNavigate();
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -23,12 +16,6 @@ const Register=()=>{
     };
     console.log(user);
     // Xử lý dữ liệu
-    // Hiển thị thông báo đăng nhập thành công
-    enqueueSnackbar("Đăng ký thành công", {
-      variant: "success",
-      autoHideDuration: 3000, // tự động đóng sau 3 giây
-    });
-    navigate('/Login');
   };
 
   return (
@@ -144,9 +131,4 @@ const Register=()=>{
     </div>
   );
 };
-
-export default () => (
-  <SnackbarProvider anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
-    <Register />
-  </SnackbarProvider>
-);
+export default Register;
