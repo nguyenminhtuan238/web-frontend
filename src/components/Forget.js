@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { SnackbarProvider } from 'notistack';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { Formik } from 'formik';
@@ -9,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 const Forget = () => {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
   // const handleInputChange = (event) => {
   //   setEmail(event.target.value);
   // };
@@ -120,8 +118,4 @@ const Forget = () => {
   );
 };
 
-export default () => (
-  <SnackbarProvider anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
-    <Forget />
-  </SnackbarProvider>
-);
+export default Forget;
