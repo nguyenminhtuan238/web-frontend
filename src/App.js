@@ -25,7 +25,16 @@ function App() {
                 }
               ></Route>
               <Route path="Register" element={<Register />}></Route>
-              <Route path="Forget" element={<Forget />}></Route>
+              <Route
+                path="Forget"
+                element={
+                  <SnackbarProvider
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                  >
+                    <Forget />
+                  </SnackbarProvider>
+                }
+              ></Route>
             </Route>
             <Route path="*" element={<NotFound />}></Route>
           </Routes>

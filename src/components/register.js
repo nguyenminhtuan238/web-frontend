@@ -38,11 +38,6 @@ const Register = () => {
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
               Đăng ký tài khoản
             </h2>
-            <p className="mt-2 text-center text-sm text-gray-600">
-              <Link className="font-medium text-indigo-600 hover:text-indigo-500">
-                Đăng nhập nếu có tài khoản
-              </Link>
-            </p>
           </div>
 
           <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
