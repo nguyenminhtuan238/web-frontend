@@ -6,9 +6,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 
-
 const Forget = () => {
-  
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -29,7 +27,7 @@ const Forget = () => {
 
   return (
     <Formik
-      initialValues={{ email: ''}}
+      initialValues={{ email: '' }}
       validationSchema={Yup.object({
         email: Yup.string()
           .email('Email không hợp lệ')
@@ -38,11 +36,13 @@ const Forget = () => {
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(false);
         console.log(values);
-          enqueueSnackbar('Yêu cầu thành công!', {
-            variant: 'success',
-            autoHideDuration: 1000,
-          });
-        setTimeout(() => {navigate('/');}, 1000);
+        enqueueSnackbar('Yêu cầu thành công!', {
+          variant: 'success',
+          autoHideDuration: 1000,
+        });
+        setTimeout(() => {
+          navigate('/');
+        }, 1000);
       }}
     >
       {({
@@ -89,43 +89,26 @@ const Forget = () => {
                         autoComplete="email"
                         onBlur={handleBlur}
                         value={values.email}
-                          // onChange={(e) => setEmail(e.target.value)}
+                        // onChange={(e) => setEmail(e.target.value)}
                         onChange={handleChange}
                         required
                         placeholder="my@gmail.com"
                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        />
-                        {errors.email && touched.email && (
-                          <p className="text-red-500">{errors.email}</p>
-                        )}
-                      </div>
+                      />
+                      {errors.email && touched.email && (
+                        <p className="text-red-500">{errors.email}</p>
+                      )}
                     </div>
+                  </div>
 
-                    <div className="py-6">
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                      >
-                        <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                          <svg
-                            className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                            aria-hidden="true"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-2a6 6 0 100-12 6 6 0 000 12zm-1-6a1 1 0 011-1h2a1 1 0 010 2h-2a1 1 0 01-1-1z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        
-                          Đặt lại mật khẩu
-                      
-                      </button>
+                  <div className="py-6">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="group w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                      Đặt lại mật khẩu
+                    </button>
                   </div>
                 </div>
               </form>
@@ -133,7 +116,7 @@ const Forget = () => {
           </div>
         </div>
       )}
-      </Formik>
+    </Formik>
   );
 };
 

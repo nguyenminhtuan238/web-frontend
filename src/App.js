@@ -6,23 +6,30 @@ import Login from './components/Login';
 import Register from './components/register';
 import Layout from './components/layout/layout';
 import NotFound from './components/Notfound';
-import Content from './components/content';
+import Search from './components/search';
 function App() {
   return (
     <div className="App">
       <SnackbarProvider maxSnack={5}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Layout/>}>
-            <Route index element={<Home />}></Route>
-            <Route path="Login" element={ <SnackbarProvider anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
-                      <Login />
-                </SnackbarProvider>}>
-              </Route>
-            <Route path="Register" element={<Register />}></Route>
-            <Route path="Forget" element={<Forget />}></Route>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />}></Route>
+              <Route
+                path="Login"
+                element={
+                  <SnackbarProvider
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                  >
+                    <Login />
+                  </SnackbarProvider>
+                }
+              ></Route>
+              <Route path="Register" element={<Register />}></Route>
+              <Route path="Forget" element={<Forget />}></Route>
+              <Route path="Search" element={<Search />}></Route>
             </Route>
-            <Route path="*" element={<NotFound/>}></Route>
+            <Route path="*" element={<NotFound />}></Route>
           </Routes>
         </BrowserRouter>
       </SnackbarProvider>

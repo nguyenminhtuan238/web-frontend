@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useSnackbar } from 'notistack';
 import { Link } from 'react-router-dom';
@@ -6,16 +5,12 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {  
-  const { enqueueSnackbar } = useSnackbar();// khởi tạo useSnackbar
+const Login = ({ modal }) => {
+  const { enqueueSnackbar } = useSnackbar(); // khởi tạo useSnackbar
   const navigate = useNavigate();
 
   // const handleEmailChange = (event) => {
   //   setEmail(event.target.value);
-  // };
-
-  // const handlePasswordChange = (event) => {
-  //   setPassword(event.target.value);
   // };
 
   // const handleSubmit = (event) => {
@@ -40,14 +35,17 @@ const Login = () => {
         // registerAccount(values.name, values.email, values.password);
         //setSubmitting(false);
         console.log(values);
-        if(values.email==='a@gmail.com'&& values.password==='123456'){
-          console.log('ok')
-        setSubmitting(false);
+        if (values.email === 'a@gmail.com' && values.password === '123456') {
+          console.log('ok');
+          setSubmitting(false);
           enqueueSnackbar('Đăng nhập thành công!', {
             variant: 'success',
             autoHideDuration: 1000,
           });
-        setTimeout(() => {navigate('/');}, 1000);}
+          setTimeout(() => {
+            navigate('/');
+          }, 1000);
+        }
         // enqueueSnackbar('Đăng nhập thành công!', {
         //   variant: 'success',
         //   autoHideDuration: 3000,
@@ -65,23 +63,22 @@ const Login = () => {
         handleSubmit,
         isSubmitting,
       }) => (
-        <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-          <div className="sm:mx-auto sm:w-full sm:max-w-md">
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              Đăng Nhập Tài Khoản
-            </h2>
-            <p className="mt-2 text-center text-sm text-gray-600">
-              <Link
-                to="/"
-                className="font-medium text-indigo-600 hover:text-indigo-500 text-red-300"
-              >
-                <b>Quay lại</b>
-              </Link>
-            </p>
-          </div>
-
-          <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md mb-28">
-            <div className="bg-white py-1 px-4 shadow sm:rounded-lg sm:px-10 mb-26">
+        <div className="min-h-screen bg-gray-100 flex flex-col justify-center  py-12 sm:px-6 lg:px-8 fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-50 flex justify-center items-center ">
+          <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md mb-28 bg-white py-1 px-4 shadow sm:rounded-lg sm:px-10 mb-26 ">
+            <div className="sm:mx-auto sm:w-full sm:max-w-md ">
+              <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                Đăng Nhập Tài Khoản
+              </h2>
+              <p className="mt-2 text-center text-sm text-gray-600">
+                <Link
+                  className="font-medium text-indigo-600 hover:text-indigo-500 text-red-300"
+                  to="/"
+                >
+                  <b onClick={modal}>Quay lại</b>
+                </Link>
+              </p>
+            </div>
+            <div className="">
               <form className=" space-y-6" onSubmit={handleSubmit}>
                 <input type="hidden" name="remember" value="true" />
                 <div className="rounded-md py-6 shadow-sm -space-y-px-10">
@@ -162,6 +159,7 @@ const Login = () => {
                     <Link
                       to="/Register"
                       className="font-medium text-indigo-600 hover:text-indigo-500"
+                      onClick={modal}
                     >
                       <b>Bạn chưa đăng ký tài khoản?</b>
                     </Link>
@@ -171,36 +169,27 @@ const Login = () => {
                     <Link
                       to="/Forget"
                       className="font-medium text-indigo-600 hover:text-indigo-500"
+                      onClick={modal}
                     >
                       <b>Quên mật khẩu?</b>
                     </Link>
                   </div>
                 </div>
 
-                <div className="py-6">
+                <div className="py-6 w-full flex justify-center  space-x-36 ">
+                  <button
+                    type="submit"
+                    onClick={modal}
+                    className="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 mr-5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  >
+                    Thoát ra
+                  </button>
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className=" py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
-                    <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                      <svg
-                        className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-2a6 6 0 100-12 6 6 0 000 12zm-1-6a1 1 0 011-1h2a1 1 0 010 2h-2a1 1 0 01-1-1z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </span>
-                    
-                      Đăng nhập
-                  
+                    Đăng nhập
                   </button>
                 </div>
               </form>
@@ -212,4 +201,4 @@ const Login = () => {
   );
 };
 
-export default Login
+export default Login;
