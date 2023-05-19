@@ -49,34 +49,18 @@ function Header() {
         
         }
         {isVisible &&
-        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 animate-slideDown z-40 bg-white border-b-4 border-indigo-500">
-            <div class="mb-6 flex justify-center">
-            </div>
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 border-b-4 border-indigo-500 animate-slideDown z-40 bg-white">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="col-span-1 md:col-span-2 lg:col-span-1">
-                <a href="/" className="text-2xl font-bold text-black">
-                Trụ Sở và chi nhánh
-                </a>
-                <p className="mt-4 text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-                ullamcorper et lectus vel mattis. Donec volutpat sapien et lorem
-                dictum, eget ullamcorper odio varius. Morbi ut magna eu nulla
-                ultricies interdum.
-                </p>
-            </div>
-            <div className="col-span-1">
-                <h3 className="text-lg font-bold text-black mb-4">Liên hệ</h3>
-                <ul className="text-gray-400">
-                <li className="mb-2">
-                    <i className="fas fa-map-marker-alt mr-2"></i>Hotline: (+84) 939
-                    814 858
-                </li>
-                <li className="mb-2">
-                    <i className="fas fa-phone-alt mr-2"></i>Email:
-                    Sales@scadaautomation.com.vn
-                </li>
-                </ul>
-            </div>
+                <div className="col-span-1 ">
+                    <ul className="text-gray-400 mt-4 cursor-pointer ">
+                        <li>
+                            <a href="#" class="text-black dark:text-white  hover:bg-gray-300 focus:bg-4 focus:bg-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Iot</a>
+                        </li>
+                    </ul>
+                </div>
+                <div className="grid grid-cols-4 gap-4 col-span-2 mt-4 mb-4">
+                    <div className=""><img className="w-[300px] h-[200px]" src="https://static.developer.sony.com/images/image/v6/s3/uploads/2017/07/Open-Devices-Header-5.6.jpg?size=225x170&v=784&jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzcmMiOiIvdXBsb2Fkcy8yMDE3LzA3L09wZW4tRGV2aWNlcy1IZWFkZXItNS42LmpwZyIsImFsdF90ZXh0IjoiT3BlbiBEZXZpY2VzIEhlYWRlciA1LjYiLCJpbWFnZV9pZCI6Ijc4NCIsInNlcnZpY2UiOiJhd3MtczMiLCJhd3NfYnVja2V0Ijoic29ueWR3LXByb2Qtc3RhdGljLWFzc2V0cyIsImZvY3VzIjp7IngiOjAuNSwieSI6MC41fSwid2hpdGVsaXN0U2l6ZXMiOlsiMTIwMHhBVVRPIiwiMTAweDY1IiwiMTAweEFVVE8iLCIxMTB4ODIiLCI3NTB4QVVUTyIsIjEwMDB4QVVUTyIsIjEyMDB4QVVUTyIsIjEyMDB4ODAwIiwiMTkyMHhBVVRPIiwiMTkyMHgxMDAwIiwiMjAweDE1MCIsIjIyNXgxNzAiLCIyMjV4QVVUTyIsIjIyOXgzMDAiLCIzNjh4QVVUTyIsIjQ1MHgzNDAiLCI1MDB4QVVUTyIsIjc1MHg1MDAiLCI3eDEwIiwiN3gxMiIsIjd4MTYiLCI3eDMiLCI3eDQiLCI3eDUiLCI3eDYiLCI3eDciLCI3eDgiLCI3eDkiXSwiaW1hZ2VWZXJzaW9uIjoidjYiLCJleHAiOjE5MDQ2ODgwMDAwMDB9.dJ3lxb1l_rIV2YhYU1CztQVxCeiEGRq4xyOp_qwTErM"></img></div>
+                </div>
             </div>
         </div>
         }
