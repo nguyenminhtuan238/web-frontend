@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Register from './components/register';
 import Layout from './components/layout/layout';
 import NotFound from './components/Notfound';
+import Content from './components/content';
 function App() {
   return (
     <div className="App">
