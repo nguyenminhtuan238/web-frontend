@@ -8,14 +8,14 @@ const Register = () => {
       initialValues={{ username: '', email: '', password: '' }}
       validationSchema={Yup.object({
         username: Yup.string()
-          .min(3, 'username needs at least 3 characters')
-          .required('This field is required'),
+          .min(3, 'Tên người dùng cần ít nhất 3 ký tự')
+          .required('Bắt buộc nhập'),
         email: Yup.string()
-          .email('Email invalid')
-          .required('This field is required'),
+          .email('Email không hợp lệ')
+          .required('Bắt buộc nhập'),
         password: Yup.string()
-          .min(6, 'Password minimum 6 characters')
-          .required('This field is required'),
+          .min(6, 'Mật khẩu cần ít nhất 6 ký tự')
+          .required('Bắt buộc nhập'),
       })}
       onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(false);
