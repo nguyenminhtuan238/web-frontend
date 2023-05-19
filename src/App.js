@@ -6,6 +6,9 @@ import Login from './components/Login';
 import Register from './components/register';
 import Footer from './components/footer';
 import Header from './components/header';
+import Content from './components/content';
+import Search from './components/search'
+
 function App() {
   return (
     <div className="App">
@@ -17,10 +20,12 @@ function App() {
             <Route path="/Header" element={<Header />}></Route>
             <Route path="/Login" element={ <SnackbarProvider anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
                       <Login />
-                </SnackbarProvider>}>
-              </Route>
+                      </SnackbarProvider>}>
+            </Route>
             <Route path="/Register" element={<Register />}></Route>
             <Route path="/Forget" element={<Forget />}></Route>
+            <Route path="/Content" element={<Content />}></Route>
+            <Route path="/Search" element={<Search />}></Route>
           </Routes>
         </BrowserRouter>
       </SnackbarProvider>
