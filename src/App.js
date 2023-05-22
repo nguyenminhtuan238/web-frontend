@@ -1,9 +1,9 @@
 import { SnackbarProvider } from 'notistack';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components';
-import Forget from './components/Forget';
-import Login from './components/Login';
-import Register from './components/register';
+import Forget from './components/auth/Forget';
+import Login from './components/auth/Login';
+import Register from './components/auth/register';
 import Layout from './components/layout/layout';
 import NotFound from './components/Notfound';
 function App() {

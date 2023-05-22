@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Login from './Login';
+import Login from '../auth/Login';
 function Header() {
   const [isVisible, setIsVisible] = useState(false);
   const [modal, setmodal] = useState(false);

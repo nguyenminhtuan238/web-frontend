@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
 
 const Home = () => {
-  const [scrollTop, setScrollTop] = useState(0);
+  // const [scrollTop, setScrollTop] = useState(0);
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
-      const scroll =
-        window.innerHeight - document.getElementById('second').scrollTop;
-      console.log(scroll);
-      //console.log(window.scrollY)
+      const scroll =document.getElementById('second');
+      var crollw=Math.round(window.scrollY)
+      // if(crollw<400){
+      //   console.log(crollw)
+      // }
+      console.log(scroll.clientHeight)
+      
     });
   }, []);
 
@@ -19,7 +22,6 @@ const Home = () => {
         alt="Lỗi hình"
       />
       <h1>Trang Chu</h1>
-      <h2>Scroll Top: {scrollTop}</h2>
       <nav
         id="second"
         class="flex w-full flex-wrap items-center justify-between bg-neutral-100 py-2 text-neutral-500 shadow-lg hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-600 lg:py-4"
