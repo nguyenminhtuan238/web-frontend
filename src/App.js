@@ -7,6 +7,8 @@ import Register from './components/auth/register';
 import Layout from './components/layout/layout';
 import NotFound from './components/Notfound';
 import Cart from './components/cart/cart';
+import View from './components/cart/view';
+import Products from './components/cart/products';
 function App() {
   return (
     <div className="App">
@@ -39,6 +41,8 @@ function App() {
             </Route>
             <Route path="*" element={<NotFound />}></Route>
             <Route path="Cart" element={<Cart />}></Route>
+            <Route path="View" element={<View />}></Route>
+            <Route path="Products" element={<Products />}></Route>
           </Routes>
         </BrowserRouter>
       </SnackbarProvider>
