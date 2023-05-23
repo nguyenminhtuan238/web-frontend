@@ -6,7 +6,7 @@ import Login from './components/auth/Login';
 import Register from './components/auth/register';
 import Layout from './components/layout/layout';
 import NotFound from './components/Notfound';
-import Cart from './cart/cart';
+import Cart from './components/cart/cart';
 function App() {
   return (
     <div className="App">

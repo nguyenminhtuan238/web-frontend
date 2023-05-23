@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 
-const CartPage = (props) => {
+const CartPage = () => {
   const [count, setCount] = useState(1);
   const decreaseCount = () => {
     if (count > 1) {
@@ -14,7 +14,7 @@ const CartPage = (props) => {
   };
 
   const calculatePrice = () => {
-    const price = props.price * count;
+    const price = 1* count;
     return price.toFixed(2);
   };
 
