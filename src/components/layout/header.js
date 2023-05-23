@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Login from '../auth/Login';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsSearch, setmodal } from '../../store/hidden';
 function Header() {
   const [isVisible, setIsVisible] = useState(false);
-  const [modal, setmodal] = useState(false);
-  const [isSearch, setIsSearch] = useState(false);
+  const hidden = useSelector((state) => state.hidden);
+  const dispatch = useDispatch();
   return (
-    <div className="w-full sticky top-0 " id="he" >
-      <header >
+    <div
+      className={
+        hidden.changscroll
+          ? 'w-full sticky top-0 hidden'
+          : 'w-full sticky top-0 '
+      }
+      id="he"
+    >
+      <header>
         <nav className="bg-black border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 z-50">
           <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <a href="https://flowbite.com" className="flex items-center">
@@ -23,19 +31,19 @@ function Header() {
             <div className="flex items-center lg:order-2">
               <button
                 className="text-white dark:text-white cursor-pointer hover:bg-sky-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-                onClick={() => setmodal(!modal)}
+                onClick={() => dispatch(setmodal())}
               >
                 Đăng nhập
               </button>
-              <div >
+              <div>
                 <Link
-                    className="block cursor-pointer py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
-                    aria-current="page"
-                    onClick={() => setIsSearch(!isSearch)}
-                  >
-                    Tìm kiếm
+                  className="block cursor-pointer py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
+                  aria-current="page"
+                  onClick={() => dispatch(setIsSearch())}
+                >
+                  Tìm kiếm
                 </Link>
-              </div> 
+              </div>
               <button
                 data-collapse-toggle="mobile-menu-2"
                 type="button"
@@ -70,6 +78,7 @@ function Header() {
                 </svg>
               </button>
             </div>
+
             <div
               className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
               id="mobile-menu-2"
@@ -89,13 +98,7 @@ function Header() {
           </div>
         </nav>
       </header>
-      {modal && (
-        <Login
-          modal={() => {
-            setmodal(false);
-          }}
-        />
-      )}
+
       {isVisible && (
         <div className="max-w-screen-2xl absolute  mx-auto px-4 sm:px-6 lg:px-8 border-b-4 border-indigo-500  animate-slideDown z-40 bg-white">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -119,33 +122,6 @@ function Header() {
             </div>
           </div>
         </div>
-      )}
-      {isSearch &&(
-          <div className="min-h-screen bg-gray-100 flex flex-col justify-center   py-12 sm:px-6 lg:px-8 fixed inset-0  bg-opacity-30 backdrop-blur-sm z-50  ">
-          <div className=" w-[640px] bg-gray-100  animate-slideRight min-h-screen ml-auto  absolute top-0 right-0 z-50 shadow-lg " style={{boxShadow: '0 0 1000px rgba(0, 0, 0,0.5)'}}>
-            <div className="absolute top-[0px] right-[0px] modal bg-gray-100 p-8">
-              <Link onClick={() => setIsSearch(!isSearch)} >close</Link>  
-            </div>
-            <div className=" absolute mx-auto text-gray-600 top-[80px] right-[50px] w-[550px]">
-              
-              <form className="flex items-center">   
-                <label for="simple-search" className="sr-only">Search</label>
-                <div className="relative w-full">
-                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg aria-hidden="true" className="w-5 h-5 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"></path></svg>
-                    </div>
-                    <input type="text" id="simple-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required></input>
-                </div>
-                <button type="submit" className="p-2.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
-                    <span className="sr-only">Search</span>
-                </button>
-              </form>
-            </div>
-          </div>
-          </div>
       )}
     </div>
   );

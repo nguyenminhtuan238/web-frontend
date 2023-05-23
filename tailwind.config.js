@@ -15,7 +15,7 @@ module.exports = {
       },
       animation: {
         slideDown: 'slideDown 0.25s ease-in-out',
-        slideRight: 'slideright 0.25s ease-in-out'
+        slideRight: 'slideright 0.25s ease-in-out',
       },
     },
   },
