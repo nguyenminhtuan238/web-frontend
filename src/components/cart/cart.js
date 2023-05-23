@@ -21,11 +21,10 @@ const CartPage = () => {
   return (
     
     <div className="grid grid-cols-3">
-      
         
       <div className="col-span-2 ml-16 mr-16">
 
-        <div className="text-lg font-bold mt-10 mb-10 ml-2">
+        <div className="text-lg font-bold mt-11 mb-10 ml-2">
           <h2>Giỏ hàng</h2> 
         </div>
       
