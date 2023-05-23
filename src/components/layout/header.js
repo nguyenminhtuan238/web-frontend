@@ -121,7 +121,7 @@ function Header() {
         </div>
       )}
       {isSearch &&(
-          <div className=" w-[640px] bg-gray-100 animate min-h-screen ml-auto absolute top-0 right-0 z-50 shadow-lg " style={{boxShadow: '0 0 1000px rgba(0, 0, 0,0.5)'}}>
+          <div className=" w-[640px] bg-gray-100 animate min-h-screen ml-auto absolute top-0 right-0 z-50 shadow-lg " style={{boxShadow: '0 0 1000px rgba(0, 0, 0,1)'}}>
             <div className="absolute top-[0px] right-[0px] modal bg-gray-100 p-8">
               <Link onClick={() => setIsSearch(!isSearch)} >close</Link>  
             </div>
