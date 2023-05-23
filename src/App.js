@@ -7,16 +7,19 @@ import Register from './components/auth/register';
 import Layout from './components/layout/layout';
 import NotFound from './components/Notfound';
 import Cart from './components/cart/cart';
-import View from './components/cart/view';
-import Products from './components/cart/products';
+import Thongtin from './components/thongtin';
+import Admin from './components/admin';
+import Them from './components/them';
 function App() {
   return (
     <div className="App">
       <SnackbarProvider maxSnack={5}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Layout />}>
+            <Route path="/" element={<Layout />}>           
               <Route index element={<Home />}></Route>
+              <Route path='/thongtin' element={<Thongtin />}></Route>
+              
               <Route
                 path="Login"
                 element={
@@ -41,8 +44,8 @@ function App() {
             </Route>
             <Route path="*" element={<NotFound />}></Route>
             <Route path="Cart" element={<Cart />}></Route>
-            <Route path="View" element={<View />}></Route>
-            <Route path="Products" element={<Products />}></Route>
+            <Route path='/admin' element={<Admin />}></Route>
+            <Route path='/them' element={<Them />}></Route>
           </Routes>
         </BrowserRouter>
       </SnackbarProvider>
