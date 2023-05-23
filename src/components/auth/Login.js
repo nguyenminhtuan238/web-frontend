@@ -63,7 +63,7 @@ const Login = ({ modal }) => {
         handleSubmit,
         isSubmitting,
       }) => (
-        <div className="min-h-screen bg-gray-100 flex flex-col justify-center  py-12 sm:px-6 lg:px-8 fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-50 flex justify-center items-center ">
+        <div className="min-h-screen bg-gray-100 flex flex-col justify-center  py-12 sm:px-6 lg:px-8 fixed inset-0  bg-opacity-30 backdrop-blur-sm z-50  ">
           <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md mb-28 bg-white py-1 px-4 shadow sm:rounded-lg sm:px-10 mb-26 ">
             <div className="sm:mx-auto sm:w-full sm:max-w-md ">
               <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
