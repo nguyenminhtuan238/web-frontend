@@ -1,10 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { combineReducers } from 'redux'
-import hidden from './hidden'
+import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
+import hidden from './hidden';
 const reducer = combineReducers({
-    hidden,
-})
+  hidden,
+});
 const store = configureStore({
   reducer,
-})
+});
 export default store;

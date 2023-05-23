@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux';
 import { setmodal } from '../../store/hidden';
 const Login = ({ modal }) => {
   const { enqueueSnackbar } = useSnackbar(); // khởi tạo useSnackbar
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   // const handleEmailChange = (event) => {
   //   setEmail(event.target.value);
   // };
@@ -75,7 +75,7 @@ const Login = ({ modal }) => {
                   className="font-medium text-indigo-600 hover:text-indigo-500 text-red-300"
                   to="/"
                 >
-                  <b onClick={()=>dispatch(setmodal())}>Quay lại</b>
+                  <b onClick={() => dispatch(setmodal())}>Quay lại</b>
                 </Link>
               </p>
             </div>
@@ -160,7 +160,7 @@ const Login = ({ modal }) => {
                     <Link
                       to="/Register"
                       className="font-medium text-indigo-600 hover:text-indigo-500"
-                      onClick={()=>dispatch(setmodal())}
+                      onClick={() => dispatch(setmodal())}
                     >
                       <b>Bạn chưa đăng ký tài khoản?</b>
                     </Link>
@@ -170,7 +170,7 @@ const Login = ({ modal }) => {
                     <Link
                       to="/Forget"
                       className="font-medium text-indigo-600 hover:text-indigo-500"
-                      onClick={()=>dispatch(setmodal())}
+                      onClick={() => dispatch(setmodal())}
                     >
                       <b>Quên mật khẩu?</b>
                     </Link>
@@ -180,7 +180,7 @@ const Login = ({ modal }) => {
                 <div className="py-6 w-full flex justify-center  space-x-36 ">
                   <button
                     type="submit"
-                    onClick={()=>dispatch(setmodal())}
+                    onClick={() => dispatch(setmodal())}
                     className="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 mr-5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     Thoát ra

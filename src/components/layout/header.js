@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {useDispatch,useSelector} from 'react-redux'
-import { setIsSearch,setmodal } from '../../store/hidden';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsSearch, setmodal } from '../../store/hidden';
 function Header() {
   const [isVisible, setIsVisible] = useState(false);
-  const hidden= useSelector((state) => state.hidden);
-  const dispatch = useDispatch()
+  const hidden = useSelector((state) => state.hidden);
+  const dispatch = useDispatch();
   return (
-    <div className={hidden.changscroll?"w-full sticky top-0 hidden":"w-full sticky top-0 "} id="he" >
-      <header >
+    <div
+      className={
+        hidden.changscroll
+          ? 'w-full sticky top-0 hidden'
+          : 'w-full sticky top-0 '
+      }
+      id="he"
+    >
+      <header>
         <nav className="bg-black border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 z-50">
           <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <a href="https://flowbite.com" className="flex items-center">
@@ -28,15 +35,15 @@ function Header() {
               >
                 Đăng nhập
               </button>
-              <div >
+              <div>
                 <Link
-                    className="block cursor-pointer py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
-                    aria-current="page"
-                    onClick={()=> dispatch(setIsSearch())}
-                  >
-                    Tìm kiếm
+                  className="block cursor-pointer py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
+                  aria-current="page"
+                  onClick={() => dispatch(setIsSearch())}
+                >
+                  Tìm kiếm
                 </Link>
-              </div> 
+              </div>
               <button
                 data-collapse-toggle="mobile-menu-2"
                 type="button"
@@ -70,9 +77,8 @@ function Header() {
                   ></path>
                 </svg>
               </button>
-              
             </div>
-            
+
             <div
               className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
               id="mobile-menu-2"
@@ -92,7 +98,7 @@ function Header() {
           </div>
         </nav>
       </header>
-    
+
       {isVisible && (
         <div className="max-w-screen-2xl absolute  mx-auto px-4 sm:px-6 lg:px-8 border-b-4 border-indigo-500  animate-slideDown z-40 bg-white">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -117,7 +123,6 @@ function Header() {
           </div>
         </div>
       )}
-    
     </div>
   );
 }

@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 
 const ViewPage = () => {
-    return(
-        <div>
-
-        </div>
-    );
-}
+  return <div></div>;
+};
 
 export default ViewPage;
