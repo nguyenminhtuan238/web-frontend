@@ -5,6 +5,7 @@ import Stack from '@mui/material/Stack';
 const ProductsPage = () => {
   return (
     <div>
+      
       <div className="grid grid-cols-5 ml-8 mr-8 mt-8">
         <div className="col-span-1 border-2 bg-white">
           <div className="py-2 px-4 ">
@@ -34,6 +35,7 @@ const ProductsPage = () => {
           </div>
         </div>
       </div>
+
       <div className="flex justify-center items-center mt-8 mb-8">
         <Stack spacing={2}>
           <Pagination count={10} showFirstButton showLastButton />
