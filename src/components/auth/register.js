@@ -1,13 +1,30 @@
 import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 const Register = () => {
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //     const response = await axios.post('http://192.168.1.9/magento2/rest/V1/customers', {
+  //       firstname,
+  //       lastname,
+  //       password,
+  //       email,
+  //     });
+  //     console.log(response.data);
+  //     // Chuyển hướng đến trang đăng nhập hoặc hiển thị thông báo đăng ký thành công
+  //   } catch (error) {
+  //     setError(error.response.data.message);
+  //   }
+  // };
   return (
     <Formik
-      initialValues={{ username: '', email: '', password: '' }}
+      initialValues={{ firstname: '', lastname: '', email: '', password: '' }}
       validationSchema={Yup.object({
-        username: Yup.string()
-          .min(3, 'Tên người dùng cần ít nhất 3 ký tự')
+        firstname: Yup.string()
+          .required('Bắt buộc nhập'),
+        lastname: Yup.string()
           .required('Bắt buộc nhập'),
         email: Yup.string()
           .email('Email không hợp lệ')
@@ -18,7 +35,8 @@ const Register = () => {
       })}
       onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(false);
-        values.username = '';
+        values.firstname = '';
+        values.lastname = '';
         values.password = '';
         values.email = '';
       }}
@@ -32,9 +50,9 @@ const Register = () => {
         handleSubmit,
         isSubmitting,
       }) => (
-        <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-2 sm:px-6 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            <h2 className="mt-2 text-center text-3xl font-extrabold text-gray-900">
               Đăng ký tài khoản
             </h2>
           </div>
@@ -44,26 +62,49 @@ const Register = () => {
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
                   <label
-                    htmlFor="username"
+                    htmlFor="firstname"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Tên đăng nhập
+                    Firstname
                   </label>
                   <div className="mt-1">
                     <input
-                      id="username"
-                      name="username"
+                      id="firstname"
+                      name="firstname"
                       type="text"
-                      autoComplete="username"
+                      autoComplete="firstname"
                       onBlur={handleBlur}
-                      value={values.username}
-                      // onChange={(e) => setUsername(e.target.value)}
+                      value={values.firstname}
                       onChange={handleChange}
                       required
                       className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
-                    {errors.username && touched.username && (
-                      <p className="text-red-500">{errors.username}</p>
+                    {errors.firstname && touched.firstname && (
+                      <p className="text-red-500">{errors.firstname}</p>
+                    )}
+                  </div>
+                </div>
+                <div>
+                  <label
+                    htmlFor="lastname"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Lastname
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      id="lastname"
+                      name="lastname"
+                      type="text"
+                      autoComplete="lastname"
+                      onBlur={handleBlur}
+                      value={values.lastname}
+                      onChange={handleChange}
+                      required
+                      className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                    {errors.lastname && touched.lastname && (
+                      <p className="text-red-500">{errors.lastname}</p>
                     )}
                   </div>
                 </div>
@@ -83,8 +124,8 @@ const Register = () => {
                       autoComplete="email"
                       onBlur={handleBlur}
                       value={values.email}
-                      // onChange={(e) => setEmail(e.target.value)}
                       onChange={handleChange}
+                      placeholder="my@gmail.com"
                       required
                       className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
@@ -109,7 +150,6 @@ const Register = () => {
                       autoComplete="current-password"
                       onBlur={handleBlur}
                       value={values.password}
-                      // onChange={(e) => setPassword(e.target.value)}
                       onChange={handleChange}
                       required
                       className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
