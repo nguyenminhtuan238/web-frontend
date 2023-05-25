@@ -1,10 +1,13 @@
 import axios from 'axios';
+import { Storagekey } from '../unilt/key';
 const getUserToken = async () => {
-  // return user token here
+  if (localStorage.getItem(Storagekey)) {
+    return localStorage.getItem(Storagekey);
+  }
 };
 
 const ApiServices = axios.create({
-  baseURL: 'http://192.168.1.9:5000',
+  baseURL: 'http://192.168.1.9:5000/',
 });
 ApiServices.interceptors.request.use(
   async (config) => {

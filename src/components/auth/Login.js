@@ -35,7 +35,7 @@ const Login = () => {
       })}
       onSubmit={async (values, { setSubmitting }) => {
         // registerAccount(values.name, values.email, values.password);
-        await dispatch(LoginUser(values))
+        await dispatch(LoginUser(values));
         // if (values.email === 'a@gmail.com' && values.password === '123456') {
         //   console.log('ok');
         //   setSubmitting(false);

@@ -13,6 +13,7 @@ import Them from './components/them';
 import Product from './components/cart/products';
 import ProductsPage from './components/cart/products';
 import View from './components/cart/view';
+
 function App() {
   return (
     <div className="App">
@@ -21,7 +22,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route path="/" element={<Home />}>
-                <Route path="/SP" element={<ProductsPage/>}></Route>
+                <Route path="/SP" element={<ProductsPage />}></Route>
               </Route>
               <Route path="/thongtin" element={<Thongtin />}></Route>
 
