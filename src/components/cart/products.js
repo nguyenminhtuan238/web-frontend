@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom';
 const New = () => {
   return (
     <div className="md:w-4/5 sm:w-full lg:w-3/4 xl:w-2/3 mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mt-8"> 
-
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mt-8">
         {/* Thẻ Card sản phẩm */}
         <Link to="#">
           <div className="col-span-1 border-2 bg-white">
@@ -24,11 +23,11 @@ const New = () => {
               {/* Tên sản phẩm */}
               <div className="mt-2 overflow-hidden mb-4 uppercase">
                 <title class="line-clamp-3">
-                  Laptop ACER Nitro 16 Phoenix AN16-41-R5M4 (NH.QKBSV.003) (Ryzen
-                  5 7535HS/RAM 8GB/512GB SSD/ Windows 11)
+                  Laptop ACER Nitro 16 Phoenix AN16-41-R5M4 (NH.QKBSV.003)
+                  (Ryzen 5 7535HS/RAM 8GB/512GB SSD/ Windows 11)
                 </title>
               </div>
-              
+
               {/* Giá sản phẩm */}
               <div className="">
                 <span className="text-lg font-bold text-blue-900 ">
@@ -38,9 +37,8 @@ const New = () => {
             </div>
           </div>
         </Link>
-
       </div>
-      
+
       <div className="flex justify-center items-center mt-8 mb-8">
         <Stack spacing={2}>
           <Pagination count={10} showFirstButton showLastButton />
