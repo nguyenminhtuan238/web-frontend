@@ -5,7 +5,6 @@ import Stack from '@mui/material/Stack';
 const ProductsPage = () => {
   return (
     <div>
-      
       <div className="grid grid-cols-5 ml-8 mr-8 mt-8">
         <div className="col-span-1 border-2 bg-white">
           <div className="py-2 px-4 ">
