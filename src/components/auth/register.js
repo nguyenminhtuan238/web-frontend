@@ -1,8 +1,10 @@
 import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { RegisterUser } from '../../store/auth';
 const Register = () => {
+  const Dispatch = useDispatch();
   // const handleSubmit = async (event) => {
   //   event.preventDefault();
   //   try {
@@ -22,10 +24,8 @@ const Register = () => {
     <Formik
       initialValues={{ firstname: '', lastname: '', email: '', password: '' }}
       validationSchema={Yup.object({
-        firstname: Yup.string()
-          .required('Bắt buộc nhập'),
-        lastname: Yup.string()
-          .required('Bắt buộc nhập'),
+        firstname: Yup.string().required('Bắt buộc nhập'),
+        lastname: Yup.string().required('Bắt buộc nhập'),
         email: Yup.string()
           .email('Email không hợp lệ')
           .required('Bắt buộc nhập'),
@@ -35,10 +35,12 @@ const Register = () => {
       })}
       onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(false);
-        values.firstname = '';
-        values.lastname = '';
-        values.password = '';
-        values.email = '';
+        console.log(values);
+        Dispatch(RegisterUser(values));
+        // values.firstname = '';
+        // values.lastname = '';
+        // values.password = '';
+        // values.email = '';
       }}
     >
       {({

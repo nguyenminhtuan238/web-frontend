@@ -1,11 +1,11 @@
 import ApiServices from './api.services';
 const AuthApi = {
   register(data) {
-    const url = '/User/';
+    const url = 'account/register';
     return ApiServices.post(url, data);
   },
   Login(data) {
-    const url = '/account/login/';
+    const url = 'account/login/';
     return ApiServices.post(url, data);
   },
 };

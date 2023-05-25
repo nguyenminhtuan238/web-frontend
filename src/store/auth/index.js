@@ -1,22 +1,44 @@
-import { createSlice,createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import AuthApi from '../../services/auth.services';
-export const LoginUser=createAsyncThunk("user/login",async (payload)=>{
-    const res=await AuthApi.Login(payload)
-    console.log(res)
-    return res
-})
-const user = createSlice({
+import { Storagekey } from '../../unilt/key';
+export const LoginUser = createAsyncThunk('user/login', async (payload) => {
+  try {
+    const res = await AuthApi.Login(payload);
+    localStorage.setItem(Storagekey, res.token);
+  } catch (error) {
+    if (error?.response.status === 401) {
+      alert('Tai khoan mat khau sai');
+    } else {
+      console.log(error);
+    }
+  }
+});
+export const RegisterUser = createAsyncThunk(
+  'user/registe',
+  async (payload) => {
+    try {
+      const res = await AuthApi.register(payload);
+      console.log(res);
+    } catch (error) {
+      if (error?.response.status === 400) {
+        alert('Tai khoan mat khau sai');
+      } else {
+        console.log(error);
+      }
+    }
+  }
+);
+const User = createSlice({
   name: 'User',
   initialState: {
-    User:  {},
+    User: {},
+    error: '',
   },
-  reducers: {
+  reducers: {},
+  extraReducers: {
+    [LoginUser.fulfilled]: (state, action) => {
+      state.user = action.payload;
+    },
   },
-  extraReducers:{
-      [LoginUser.fulfilled]:(state,action)=>{
-          state.user=action.payload
-      }
-  }
-  
 });
-export default user.reducer;
+export default User.reducer;
