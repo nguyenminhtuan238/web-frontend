@@ -11,6 +11,7 @@ import Thongtin from './components/thongtin';
 import Admin from './components/admin';
 import Them from './components/them';
 import Product from './components/cart/products';
+import View from './components/cart/view';
 function App() {
   return (
     <div className="App">
@@ -48,6 +49,7 @@ function App() {
             <Route path="/admin" element={<Admin />}></Route>
             <Route path="/them" element={<Them />}></Route>
             <Route path="/product" element={<Product />}></Route>
+            <Route path="/view" element={<View />}></Route>
           </Routes>
         </BrowserRouter>
       </SnackbarProvider>
