@@ -13,6 +13,7 @@ import Them from './components/them';
 import Product from './components/cart/products';
 import ProductsPage from './components/cart/products';
 import View from './components/cart/view';
+import New from './components/cart/newproducts';
 function App() {
   return (
     <div className="App">
@@ -53,6 +54,7 @@ function App() {
             <Route path="/them" element={<Them />}></Route>
             <Route path="/product" element={<Product />}></Route>
             <Route path="/view" element={<View />}></Route>
+            <Route path="/new" element={<New />}></Route>
           </Routes>
         </BrowserRouter>
       </SnackbarProvider>
