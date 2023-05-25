@@ -4,7 +4,7 @@ const getUserToken = async () => {
 };
 
 const ApiServices = axios.create({
-  baseURL: 'http://localhost:5000/',
+  baseURL: 'http://192.168.1.9:5000',
 });
 ApiServices.interceptors.request.use(
   async (config) => {

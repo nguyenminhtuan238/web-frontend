@@ -5,7 +5,7 @@ const AuthApi = {
     return ApiServices.post(url, data);
   },
   Login(data) {
-    const url = '/User/';
+    const url = '/account/login/';
     return ApiServices.post(url, data);
   },
 };

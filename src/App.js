@@ -11,6 +11,7 @@ import Thongtin from './components/thongtin';
 import Admin from './components/admin';
 import Them from './components/them';
 import Product from './components/cart/products';
+import ProductsPage from './components/cart/products';
 function App() {
   return (
     <div className="App">
@@ -18,7 +19,9 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Layout />}>
-              <Route index element={<Home />}></Route>
+              <Route path="/" element={<Home />}>
+                <Route path="/SP" element={<ProductsPage/>}></Route>
+              </Route>
               <Route path="/thongtin" element={<Thongtin />}></Route>
 
               <Route

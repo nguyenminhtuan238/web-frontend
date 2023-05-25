@@ -6,7 +6,8 @@ import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setmodal } from '../../store/hidden';
-const Login = ({ modal }) => {
+import { LoginUser } from '../../store/auth';
+const Login = () => {
   const { enqueueSnackbar } = useSnackbar(); // khởi tạo useSnackbar
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -14,10 +15,10 @@ const Login = ({ modal }) => {
   //   setEmail(event.target.value);
   // };
 
-  // const handleSubmit = (event) => {
+  // const handleSubmit = (evalue) => {
   //   event.preventDefault();
   //   // Xử lý đăng nhập tại đây (gửi thông tin đăng nhập đến server)
-  //   console.log(email, password);
+  //   console.log(values);
   //   // Hiển thị thông báo đăng nhập thành công
   // };
 
@@ -32,21 +33,20 @@ const Login = ({ modal }) => {
           .min(6, 'Password cần ít nhất 6 số')
           .required('Bắt buộc nhập'),
       })}
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={async (values, { setSubmitting }) => {
         // registerAccount(values.name, values.email, values.password);
-        //setSubmitting(false);
-        console.log(values);
-        if (values.email === 'a@gmail.com' && values.password === '123456') {
-          console.log('ok');
-          setSubmitting(false);
-          enqueueSnackbar('Đăng nhập thành công!', {
-            variant: 'success',
-            autoHideDuration: 1000,
-          });
-          setTimeout(() => {
-            navigate('/');
-          }, 1000);
-        }
+        await dispatch(LoginUser(values))
+        // if (values.email === 'a@gmail.com' && values.password === '123456') {
+        //   console.log('ok');
+        //   setSubmitting(false);
+        //   enqueueSnackbar('Đăng nhập thành công!', {
+        //     variant: 'success',
+        //     autoHideDuration: 1000,
+        //   });
+        //   setTimeout(() => {
+        //     navigate('/');
+        //   }, 1000);
+        // }
         // enqueueSnackbar('Đăng nhập thành công!', {
         //   variant: 'success',
         //   autoHideDuration: 3000,

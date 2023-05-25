@@ -18,9 +18,10 @@ const Register = () => {
       })}
       onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(false);
-        values.username = '';
-        values.password = '';
-        values.email = '';
+        console.log(values)
+        // values.username = '';
+        // values.password = '';
+        // values.email = '';
       }}
     >
       {({

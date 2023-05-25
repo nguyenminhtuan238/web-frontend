@@ -10,7 +10,7 @@ function Header() {
     <div
       className={
         hidden.changscroll
-          ? 'w-full sticky top-0 hidden'
+          ? ' hidden'
           : 'w-full sticky top-0 '
       }
       id="he"
@@ -45,11 +45,9 @@ function Header() {
                 </Link>
               </div>
               <button
-                data-collapse-toggle="mobile-menu-2"
+                
                 type="button"
                 className="inline-flex items-center p-2 ml-1 text-sm rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                aria-controls="mobile-menu-2"
-                aria-expanded="false"
               >
                 <span className="sr-only">Open main menu</span>
                 <svg
@@ -80,7 +78,7 @@ function Header() {
             </div>
 
             <div
-              className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
+              className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1 sm:"
               id="mobile-menu-2"
             >
               <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
@@ -105,7 +103,7 @@ function Header() {
             <div className="col-span-1 ">
               <ul className="text-gray-400 mt-4 cursor-pointer ">
                 <li>
-                  <Link class="text-black dark:text-white  hover:bg-gray-300 focus:bg-4 focus:bg-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
+                  <Link className="text-black dark:text-white  hover:bg-gray-300 focus:bg-4 focus:bg-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
                     Iot
                   </Link>
                 </li>
