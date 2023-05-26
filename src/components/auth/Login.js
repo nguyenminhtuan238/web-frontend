@@ -30,7 +30,7 @@ const Login = () => {
           .email('Email không hợp lệ')
           .required('Bắt buộc nhập'),
         password: Yup.string()
-          .min(6, 'Password cần ít nhất 6 số')
+          .min(8, 'Password cần ít nhất 8 số')
           .required('Bắt buộc nhập'),
       })}
       onSubmit={async (values, { setSubmitting }) => {
@@ -181,14 +181,14 @@ const Login = () => {
                   <button
                     type="submit"
                     onClick={() => dispatch(setmodal())}
-                    className="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 mr-5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-gray-200 hover:bg-gray-300 mr-5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     Thoát ra
                   </button>
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className=" py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className=" py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     Đăng nhập
                   </button>
