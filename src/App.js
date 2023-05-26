@@ -54,7 +54,6 @@ function App() {
             <Route path="/them" element={<Them />}></Route>
             <Route path="/product" element={<Product />}></Route>
             <Route path="/view" element={<View />}></Route>
-       
           </Routes>
         </BrowserRouter>
       </SnackbarProvider>
