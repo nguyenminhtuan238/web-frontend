@@ -9,9 +9,9 @@ function Header() {
   const hidden = useSelector((state) => state.hidden);
   const User = useSelector((state) => state.User);
   const dispatch = useDispatch();
-  const logout=()=>{
-    dispatch(Logout())
-  }
+  const logout = () => {
+    dispatch(Logout());
+  };
   return (
     <div
       className={hidden.changscroll ? ' hidden' : 'w-full sticky top-0 '}
@@ -31,32 +31,28 @@ function Header() {
               </span>
             </a>
             <div className="flex items-center lg:order-2">
-            
-              {!User.User && 
-              <button
-                className="text-white dark:text-white cursor-pointer hover:bg-sky-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-                onClick={() => dispatch(setmodal())}
-              >
-                Đăng nhập
-              </button>
-              }
-              {User.User && 
-              <button
-                className="text-white dark:text-white cursor-pointer hover:bg-sky-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-               
-              >
-                {JSON.parse( localStorage.getItem(Userkey)).email}
-              </button>
-              }
-              {User.User && 
-              <button
-                className="text-white dark:text-white cursor-pointer hover:bg-sky-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-                onClick={()=>logout()}
-              >
-                Đăng Xuất
-              </button>
-              }
-              
+              {!User.User && (
+                <button
+                  className="text-white dark:text-white cursor-pointer hover:bg-sky-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                  onClick={() => dispatch(setmodal())}
+                >
+                  Đăng nhập
+                </button>
+              )}
+              {User.User && (
+                <button className="text-white dark:text-white cursor-pointer hover:bg-sky-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
+                  {JSON.parse(localStorage.getItem(Userkey)).email}
+                </button>
+              )}
+              {User.User && (
+                <button
+                  className="text-white dark:text-white cursor-pointer hover:bg-sky-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                  onClick={() => logout()}
+                >
+                  Đăng Xuất
+                </button>
+              )}
+
               <div>
                 <Link
                   className="block cursor-pointer py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
@@ -125,7 +121,7 @@ function Header() {
               <ul className="text-gray-400 mt-4 cursor-pointer">
                 <li>
                   <Link className="line-clamp-1 text-black dark:text-white  hover:bg-gray-300 focus:bg-4 focus:bg-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-1 lg:py-1 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
-                    IoT  
+                    IoT
                   </Link>
                 </li>
               </ul>
@@ -138,9 +134,6 @@ function Header() {
                   alt="Hình lỗi"
                 />
               </div>
-              
-              
-              
             </div>
           </div>
         </div>

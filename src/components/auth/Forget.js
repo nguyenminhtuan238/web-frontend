@@ -4,16 +4,16 @@ import { useSnackbar } from 'notistack';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import {  useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 const Forget = () => {
   const { enqueueSnackbar } = useSnackbar();
-  const User=useSelector(state=> state.User)
+  const User = useSelector((state) => state.User);
   const navigate = useNavigate();
-  useEffect(()=>{
-    if(User.User){
-      navigate("/")
+  useEffect(() => {
+    if (User.User) {
+      navigate('/');
     }
-  },[User.User])
+  }, [User.User]);
   // const handleInputChange = (event) => {
   //   setEmail(event.target.value);
   // };

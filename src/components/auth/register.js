@@ -4,37 +4,37 @@ import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { RegisterUser } from '../../store/auth';
 import { useSnackbar } from 'notistack';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { unwrapResult } from '@reduxjs/toolkit';
 const Register = () => {
   const Dispatch = useDispatch();
-  const User=useSelector(state=> state.User)
+  const User = useSelector((state) => state.User);
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
-  useEffect(()=>{
-    if(User.User){
-      navigate("/")
+  useEffect(() => {
+    if (User.User) {
+      navigate('/');
     }
-  },[User.User])
+  }, [User.User]);
   const handleSubmit = async (values) => {
     try {
-      const response =  await  Dispatch(RegisterUser(values));
-      unwrapResult(response)
-      enqueueSnackbar("Đăng kí thành công", {
-        variant: "success",
+      const response = await Dispatch(RegisterUser(values));
+      unwrapResult(response);
+      enqueueSnackbar('Đăng kí thành công', {
+        variant: 'success',
         autoHideDuration: 1200,
-        anchorOrigin:{ vertical: 'top', horizontal: 'center' },
+        anchorOrigin: { vertical: 'top', horizontal: 'center' },
       });
-      navigate("/")
+      navigate('/');
     } catch (error) {
       enqueueSnackbar(error.message, {
-        variant: "error",
+        variant: 'error',
         autoHideDuration: 1200,
-        anchorOrigin:{ vertical: 'top', horizontal: 'center' },
-      })
+        anchorOrigin: { vertical: 'top', horizontal: 'center' },
+      });
     }
   };
-  
+
   return (
     <Formik
       initialValues={{ firstname: '', lastname: '', email: '', password: '' }}
@@ -47,15 +47,15 @@ const Register = () => {
         password: Yup.string()
           .min(8, 'Mật khẩu cần ít nhất 8 ký tự')
           .matches(
-           /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/,
-           'Mật khẩu phải bao gồm ít nhất một chữ cái viết hoa, một chữ cái viết thường, một chữ số và một ký tự đặc biệt'
-        )
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/,
+            'Mật khẩu phải bao gồm ít nhất một chữ cái viết hoa, một chữ cái viết thường, một chữ số và một ký tự đặc biệt'
+          )
           .required('Bắt buộc nhập'),
       })}
       onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(false);
 
-      handleSubmit(values);
+        handleSubmit(values);
         // values.firstname = '';
         // values.lastname = '';
         // values.password = '';

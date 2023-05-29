@@ -21,28 +21,24 @@ const Login = () => {
   //   // Hiển thị thông báo đăng nhập thành công
   // };
   const login = async (values) => {
-    
-   
     try {
-      const res= await dispatch(LoginUser(values));
-      const user=unwrapResult(res)
+      const res = await dispatch(LoginUser(values));
+      const user = unwrapResult(res);
       if (user !== undefined) {
-      enqueueSnackbar("Đăng nhập thành công", {
-        variant: "success",
-        autoHideDuration: 1200,
-        anchorOrigin:{ vertical: 'top', horizontal: 'center' },
-      });
-      dispatch(setmodal())
-    } 
-   
+        enqueueSnackbar('Đăng nhập thành công', {
+          variant: 'success',
+          autoHideDuration: 1200,
+          anchorOrigin: { vertical: 'top', horizontal: 'center' },
+        });
+        dispatch(setmodal());
+      }
     } catch (error) {
       enqueueSnackbar(error.message, {
-        variant: "error",
+        variant: 'error',
         autoHideDuration: 1200,
-        anchorOrigin:{ vertical: 'top', horizontal: 'center' },
-      })
+        anchorOrigin: { vertical: 'top', horizontal: 'center' },
+      });
     }
-  
   };
   return (
     <Formik
@@ -58,8 +54,7 @@ const Login = () => {
       onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(false);
         // registerAccount(values.name, values.email, values.password);
-        login(values)
-    
+        login(values);
 
         // if (values.email === 'a@gmail.com' && values.password === '123456') {
         //   console.log('ok');

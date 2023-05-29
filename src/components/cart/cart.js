@@ -80,7 +80,7 @@ const CartPage = () => {
                   <div className="flex items-center justify-between px-2 py-1 bg-gray-200 rounded w-[70px]">
                     <button
                       className="text-sm font-medium text-gray-700 focus:outline-none"
-                     onClick={decreaseCount}
+                      onClick={decreaseCount}
                     >
                       -
                     </button>

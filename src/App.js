@@ -26,7 +26,6 @@ function App() {
               </Route>
               <Route path="/thongtin" element={<Thongtin />}></Route>
 
-             
               <Route path="Register" element={<Register />}></Route>
               <Route
                 path="Forget"
