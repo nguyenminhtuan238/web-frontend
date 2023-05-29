@@ -1,7 +1,7 @@
 import ApiServices from './api.services';
 const AuthApi = {
   register(data) {
-    const url = 'account/register';
+    const url = 'account/register/';
     return ApiServices.post(url, data);
   },
   Login(data) {

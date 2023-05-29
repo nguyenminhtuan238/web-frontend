@@ -1,25 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RegisterUser } from '../../store/auth';
+import { useSnackbar } from 'notistack';
+import { useNavigate } from "react-router-dom";
+import { unwrapResult } from '@reduxjs/toolkit';
 const Register = () => {
   const Dispatch = useDispatch();
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     const response = await axios.post('http://192.168.1.9/magento2/rest/V1/customers', {
-  //       firstname,
-  //       lastname,
-  //       password,
-  //       email,
-  //     });
-  //     console.log(response.data);
-  //     // Chuyển hướng đến trang đăng nhập hoặc hiển thị thông báo đăng ký thành công
-  //   } catch (error) {
-  //     setError(error.response.data.message);
-  //   }
-  // };
+  const User=useSelector(state=> state.User)
+  const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate();
+  useEffect(()=>{
+    if(User.User){
+      navigate("/")
+    }
+  },[User.User])
+  const handleSubmit = async (values) => {
+    try {
+      const response =  await  Dispatch(RegisterUser(values));
+      unwrapResult(response)
+      enqueueSnackbar("Đăng kí thành công", {
+        variant: "success",
+        autoHideDuration: 1200,
+        anchorOrigin:{ vertical: 'top', horizontal: 'center' },
+      });
+      navigate("/")
+    } catch (error) {
+      enqueueSnackbar(error.message, {
+        variant: "error",
+        autoHideDuration: 1200,
+        anchorOrigin:{ vertical: 'top', horizontal: 'center' },
+      })
+    }
+  };
   
   return (
     <Formik
@@ -41,7 +55,7 @@ const Register = () => {
       onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(false);
 
-      await  Dispatch(RegisterUser(values));
+      handleSubmit(values);
         // values.firstname = '';
         // values.lastname = '';
         // values.password = '';

@@ -26,16 +26,7 @@ function App() {
               </Route>
               <Route path="/thongtin" element={<Thongtin />}></Route>
 
-              <Route
-                path="Login"
-                element={
-                  <SnackbarProvider
-                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                  >
-                    <Login />
-                  </SnackbarProvider>
-                }
-              ></Route>
+             
               <Route path="Register" element={<Register />}></Route>
               <Route
                 path="Forget"

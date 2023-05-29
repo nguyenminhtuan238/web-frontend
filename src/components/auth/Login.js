@@ -3,14 +3,12 @@ import { useSnackbar } from 'notistack';
 import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setmodal } from '../../store/hidden';
 import { LoginUser } from '../../store/auth';
 import { unwrapResult } from '@reduxjs/toolkit';
 const Login = () => {
   const { enqueueSnackbar } = useSnackbar(); // khởi tạo useSnackbar
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   // const handleEmailChange = (event) => {
   //   setEmail(event.target.value);
@@ -32,6 +30,7 @@ const Login = () => {
       enqueueSnackbar("Đăng nhập thành công", {
         variant: "success",
         autoHideDuration: 1200,
+        anchorOrigin:{ vertical: 'top', horizontal: 'center' },
       });
       dispatch(setmodal())
     } 
@@ -40,6 +39,7 @@ const Login = () => {
       enqueueSnackbar(error.message, {
         variant: "error",
         autoHideDuration: 1200,
+        anchorOrigin:{ vertical: 'top', horizontal: 'center' },
       })
     }
   

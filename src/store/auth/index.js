@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import AuthApi from '../../services/auth.services';
-import { Storagekey } from '../../unilt/key';
+import { Storagekey,Userkey } from '../../unilt/key';
 export const LoginUser = createAsyncThunk('user/login', async (payload) => {
 
     try {
       const res = await AuthApi.Login(payload);
     localStorage.setItem(Storagekey, res.token);
+    localStorage.setItem(Userkey,JSON.stringify(res.customer_info))
     return res.customer_info  
     } catch (error) {
         
@@ -20,14 +21,13 @@ export const LoginUser = createAsyncThunk('user/login', async (payload) => {
 });
 
 export const RegisterUser = createAsyncThunk(
-  'user/registe',
+  'user/register',
   async (payload) => {
     try {
-      const res = await AuthApi.register(payload);
-      console.log(res);
-      return res.customer_info
+       await AuthApi.register(payload);
     } catch (error) {
       if (error?.response.status === 400) {
+        console.log(error)
       throw error.response.data.message
       } else {
         console.log(error);
@@ -44,6 +44,7 @@ const User = createSlice({
   reducers: {
     Logout: (state) => {
       localStorage.removeItem(Storagekey)
+      localStorage.removeItem(Userkey)
       state.User = null;
     },
   },
@@ -52,7 +53,7 @@ const User = createSlice({
       state.User = action.payload;
     },
     [RegisterUser.fulfilled]: (state, action) => {
-      state.User = action.payload;
+      state.User = null;
     },
     [LoginUser.rejected]: (state, action) => {
       
