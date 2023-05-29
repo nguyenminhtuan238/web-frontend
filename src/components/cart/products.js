@@ -22,7 +22,7 @@ const New = () => {
 
               {/* Tên sản phẩm */}
               <div className="mt-2 overflow-hidden mb-4 uppercase">
-                <title class="line-clamp-3">
+                <title className="line-clamp-3">
                   Laptop ACER Nitro 16 Phoenix AN16-41-R5M4 (NH.QKBSV.003)
                   (Ryzen 5 7535HS/RAM 8GB/512GB SSD/ Windows 11)
                 </title>

@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setmodal } from '../../store/hidden';
 import { LoginUser } from '../../store/auth';
+import { unwrapResult } from '@reduxjs/toolkit';
 const Login = () => {
   const { enqueueSnackbar } = useSnackbar(); // khởi tạo useSnackbar
   const navigate = useNavigate();
@@ -21,7 +22,28 @@ const Login = () => {
   //   console.log(values);
   //   // Hiển thị thông báo đăng nhập thành công
   // };
-
+  const login = async (values) => {
+    
+   
+    try {
+      const res= await dispatch(LoginUser(values));
+      const user=unwrapResult(res)
+      if (user !== undefined) {
+      enqueueSnackbar("Đăng nhập thành công", {
+        variant: "success",
+        autoHideDuration: 1200,
+      });
+      dispatch(setmodal())
+    } 
+   
+    } catch (error) {
+      enqueueSnackbar(error.message, {
+        variant: "error",
+        autoHideDuration: 1200,
+      })
+    }
+  
+  };
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
@@ -30,12 +52,15 @@ const Login = () => {
           .email('Email không hợp lệ')
           .required('Bắt buộc nhập'),
         password: Yup.string()
-          .min(6, 'Password cần ít nhất 6 số')
+          .min(8, 'Password cần ít nhất 8 số')
           .required('Bắt buộc nhập'),
       })}
       onSubmit={async (values, { setSubmitting }) => {
+        setSubmitting(false);
         // registerAccount(values.name, values.email, values.password);
-        await dispatch(LoginUser(values));
+        login(values)
+    
+
         // if (values.email === 'a@gmail.com' && values.password === '123456') {
         //   console.log('ok');
         //   setSubmitting(false);
@@ -178,13 +203,13 @@ const Login = () => {
                 </div>
 
                 <div className="py-6 w-full flex justify-center  space-x-36 ">
-                  <button
+                  <Link
                     type="submit"
                     onClick={() => dispatch(setmodal())}
                     className="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 mr-5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     Thoát ra
-                  </button>
+                  </Link>
                   <button
                     type="submit"
                     disabled={isSubmitting}

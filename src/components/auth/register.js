@@ -20,6 +20,7 @@ const Register = () => {
   //     setError(error.response.data.message);
   //   }
   // };
+  
   return (
     <Formik
       initialValues={{ firstname: '', lastname: '', email: '', password: '' }}
@@ -30,13 +31,17 @@ const Register = () => {
           .email('Email không hợp lệ')
           .required('Bắt buộc nhập'),
         password: Yup.string()
-          .min(6, 'Mật khẩu cần ít nhất 6 ký tự')
+          .min(8, 'Mật khẩu cần ít nhất 8 ký tự')
+          .matches(
+           /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/,
+           'Mật khẩu phải bao gồm ít nhất một chữ cái viết hoa, một chữ cái viết thường, một chữ số và một ký tự đặc biệt'
+        )
           .required('Bắt buộc nhập'),
       })}
       onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(false);
-        console.log(values);
-        Dispatch(RegisterUser(values));
+
+      await  Dispatch(RegisterUser(values));
         // values.firstname = '';
         // values.lastname = '';
         // values.password = '';

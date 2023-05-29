@@ -2,26 +2,33 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import AuthApi from '../../services/auth.services';
 import { Storagekey } from '../../unilt/key';
 export const LoginUser = createAsyncThunk('user/login', async (payload) => {
-  try {
-    const res = await AuthApi.Login(payload);
+
+    try {
+      const res = await AuthApi.Login(payload);
     localStorage.setItem(Storagekey, res.token);
-  } catch (error) {
-    if (error?.response.status === 401) {
-      alert('Tai khoan mat khau sai');
-    } else {
-      console.log(error);
+    return res.customer_info  
+    } catch (error) {
+        
+      if(error.response.status === 401){
+        // console.log(JSON.stringify(error.response.data.message))
+        throw error.response.data.message
+      }else{
+        console.log(error)
+      }
+      //throw error
     }
-  }
 });
+
 export const RegisterUser = createAsyncThunk(
   'user/registe',
   async (payload) => {
     try {
       const res = await AuthApi.register(payload);
       console.log(res);
+      return res.customer_info
     } catch (error) {
       if (error?.response.status === 400) {
-        alert('Tai khoan mat khau sai');
+      throw error.response.data.message
       } else {
         console.log(error);
       }
@@ -31,14 +38,34 @@ export const RegisterUser = createAsyncThunk(
 const User = createSlice({
   name: 'User',
   initialState: {
-    User: {},
-    error: '',
+    User: localStorage.getItem(Storagekey)|| null,
+    error: {},
   },
-  reducers: {},
+  reducers: {
+    Logout: (state) => {
+      localStorage.removeItem(Storagekey)
+      state.User = null;
+    },
+  },
   extraReducers: {
     [LoginUser.fulfilled]: (state, action) => {
-      state.user = action.payload;
+      state.User = action.payload;
+    },
+    [RegisterUser.fulfilled]: (state, action) => {
+      state.User = action.payload;
+    },
+    [LoginUser.rejected]: (state, action) => {
+      
+      state.User = null;
+      
+      state.error=action.error.message
+    },
+    [RegisterUser.rejected]: (state, action) => {
+      state.User = null;
+      
+      state.error=action.error.message
     },
   },
 });
+export const {Logout } = User.actions;
 export default User.reducer;

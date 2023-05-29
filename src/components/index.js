@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { setScroll } from '../store/hidden';
 import { Outlet } from 'react-router-dom';
 const Home = () => {
-  // const [scrollTop, setScrollTop] = useState(0);
   const myElementRef = useRef(null);
   const l = useSelector((state) => state.User);
   const dispatch = useDispatch();
@@ -34,7 +33,7 @@ const Home = () => {
       <header className="w-full sticky top-0 z-10 sm:hidden lg:block bg-white ">
         <nav className="flex  flex-wrap items-center p-5 justify-between mx-auto   max-w-screen-xl  ">
           <div>
-            <ul class="list-none p-2 m-0 flex overflow-x-auto flex justify-between">
+            <ul className="list-none p-2 m-0 flex overflow-x-auto flex justify-between">
               <li
                 className={`mr-4 text-zinc-600  ${
                   activeTab === 1 ? 'font-bold' : ''
