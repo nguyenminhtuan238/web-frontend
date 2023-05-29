@@ -31,7 +31,7 @@ function App() {
                 path="Forget"
                 element={
                   <SnackbarProvider
-                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
                   >
                     <Forget />
                   </SnackbarProvider>

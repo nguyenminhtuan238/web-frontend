@@ -28,7 +28,7 @@ const Login = () => {
         enqueueSnackbar('Đăng nhập thành công', {
           variant: 'success',
           autoHideDuration: 1200,
-          anchorOrigin: { vertical: 'top', horizontal: 'center' },
+          anchorOrigin: { vertical: 'top', horizontal: 'right' },
         });
         dispatch(setmodal());
       }
@@ -36,7 +36,7 @@ const Login = () => {
       enqueueSnackbar(error.message, {
         variant: 'error',
         autoHideDuration: 1200,
-        anchorOrigin: { vertical: 'top', horizontal: 'center' },
+        anchorOrigin: { vertical: 'top', horizontal: 'right' },
       });
     }
   };
