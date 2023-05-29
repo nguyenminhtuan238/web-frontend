@@ -58,7 +58,7 @@ function Admin() {
                   class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
                   aria-current="page"
                 >
-                  Quản lí dự án
+                  Quản lí bài viết
                 </a>
               </li>
               <li>
@@ -75,7 +75,7 @@ function Admin() {
         </div>
       </nav>
 
-      <p className="mt-4">Quản lí dự án</p>
+      <p className="mt-4">Quản lí bài viết</p>
       <div class="flex flex-col mt-4">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -87,7 +87,7 @@ function Admin() {
                       #
                     </th>
                     <th scope="col" class="px-6 py-4">
-                      Tên dự án
+                      Tên bài viết
                     </th>
                     <th scope="col" class="px-6 py-4">
                       Hình ảnh
@@ -138,9 +138,9 @@ function Admin() {
               </table>
               <button
                 type="submit"
-                className="ml-2 mb-2 mt-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="ml-2 mb-2 mt-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-gray-200 hover:bg-indigo-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
-                Thêm dự án
+                Thêm bài viết
               </button>
             </div>
           </div>
