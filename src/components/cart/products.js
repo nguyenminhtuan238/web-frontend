@@ -54,7 +54,7 @@ const ProductsPage = () => {
                   
                   <Link to="/cart">
                     <button>
-                      <AddShoppingCartIcon />
+                      <AddShoppingCartIcon className="blue-500"/>
                     </button>
                   </Link>
                 </div>
