@@ -23,14 +23,14 @@ const Register = () => {
       enqueueSnackbar('Đăng kí thành công', {
         variant: 'success',
         autoHideDuration: 1200,
-        anchorOrigin: { vertical: 'top', horizontal: 'center' },
+        anchorOrigin: { vertical: 'top', horizontal: 'right' },
       });
       navigate('/');
     } catch (error) {
       enqueueSnackbar(error.message, {
         variant: 'error',
         autoHideDuration: 1200,
-        anchorOrigin: { vertical: 'top', horizontal: 'center' },
+        anchorOrigin: { vertical: 'top', horizontal: 'right' },
       });
     }
   };
