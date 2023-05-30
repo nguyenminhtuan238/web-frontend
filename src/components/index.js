@@ -11,7 +11,7 @@ const Home = () => {
   window.addEventListener('scroll', () => {
     var crollw = window.scrollY;
     if (myElementRef.current) {
-      if (crollw > myElementRef.current.offsetHeight+80) {
+      if (crollw > myElementRef.current.offsetHeight+10) {
         dispatch(setScroll(true));
       } else {
         dispatch(setScroll(false));
