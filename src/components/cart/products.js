@@ -24,9 +24,9 @@ const ProductsPage = () => {
         {products.map((product) => (
           <Link to={`product/${product.id}`}>
             <div key={product.id} className="product-item col-span-1 border-2 bg-white">
-              <div className="product-image py-2 px-4 ">
+              <div className="product-image py-2 px-4">
                 {/* Hiển thị ảnh sản phẩm */}
-                <div className="flex justify-center items-center h-48 md:h-auto">
+                <div className="flex justify-center items-center h-50 md:h-auto" >
                   <img
                     // src={product.custom_attributes.find(attr => attr.attribute_code === 'image').value}
                     src="http://192.168.1.9/magento2/pub/media/catalog/product/cache/80c6d82db34957c21ffe417663cf2776////m/o/modem_wifi_4_cong.jpg"
@@ -37,12 +37,12 @@ const ProductsPage = () => {
               </div>
 
               {/* Hiển thị tên sản phẩm */}
-              <div className="product-name mt-2 overflow-hidden mb-4 ml-4 uppercase line-clamp-3 min-h-[50px]">
-                  {product.name}
+              <div className="product-name mt-2 overflow-hidden mb-2 ml-4 uppercase line-clamp-3 min-h-[70px]">
+                  {product.name} nhan hanha 
               </div>
 
               {/* Hiển thị giá sản phẩm */}
-              <div className="product-price mt-8 mb-4 ml-4">
+              <div className="product-price mt-2 mb-4 ml-4">
                 <span className="text-lg font-bold text-blue-900 ">
                   {product.price}.000 <u>đ</u>{' '}
                 </span>
