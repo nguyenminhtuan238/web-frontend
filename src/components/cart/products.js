@@ -37,7 +37,7 @@ const ProductsPage = () => {
               </div>
 
               {/* Hiển thị tên sản phẩm */}
-              <div className="product-name mt-2 overflow-hidden mb-4 ml-4 uppercase line-clamp-3">
+              <div className="product-name mt-2 overflow-hidden mb-4 ml-4 uppercase line-clamp-3 min-h-[50px]">
                   {product.name}
               </div>
 
