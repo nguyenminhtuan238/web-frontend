@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import ReplyIcon from '@mui/icons-material/Reply';
+import { Link } from 'react-router-dom';
 
 const CartPage = () => {
   const [count, setCount] = useState(1);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-
+  
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth < 768);
@@ -25,13 +27,17 @@ const CartPage = () => {
 
   const calculatePrice = () => {
     const price = 1 * count;
-    return price.toFixed(2);
+    return price.toFixed(3);
   };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3">
+      
       <div className="lg:col-span-2 lg:ml-16 lg:mr-16">
-        <div className="text-lg font-bold mt-6 mb-4 lg:mt-11 lg:mb-10 lg:ml-2">
+        <Link to="/">
+          <ReplyIcon /> Quay lại
+        </Link>
+        <div className="text-lg font-bold lg:mt-11 lg:mb-10 lg:ml-2">
           <h2>Giỏ hàng</h2>
         </div>
 
@@ -72,7 +78,7 @@ const CartPage = () => {
                   </span>
                   {!isSmallScreen && (
                     <span className="hidden lg:inline-block text-gray-400">
-                      đơn vị tính
+                      VND
                     </span>
                   )}
                 </td>
@@ -101,7 +107,7 @@ const CartPage = () => {
                   </span>
                   {!isSmallScreen && (
                     <span className="hidden lg:inline-block text-gray-400">
-                      đơn vị tính
+                      VND
                     </span>
                   )}
                 </td>
@@ -111,7 +117,7 @@ const CartPage = () => {
         </div>
       </div>
 
-      <div className="lg:col-span-1 mt-8 lg:mt-28 lg:mr-16">
+      <div className="lg:col-span-1 mt-8 lg:mt-32 lg:mr-16">
         <div className="grid grid-rows-2">
           <div className="bg-white border-2 rounded-lg p-4 shadow-2xl row-span-1 lg:mb-8">
             <h2 className="text-lg font-bold mb-4">Khuyến mãi</h2>
@@ -127,7 +133,7 @@ const CartPage = () => {
             {!isSmallScreen && (
               <p className="flex mb-4">
                 Giảm giá
-                <span className="text-green-500 ml-auto">-$0.00</span>
+                <span className="text-green-500 ml-auto">-0</span>
               </p>
             )}
             <p className="flex mb-4">
