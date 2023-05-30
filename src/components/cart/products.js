@@ -1,29 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { Link } from 'react-router-dom';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { getpd } from '../../store/products';
 const ProductsPage = () => {
-  const [products, setProducts] = useState([]);
-
+  const get = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  
   useEffect(() => {
-    axios.get('http://192.168.1.9:5000/product/list')
-      .then(response => {
-        setProducts(response.data.product.items);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
+  const getPD=()=>{
+    
+    dispatch(getpd())
+  }
+  getPD()
+  }, [dispatch]);
   
   return (
+    <div>
+    {get.isloading?<div class="flex justify-center items-center">
+  <div class="w-16 h-16 border-4 border-t-4 border-gray-200 rounded-full animate-spin"></div>
+</div>:
     <div className="product-list md:w-4/5 sm:w-full lg:w-3/4 xl:w-2/3 mx-auto">
       <div className="product-grid grid grid-cols-1 md:grid-cols-5 gap-4 mt-8">
         {/* Hiển thị danh sách sản phẩm */}
-        {products.map((product) => (
-          <Link to={`product/${product.id}`}>
-            <div key={product.id} className="product-item col-span-1 border-2 bg-white">
+        {get.Product.map((product) =>  (
+          <Link to={`product/${product.id}`}  key={product.id}>
+            <div className="product-item col-span-1 border-2 bg-white">
               <div className="product-image py-2 px-4 ">
                 {/* Hiển thị ảnh sản phẩm */}
                 <div className="flex justify-center items-center h-48 md:h-auto">
@@ -58,6 +61,8 @@ const ProductsPage = () => {
           {/* <Pagination count={10} hidePrevButton hideNextButton /> */}
         </Stack>
       </div>
+    </div>
+    }
     </div>
   );
 };
