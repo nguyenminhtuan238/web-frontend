@@ -38,7 +38,7 @@ const ProductsPage = () => {
 
               {/* Hiển thị tên sản phẩm */}
               <div className="product-name mt-2 overflow-hidden mb-2 ml-4 uppercase line-clamp-3 min-h-[70px]">
-                  {product.name} nhan hanha 
+                  {product.name} 
               </div>
 
               {/* Hiển thị giá sản phẩm */}
