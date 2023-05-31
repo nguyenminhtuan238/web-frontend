@@ -6,10 +6,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getpd } from '../../store/products';
 import { img } from '../../unilt/key';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { useSnackbar } from 'notistack';
+import { addcart } from '../../store/cart';
+import { unwrapResult } from '@reduxjs/toolkit';
 const ProductsPage = () => {
   const get = useSelector((state) => state.products);
+  const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
-  
+  const handlecart=async (sku)=>{
+    try {
+      const res=  await dispatch(addcart({sku:sku,qty:1}))
+      const cart =unwrapResult(res)
+    } catch (error) {
+      enqueueSnackbar(error.message, {
+        variant: 'error',
+        autoHideDuration: 1200,
+        anchorOrigin: { vertical: 'top', horizontal: 'right' },
+      });
+      console.log(error)
+    }
+   
+    
+  }
   useEffect(() => {
   const getPD=()=>{
     
@@ -28,7 +46,8 @@ const ProductsPage = () => {
       <div className="product-grid grid grid-cols-1 md:grid-cols-5 gap-4 mt-8">
         {/* Hiển thị danh sách sản phẩm */}
         {get.Product.map((product) =>  (
-          <Link to={`product/${product.id}`}  key={product.id}>
+
+          <Link  key={product.id}>
             <div className="product-item col-span-1 border-2 bg-white">
               <div className="product-image py-2 px-4 ">
                 {/* Hiển thị ảnh sản phẩm */}
@@ -53,10 +72,10 @@ const ProductsPage = () => {
                 </span>
                 <div className="float-right mr-2 hover:bg-gray-300 rounded-full w-8 h-8 flex justify-center items-center">
                   
-                  <Link to="/cart">
-                    <button>
+                  <Link onClick={()=>handlecart(product.sku)}>
+                    
                       <AddShoppingCartIcon />
-                    </button>
+                   
                     
                   </Link>
                 </div>

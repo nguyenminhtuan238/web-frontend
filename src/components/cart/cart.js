@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { useSnackbar } from 'notistack';
+import { getcart } from '../../store/cart';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { img } from '../../unilt/key';
 const CartPage = () => {
   const [count, setCount] = useState(1);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const get = useSelector((state) => state.cart);
+  const { enqueueSnackbar } = useSnackbar();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleResize = () => {
@@ -12,13 +19,24 @@ const CartPage = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
+  useEffect(()=>{
+    const getcarta = async () => {
+      try {
+       const res=  await dispatch(getcart())
+       const cart = unwrapResult(res)
+       return cart
+      } catch (error) {
+        console.log(error)
+      }
+    
+     };
+     getcarta()
+  },[dispatch])
   const decreaseCount = () => {
     if (count > 1) {
       setCount(count - 1);
     }
   };
-
   const increaseCount = () => {
     setCount(count + 1);
   };
@@ -55,20 +73,24 @@ const CartPage = () => {
             </thead>
 
             <tbody>
-              <tr>
+            {get.isloading?<div className="flex justify-center items-center">
+  <div className="w-16 h-16 border-4 border-t-4 border-blue-500 rounded-full animate-spin mb-8"></div>
+</div>:get.cart.map(item=>{
+              return (
+                <tr key={item.item_id}>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                   <div className="flex items-center">
                     <img
-                      src="https://via.placeholder.com/50"
+                      src={img+item.img}
                       alt="Product"
                       className="w-20 h-20 object-contain mr-2"
                     />
-                    <span className="font-bold">Sản phẩm 3</span>
+                    <span className="font-bold">{item.name}</span>
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                   <span className="text-sm font-medium text-gray-700 mr-4">
-                    {calculatePrice()}
+                    {item.price}
                   </span>
                   {!isSmallScreen && (
                     <span className="hidden lg:inline-block text-gray-400">
@@ -85,7 +107,7 @@ const CartPage = () => {
                       -
                     </button>
                     <span className="text-sm font-medium text-gray-700">
-                      {count}
+                      {item.qty}
                     </span>
                     <button
                       className="text-sm font-medium text-gray-700 focus:outline-none"
@@ -97,7 +119,7 @@ const CartPage = () => {
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                   <span className="text-sm font-medium text-gray-700 mr-4">
-                    {calculatePrice()}
+                    {item.price*item.qty}
                   </span>
                   {!isSmallScreen && (
                     <span className="hidden lg:inline-block text-gray-400">
@@ -106,6 +128,10 @@ const CartPage = () => {
                   )}
                 </td>
               </tr>
+              )
+            })
+              
+            }
             </tbody>
           </table>
         </div>

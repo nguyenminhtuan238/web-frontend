@@ -35,9 +35,10 @@ function App() {
                   </SnackbarProvider>
                 }
               ></Route>
+                <Route path="Cart" element={<Cart />}></Route>
             </Route>
             <Route path="*" element={<NotFound />}></Route>
-            <Route path="Cart" element={<Cart />}></Route>
+          
             <Route path="/admin" element={<Admin />}></Route>
             <Route path="/them" element={<Them />}></Route>
             <Route path="/product" element={<ProductsPage />}></Route>

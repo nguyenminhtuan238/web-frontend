@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setIsSearch, setmodal } from '../../store/hidden';
 import { Userkey } from '../../unilt/key';
 import { Logout } from '../../store/auth';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 function Header() {
   const [isVisible, setIsVisible] = useState(false);
   const hidden = useSelector((state) => state.hidden);
@@ -61,6 +62,12 @@ function Header() {
                   Tìm kiếm
                 </Link>
               </div>
+              <Link
+                  className="text-white ml-3 dark:text-white cursor-pointer hover:bg-sky-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                  to="/Cart"
+                >
+                  <ShoppingCartIcon/>
+                </Link>
               <button
                 type="button"
                 className="inline-flex items-center p-2 ml-1 text-sm rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -91,6 +98,7 @@ function Header() {
                   ></path>
                 </svg>
               </button>
+              
             </div>
 
             <div
