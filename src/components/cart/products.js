@@ -4,6 +4,8 @@ import Stack from '@mui/material/Stack';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getpd } from '../../store/products';
+import { img } from '../../unilt/key';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 const ProductsPage = () => {
   const get = useSelector((state) => state.products);
   const dispatch = useDispatch();
@@ -12,6 +14,7 @@ const ProductsPage = () => {
   const getPD=()=>{
     
     dispatch(getpd())
+    // console.log(get.Product[0].custom_attributes.find(a=>{return a.attribute_code==='image'}).value)
   }
   getPD()
   }, [dispatch]);
@@ -31,27 +34,35 @@ const ProductsPage = () => {
                 {/* Hiển thị ảnh sản phẩm */}
                 <div className="flex justify-center items-center h-50 md:h-auto" >
                   <img
-                    // src={product.custom_attributes.find(attr => attr.attribute_code === 'image').value}
-                    src="http://192.168.1.9/magento2/pub/media/catalog/product/cache/80c6d82db34957c21ffe417663cf2776////m/o/modem_wifi_4_cong.jpg"
-                    alt={product.name}
-                    className="object-contain max-w-full h-full"
+                      src={img+product.custom_attributes.find(a=>{return a.attribute_code==='image'}).value}
+                      alt={product.name}
+                      className="object-contain max-w-full h-full"
                   />
                 </div>
               </div>
 
               {/* Hiển thị tên sản phẩm */}
               <div className="product-name mt-2 overflow-hidden mb-2 ml-4 uppercase line-clamp-3 min-h-[70px]">
-                  {product.name} 
+                  {product.name}
               </div>
 
               {/* Hiển thị giá sản phẩm */}
               <div className="product-price mt-2 mb-4 ml-4">
                 <span className="text-lg font-bold text-blue-900 ">
-                  {product.price}.000 <u>đ</u>{' '}
+                  {product.price} <u>đ</u>{' '}                   
                 </span>
+                <div className="float-right mr-2 hover:bg-gray-300 rounded-full w-8 h-8 flex justify-center items-center">
+                  
+                  <Link to="/cart">
+                    <button>
+                      <AddShoppingCartIcon />
+                    </button>
+                    
+                  </Link>
+                </div>
               </div>
             </div>
-          </Link>
+          </Link> 
         ))}
       </div>
 
@@ -66,5 +77,4 @@ const ProductsPage = () => {
     </div>
   );
 };
-
 export default ProductsPage;
