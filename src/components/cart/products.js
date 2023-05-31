@@ -10,32 +10,20 @@ import { useSnackbar } from 'notistack';
 import { addcart } from '../../store/cart';
 import { unwrapResult } from '@reduxjs/toolkit';
 const ProductsPage = () => {
+  const [p,setp]=useState(1)
   const get = useSelector((state) => state.products);
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
-  const handlecart=async (sku)=>{
-    try {
-      const res=  await dispatch(addcart({sku:sku,qty:1}))
-      const cart =unwrapResult(res)
-    } catch (error) {
-      enqueueSnackbar(error.message, {
-        variant: 'error',
-        autoHideDuration: 1200,
-        anchorOrigin: { vertical: 'top', horizontal: 'right' },
-      });
-      console.log(error)
-    }
-   
-    
-  }
+  const handleChange = (event, value) => {
+    setp(value);
+  };
+
   useEffect(() => {
   const getPD=()=>{
-    
-    dispatch(getpd())
-    // console.log(get.Product[0].custom_attributes.find(a=>{return a.attribute_code==='image'}).value)
+    dispatch(getpd(p))
   }
   getPD()
-  }, [dispatch]);
+  }, [dispatch,p]);
   
   return (
     <div>
@@ -46,48 +34,43 @@ const ProductsPage = () => {
       <div className="product-grid grid grid-cols-1 md:grid-cols-5 gap-4 mt-8">
         {/* Hiển thị danh sách sản phẩm */}
         {get.Product.map((product) =>  (
+          <div key={product.id}> 
+            <Link to={`product/${product.id}`}  >
+              <div className="product-item col-span-1 border-2 bg-gray-100 rounded-lg">
+                <div className="product-image py-2 px-4 ">
+                  {/* Hiển thị ảnh sản phẩm */}
+                  <div className="flex justify-center items-center h-50 md:h-auto bg-white rounded-lg" >
+                    <img
+                        src={img+product.custom_attributes.find(a=>{return a.attribute_code==='image'}).value}
+                        alt={product.name}
+                        className="object-contain max-w-full h-full"
+                    />
+                  </div>
+                </div>
 
-          <Link  key={product.id}>
-            <div className="product-item col-span-1 border-2 bg-white">
-              <div className="product-image py-2 px-4 ">
-                {/* Hiển thị ảnh sản phẩm */}
-                <div className="flex justify-center items-center h-50 md:h-auto" >
-                  <img
-                      src={img+product.custom_attributes.find(a=>{return a.attribute_code==='image'}).value}
-                      alt={product.name}
-                      className="object-contain max-w-full h-full"
-                  />
+                {/* Hiển thị tên sản phẩm */}
+                <div className="product-name mt-2 overflow-hidden mb-2 ml-4 uppercase line-clamp-3 min-h-[70px]">
+                    {product.name}
+                </div>
+
+                {/* Hiển thị giá sản phẩm */}
+                <div className="product-price mt-2 mb-4 flex ">
+                  <span className="text-lg font-bold text-red-700 ml-4">
+                    {product.price.toLocaleString('vi-VN', {
+                      style: 'currency',
+                      currency: 'VND',
+                    })}                 
+                  </span>
                 </div>
               </div>
-
-              {/* Hiển thị tên sản phẩm */}
-              <div className="product-name mt-2 overflow-hidden mb-2 ml-4 uppercase line-clamp-3 min-h-[70px]">
-                  {product.name}
-              </div>
-
-              {/* Hiển thị giá sản phẩm */}
-              <div className="product-price mt-2 mb-4 ml-4">
-                <span className="text-lg font-bold text-blue-900 ">
-                  {product.price} <u>đ</u>{' '}                   
-                </span>
-                <div className="float-right mr-2 hover:bg-gray-300 rounded-full w-8 h-8 flex justify-center items-center">
-                  
-                  <Link onClick={()=>handlecart(product.sku)}>
-                    
-                      <AddShoppingCartIcon />
-                   
-                    
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </Link> 
+            </Link> 
+          </div>
         ))}
       </div>
 
       <div className="flex justify-center items-center mt-16 mb-16">
-        <Stack spacing={2}>
-          <Pagination count={10} showFirstButton showLastButton />
+        <Stack spacing={1}>
+          <Pagination count={get.getpage} page={p}   onChange={handleChange} />
           {/* <Pagination count={10} hidePrevButton hideNextButton /> */}
         </Stack>
       </div>

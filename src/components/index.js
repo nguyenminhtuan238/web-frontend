@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setScroll } from '../store/hidden';
 import { Outlet } from 'react-router-dom';
+
 const Home = () => {
   const myElementRef = useRef(null);
   const dispatch = useDispatch();
