@@ -52,11 +52,6 @@ const ProductsPage = () => {
                   <span className="text-lg font-bold text-blue-900 ">
                     {product.price} <u>đ</u>{' '}                   
                   </span>
-                  <div className="float-right mr-2 hover:bg-gray-300 rounded-full w-8 h-8 flex justify-center items-center">
-                    <button>
-                      <AddShoppingCartIcon />
-                    </button>
-                  </div>
                 </div>
               </div>
             </Link> 
