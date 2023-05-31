@@ -1,13 +1,12 @@
 import { useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setScroll } from '../store/hidden';
 import { Outlet } from 'react-router-dom';
 const Home = () => {
   const myElementRef = useRef(null);
-  const l = useSelector((state) => state.User);
   const dispatch = useDispatch();
-  const [activeTab, setActiveTab] = useState(1);
+  const [activeTab, setActiveTab] = useState( window.location.pathname);
   window.addEventListener('scroll', () => {
     var crollw = window.scrollY;
     if (myElementRef.current) {
@@ -19,7 +18,7 @@ const Home = () => {
     }
   });
   const handle = () => {
-    console.log(l);
+    console.log( window.location.pathname );
   };
   return (
     <div>
@@ -36,17 +35,17 @@ const Home = () => {
             <ul className="list-none p-2 m-0 flex overflow-x-auto flex justify-between">
               <li
                 className={`mr-4 text-zinc-600  ${
-                  activeTab === 1 ? 'font-bold' : ''
+                  activeTab === "/SP" ? 'font-bold' : ''
                 }`}
               >
                 <Link
                   to="/SP"
                   className={
-                    activeTab === 1
+                    activeTab === "/SP"
                       ? 'border-b-[4px] border-indigo-600 '
                       : 'hover:border-b-[4px] border-Gray-900'
                   }
-                  onClick={() => setActiveTab(1)}
+                  onClick={() => setActiveTab("/SP")}
                 >
                   Product specifications
                 </Link>
@@ -54,17 +53,17 @@ const Home = () => {
 
               <li
                 className={`mr-4 text-zinc-600  ${
-                  activeTab === 2 ? 'font-bold' : ''
+                  activeTab === "/" ? 'font-bold' : ''
                 }`}
               >
                 <Link
                   to="/"
                   className={
-                    activeTab === 2
+                    activeTab === "/"
                       ? 'border-b-[4px] border-indigo-600'
                       : 'hover:border-b-[4px] border-Gray-900'
                   }
-                  onClick={() => setActiveTab(2)}
+                  onClick={() => setActiveTab("/")}
                 >
                   Development guides
                 </Link>

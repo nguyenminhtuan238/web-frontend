@@ -18,8 +18,8 @@ const ProductsPage = () => {
   
   return (
     <div>
-    {get.isloading?<div class="flex justify-center items-center">
-  <div class="w-16 h-16 border-4 border-t-4 border-gray-200 rounded-full animate-spin"></div>
+    {get.isloading?<div className="flex justify-center items-center">
+  <div className="w-16 h-16 border-4 border-t-4 border-blue-500 rounded-full animate-spin mb-8"></div>
 </div>:
     <div className="product-list md:w-4/5 sm:w-full lg:w-3/4 xl:w-2/3 mx-auto">
       <div className="product-grid grid grid-cols-1 md:grid-cols-5 gap-4 mt-8">
