@@ -9,16 +9,12 @@ function Header() {
   const hidden = useSelector((state) => state.hidden);
   const User = useSelector((state) => state.User);
   const dispatch = useDispatch();
-
-
-  
   const logout = () => {
     dispatch(Logout());
   };
   return (
     <div
       className={hidden.changscroll ? ' hidden' : 'w-full sticky top-0 '}
-      id="he"
     >
       <header>
         <nav className="bg-black border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 z-50">

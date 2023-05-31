@@ -7,11 +7,11 @@ const Home = () => {
   const myElementRef = useRef(null);
   const l = useSelector((state) => state.User);
   const dispatch = useDispatch();
-  const [activeTab, setActiveTab] = useState(2);
+  const [activeTab, setActiveTab] = useState(1);
   window.addEventListener('scroll', () => {
     var crollw = window.scrollY;
     if (myElementRef.current) {
-      if (crollw > myElementRef.current.offsetHeight+10) {
+      if (crollw > myElementRef.current.offsetHeight+20) {
         dispatch(setScroll(true));
       } else {
         dispatch(setScroll(false));
