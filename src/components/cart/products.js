@@ -35,7 +35,7 @@ const ProductsPage = () => {
         {/* Hiển thị danh sách sản phẩm */}
         {get.Product.map((product) =>  (
           <div key={product.id}> 
-            <Link to={`product/${product.id}`}  >
+            <Link to={`product/${product.sku}`} >
               <div className="product-item col-span-1 border-2 bg-gray-100 rounded-lg">
                 <div className="product-image py-2 px-4 ">
                   {/* Hiển thị ảnh sản phẩm */}

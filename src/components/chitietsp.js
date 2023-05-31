@@ -3,24 +3,20 @@ import axios from "axios";
 import {useState, useEffect } from "react";
 // import {getpd} from '../../store/products';
 // import {img} from '../unilt/key'; 
-
-
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getid } from "../store/products";
 function Chitiet() {
     const [product, setProducts] = useState({});
-    // const [isLoading, setIsLoading] = useState(true);
-
+    const get = useSelector((state) => state.products);
+    const dispatch = useDispatch();
+    const pdid=useParams()
   useEffect(() => {
-    const productId = '0012'; // ID của sản phẩm cần lấy thông tin chi tiết
-    axios.get(`http://192.168.1.9:5000/product/${productId}`)
-      .then(response => {
-        console.log(response)
-        setProducts(response.data.product);
-        // setIsLoading(false);
-      })
-      .catch(error => {
-        console.log(error);
-        // setIsLoading(false);
-      });
+    const getpdbyid=async ()=>{
+      await  dispatch(getid(pdid.id))
+      console.log(get)
+    }
+    getpdbyid()
   }, []);
 
     return(

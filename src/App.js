@@ -42,7 +42,7 @@ function App() {
           
             <Route path="/admin" element={<Admin />}></Route>
             <Route path="/them" element={<Them />}></Route>
-            <Route path="/chitietsp" element={<Chitiet />}></Route>
+            <Route path="/chitietsp/:id" element={<Chitiet />}></Route>
             <Route path="/product" element={<ProductsPage />}></Route>
             <Route path="/view" element={<View />}></Route>
           </Routes>
