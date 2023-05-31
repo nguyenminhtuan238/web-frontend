@@ -50,7 +50,10 @@ const ProductsPage = () => {
                 {/* Hiển thị giá sản phẩm */}
                 <div className="product-price mt-2 mb-4 ml-4">
                   <span className="text-lg font-bold text-blue-900 ">
-                    {product.price} <u>đ</u>{' '}                   
+                    {product.price.toLocaleString('vi-VN', {
+                      style: 'currency',
+                      currency: 'VND',
+                    })}                 
                   </span>
                 </div>
               </div>
