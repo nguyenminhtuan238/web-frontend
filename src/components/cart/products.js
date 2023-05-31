@@ -7,17 +7,19 @@ import { getpd } from '../../store/products';
 import { img } from '../../unilt/key';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 const ProductsPage = () => {
+  const [p,setp]=useState(1)
   const get = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  
+  const handleChange = (event, value) => {
+    setp(value);
+  };
+
   useEffect(() => {
   const getPD=()=>{
-    
-    dispatch(getpd())
-    // console.log(get.Product[0].custom_attributes.find(a=>{return a.attribute_code==='image'}).value)
+    dispatch(getpd(p))
   }
   getPD()
-  }, [dispatch]);
+  }, [dispatch,p]);
   
   return (
     <div>
@@ -30,10 +32,10 @@ const ProductsPage = () => {
         {get.Product.map((product) =>  (
           <div key={product.id}> 
             <Link to={`product/${product.id}`}  >
-              <div className="product-item col-span-1 border-2 bg-white">
+              <div className="product-item col-span-1 border-2 bg-gray-100 rounded-lg">
                 <div className="product-image py-2 px-4 ">
                   {/* Hiển thị ảnh sản phẩm */}
-                  <div className="flex justify-center items-center h-50 md:h-auto" >
+                  <div className="flex justify-center items-center h-50 md:h-auto bg-white rounded-lg" >
                     <img
                         src={img+product.custom_attributes.find(a=>{return a.attribute_code==='image'}).value}
                         alt={product.name}
@@ -48,8 +50,8 @@ const ProductsPage = () => {
                 </div>
 
                 {/* Hiển thị giá sản phẩm */}
-                <div className="product-price mt-2 mb-4 ml-4">
-                  <span className="text-lg font-bold text-blue-900 ">
+                <div className="product-price mt-2 mb-4 flex ">
+                  <span className="text-lg font-bold text-red-700 ml-4">
                     {product.price.toLocaleString('vi-VN', {
                       style: 'currency',
                       currency: 'VND',
@@ -64,7 +66,7 @@ const ProductsPage = () => {
 
       <div className="flex justify-center items-center mt-16 mb-16">
         <Stack spacing={1}>
-          <Pagination count={10} showFirstButton showLastButton />
+          <Pagination count={get.getpage} page={p}   onChange={handleChange} />
           {/* <Pagination count={10} hidePrevButton hideNextButton /> */}
         </Stack>
       </div>
