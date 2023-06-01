@@ -9,16 +9,17 @@ function Chitiet() {
     const get = useSelector((state) => state.products);
     const dispatch = useDispatch();
     const pdid=useParams()
+    
   useEffect(() => {
-    const getpdbyid=async ()=>{
-       await  dispatch(getid(pdid.id))
+    const getpdbyid= ()=>{
+        dispatch(getid(pdid.id))
     }
     getpdbyid()
-  }, [dispatch,pdid]);
-
+  }, [dispatch]);
+  
     return(
         <div>
-        {get.isloading?<div className="flex justify-center items-center">
+        {get.loadingid?<div className="flex justify-center items-center">
   <div className="w-16 h-16 border-4 border-t-4 border-blue-500 rounded-full animate-spin mb-8"></div>
 </div>:
         <section className="container bg-slate-100 rounded-[10px] mx-auto my-8 px-6">

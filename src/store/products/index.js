@@ -22,20 +22,24 @@ const product = createSlice({
     isloading:true,
     Product:null,
     getpage:null,
+    loadingid:true
   },
   reducers: {
       setloading:(state)=>{
         state.isloading=true
+        state.loadingid=true
       }
   },
   extraReducers:{
     [getpd.fulfilled]: (state, action) => {
         state.isloading=false
+        state.loadingid=true
         state.Product = action.payload.product.items;
         state.getpage=action.payload.totalPage
     },
     [getid.fulfilled]: (state, action) => {
-      state.isloading=false
+      state.loadingid=false
+      state.isloading=true
       state.Product = action.payload;
   },
   }
