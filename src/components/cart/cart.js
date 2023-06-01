@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
-import { getcart } from '../../store/cart';
+import { getcart, updatecart } from '../../store/cart';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { img,Userkey } from '../../unilt/key';
 const CartPage = () => {
@@ -10,7 +10,6 @@ const CartPage = () => {
   const get = useSelector((state) => state.cart);
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
-
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth < 768);
@@ -32,12 +31,16 @@ const CartPage = () => {
      };
      getcarta()
   },[dispatch])
-  const decreaseCount = () => {
+  const decreaseCount = (id) => {
     if (count > 1) {
       setCount(count - 1);
     }
   };
-  const increaseCount = () => {
+  const increaseCount = (id,sku) => {
+    console.log(sku)
+   const a= dispatch(updatecart({sku:sku,qty:1,item_id:id}))
+   const c=unwrapResult(a)
+   console.log(c)
     setCount(count + 1);
   };
 
@@ -102,7 +105,7 @@ const CartPage = () => {
                   <div className="flex items-center justify-between px-2 py-1 bg-gray-200 rounded w-[70px]">
                     <button
                       className="text-sm font-medium text-gray-700 focus:outline-none"
-                      onClick={decreaseCount}
+                      onClick={()=>decreaseCount(item.item_id,item.sku)}
                     >
                       -
                     </button>
@@ -111,7 +114,7 @@ const CartPage = () => {
                     </span>
                     <button
                       className="text-sm font-medium text-gray-700 focus:outline-none"
-                      onClick={increaseCount}
+                      onClick={()=> increaseCount(item.item_id,item.sku)}
                     >
                       +
                     </button>

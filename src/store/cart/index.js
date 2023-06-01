@@ -29,7 +29,9 @@ export const getcart=createAsyncThunk("cart/get",async ()=>{
 export const updatecart=createAsyncThunk("cart/update",async (data)=>{
     try {
         const res=await CartApi.updatesl(data)
-        return res.product_in_cart
+        const respd=await CartApi.get()
+        console.log(res,respd)
+      
     } catch (error) {
         if (error.response.status === 401) {
            
@@ -64,6 +66,15 @@ const cart = createSlice({
         state.cart=null
         state.err=action.error
     })
+    // builercart.addCase(updatecart.fulfilled,(state,action)=>{
+    //     state.cart=action.payload
+    //     state.isloading=false
+    //     state.err=null
+    // })
+    // builercart.addCase(updatecart.rejected,(state,action)=>{
+    //     state.cart=null
+    //     state.err=action.error
+    // })
   }
 });
 

@@ -9,6 +9,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useSnackbar } from 'notistack';
 import  { addcart } from '../../store/cart';
 import { unwrapResult } from '@reduxjs/toolkit';
+import { setScroll } from '../../store/hidden';
 const ProductsPage = () => {
   const [p,setp]=useState(1)
   const get = useSelector((state) => state.products);
@@ -39,7 +40,10 @@ const ProductsPage = () => {
   }
   getPD()
   }, [dispatch,p]);
-  
+  const handle=()=>{
+    dispatch(setloading())
+    dispatch(setScroll(false))
+  }
   return (
     <div>
     {get.isloading?<div className="flex justify-center items-center">
@@ -50,7 +54,7 @@ const ProductsPage = () => {
         {/* Hiển thị danh sách sản phẩm */}
         {get.Product.map((product) =>  (
           <div key={product.id}> 
-            <Link onClick={()=>dispatch(setloading())} to={`chitietsp/${product.sku}`} >
+            <Link onClick={()=>handle()} to={`chitietsp/${product.sku}`} >
               <div className="product-item col-span-1 border-2 bg-gray-100 rounded-lg">
                 <div className="product-image py-2 px-4 ">
                   {/* Hiển thị ảnh sản phẩm */}
