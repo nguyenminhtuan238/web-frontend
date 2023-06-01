@@ -5,6 +5,7 @@ import { setIsSearch, setmodal } from '../../store/hidden';
 import { Userkey } from '../../unilt/key';
 import { Logout } from '../../store/auth';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { setloading } from '../../store/products';
 function Header() {
   const [isVisible, setIsVisible] = useState(false);
   const hidden = useSelector((state) => state.hidden);
@@ -20,7 +21,7 @@ function Header() {
       <header>
         <nav className="bg-black border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 z-50">
           <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-            <a href="/" className="flex items-center">
+            <Link to="/" onClick={()=>dispatch(setloading())} className="flex items-center">
               <img
                 src="https://flowbite.com/docs/images/logo.svg"
                 className="mr-3 h-6 sm:h-9"
@@ -29,7 +30,7 @@ function Header() {
               <span className="self-center text-white font-semibold whitespace-nowrap dark:text-white">
                 Mekong
               </span>
-            </a>
+            </Link>
             <div className="flex items-center lg:order-2">
               {!User.User && (
                 <button
