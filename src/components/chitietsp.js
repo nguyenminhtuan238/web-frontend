@@ -15,7 +15,7 @@ function Chitiet() {
         dispatch(getid(pdid.id))
     }
     getpdbyid()
-  }, [dispatch]);
+  }, [dispatch,pdid]);
   
     return(
         <div>

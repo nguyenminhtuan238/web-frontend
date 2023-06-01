@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import { getcart } from '../../store/cart';
 import { unwrapResult } from '@reduxjs/toolkit';
-import { img } from '../../unilt/key';
+import { img,Userkey } from '../../unilt/key';
 const CartPage = () => {
   const [count, setCount] = useState(1);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -71,7 +71,7 @@ const CartPage = () => {
                 </th>
               </tr>
             </thead>
-
+          {!localStorage.getItem(Userkey)?"":
             <tbody>
             {get.isloading?<div className="flex justify-center items-center">
   <div className="w-16 h-16 border-4 border-t-4 border-blue-500 rounded-full animate-spin mb-8"></div>
@@ -133,6 +133,7 @@ const CartPage = () => {
               
             }
             </tbody>
+          }
           </table>
         </div>
       </div>
