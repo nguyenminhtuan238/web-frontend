@@ -11,7 +11,7 @@ export const getpd=createAsyncThunk("get/product",async (page)=>{
 export const getid=createAsyncThunk("get/product/id",async (id)=>{
   try {
       const res= await ProductsAPI.getid(id)
-      return res.product.items
+      return res.product
   } catch (error) {
       console.log(error)
   }
@@ -21,9 +21,13 @@ const product = createSlice({
   initialState: {
     isloading:true,
     Product:null,
-    getpage:null
+    getpage:null,
   },
-  reducers: {},
+  reducers: {
+      setloading:(state)=>{
+        state.isloading=true
+      }
+  },
   extraReducers:{
     [getpd.fulfilled]: (state, action) => {
         state.isloading=false
@@ -36,5 +40,5 @@ const product = createSlice({
   },
   }
 });
-
+export const {setloading}=product.actions
 export default product.reducer;
