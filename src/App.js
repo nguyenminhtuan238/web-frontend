@@ -37,12 +37,12 @@ function App() {
                 }
               ></Route>
                 <Route path="Cart" element={<Cart />}></Route>
+                <Route path="SP/chitietsp/:id" element={<Chitiet />}></Route>
             </Route>
             <Route path="*" element={<NotFound />}></Route>
           
             <Route path="/admin" element={<Admin />}></Route>
             <Route path="/them" element={<Them />}></Route>
-            <Route path="/chitietsp/:id" element={<Chitiet />}></Route>
             <Route path="/product" element={<ProductsPage />}></Route>
             <Route path="/view" element={<View />}></Route>
           </Routes>
