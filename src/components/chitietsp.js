@@ -44,7 +44,9 @@ function Chitiet() {
                         <button className="px-2 py-1 bg-gray-200 rounded-r decrement">+</button>
                     </div>
                     <button className="bg-gray-300 text-green-700 px-4 py-2 rounded-md">Thêm vào giỏ hàng</button>
-                    <button className="ml-2 bg-red-500 text-white px-4 py-2 rounded-md">Đặt mua ngay</button>
+                    <button className="ml-2 mb-2 bg-red-500 text-white px-4 py-2 rounded-md">Đặt mua ngay</button>
+                    <hr></hr>
+                    <p className="font-medium">Mô tả chi tiết sản phẩm</p>
                 </div>
             </div>
             
