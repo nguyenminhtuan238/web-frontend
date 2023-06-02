@@ -12,6 +12,7 @@ import Them from './components/them';
 import ProductsPage from './components/cart/products';
 import Chitiet from './components/chitietsp';
 import UpdateBlog from './components/update';
+import Baiviet from './components/baiviet';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
 
             <Route path="/admin" element={<Admin />}></Route>
             <Route path="/them" element={<Them />}></Route>
+            <Route path="/baiviet" element={<Baiviet />}></Route>
             <Route path="/product" element={<ProductsPage />}></Route>
             <Route path="/update" element={<UpdateBlog />}></Route>
           </Routes>
