@@ -67,7 +67,7 @@ const ProductsPage = () => {
                       />
                     </div>
                   </div>
-                  <hr class="border-gray-200"></hr>
+                  <hr className="border-gray-200"></hr>
 
                   {/* Hiển thị tên sản phẩm */}
                   <div className="product-name overflow-hidden mt-2 ml-4 line-clamp-3 min-h-[70px]">
@@ -76,7 +76,7 @@ const ProductsPage = () => {
                 </Link> 
                 {/* Hiển thị giá sản phẩm */}
                 <div className="product-price mt-2 mb-4 flex">
-                  <span className="text-lg font-bold text-red-700 ml-4">
+                  <span className="text-lg font-bold text-red-700 ml-4 ">
                     {product.price.toLocaleString('vi-VN', {
                       style: 'currency',
                       currency: 'VND',
