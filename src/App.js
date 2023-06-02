@@ -21,7 +21,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Layout />}>
-              <Route path=""  element={<Home />}>
+              <Route path="" element={<Home />}>
                 <Route path="/SP" element={<ProductsPage />}></Route>
               </Route>
               <Route path="/thongtin" element={<Thongtin />}></Route>
@@ -37,11 +37,11 @@ function App() {
                   </SnackbarProvider>
                 }
               ></Route>
-                <Route path="Cart" element={<Cart />}></Route>
-                <Route path="SP/chitietsp/:id" element={<Chitiet />}></Route>
+              <Route path="Cart" element={<Cart />}></Route>
+              <Route path="SP/chitietsp/:id" element={<Chitiet />}></Route>
             </Route>
             <Route path="*" element={<NotFound />}></Route>
-          
+
             <Route path="/admin" element={<Admin />}></Route>
             <Route path="/them" element={<Them />}></Route>
             <Route path="/baiviet" element={<Baiviet />}></Route>
