@@ -6,7 +6,6 @@ function UpdateBlog() {
   // Khai báo các biến trạng thái cho tiêu đề và nội dung bài viết
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  
   const [blog_id, setBlog_id] = useState('');
   const token = localStorage.getItem(Storagekey);
 
@@ -14,9 +13,9 @@ function UpdateBlog() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(
-        `http://192.168.1.9:5000/blog/update/${blog_id}`, // Sửa đường dẫn API thành đường dẫn cập nhật
-        { title, content },
+      const response = await axios.post(
+        'http://192.168.1.9:5000/blog/create/',
+        { title, content, blog_id},
         {
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -27,7 +26,6 @@ function UpdateBlog() {
       alert('Cập nhật bài viết thành công!');
       setTitle('');
       setContent('');
-      setBlog_id(''); // Xóa mã bài viết sau khi cập nhật thành công
     } catch (error) {
       console.log(error);
       alert('Cập nhật bài viết thất bại!');
@@ -85,14 +83,14 @@ function UpdateBlog() {
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             htmlFor="blog_id"
           >
-            Mã bài viết
+            Mã Blog
           </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="blog_id"
             name="blog_id"
            type="text"
-            placeholder="Nhập mã blog"
+            placeholder="Nhập mã user"
             value={blog_id}
             onChange={(e) => setBlog_id(e.target.value)}
           />
