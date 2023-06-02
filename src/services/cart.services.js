@@ -4,9 +4,9 @@ const CartApi = {
     const url = 'cart/add/';
     return ApiServices.post(url, data);
   },
-  remove(data) {
-    const url = 'account/login/';
-    return ApiServices.delete(url, data);
+  remove(id) {
+    const url = `cart/delete/${id}`;
+    return ApiServices.delete(url);
   },
   get(){
     const url = 'cart/list/';

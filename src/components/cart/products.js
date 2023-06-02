@@ -25,6 +25,11 @@ const ProductsPage = () => {
         qty:1,
     }))
       const cart =unwrapResult(res)
+      enqueueSnackbar("Thêm Vào giỏ hàng thành công", {
+        variant: 'success',
+        autoHideDuration: 1200,
+        anchorOrigin: { vertical: 'top', horizontal: 'right' },
+      });
       return cart
     } catch (error) {
       enqueueSnackbar(error.message, {

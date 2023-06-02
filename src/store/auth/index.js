@@ -11,7 +11,10 @@ export const LoginUser = createAsyncThunk('user/login', async (payload) => {
     if (error.response.status === 401) {
       // console.log(JSON.stringify(error.response.data.message))
       throw error.response.data.message;
-    } else {
+    }if(error.response.status ===402){
+      throw error.response.data.message;
+    } 
+    else {
       console.log(error);
     }
     //throw error

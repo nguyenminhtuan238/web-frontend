@@ -1,15 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 // import {getpd} from '../../store/products';
 import {img} from '../unilt/key'; 
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getid } from "../store/products";
+import { useSnackbar } from 'notistack';
+import  { addcart } from '../store/cart';
+import { unwrapResult } from '@reduxjs/toolkit';
 function Chitiet() {
     const get = useSelector((state) => state.products);
+    const [count, setCount] = useState(1)
     const dispatch = useDispatch();
+    const { enqueueSnackbar } = useSnackbar();
     const pdid=useParams()
-    
+    const handlecart=async ()=>{
+        try {
+          const res=await dispatch(addcart({
+            sku:pdid.id,
+            qty:count,
+        }))
+          const cart =unwrapResult(res)
+          enqueueSnackbar("Thêm Vào giỏ hàng thành công", {
+            variant: 'success',
+            autoHideDuration: 1200,
+            anchorOrigin: { vertical: 'top', horizontal: 'right' },
+          });
+          return cart
+        } catch (error) {
+          enqueueSnackbar(error.message, {
+            variant: 'error',
+            autoHideDuration: 1200,
+            anchorOrigin: { vertical: 'top', horizontal: 'right' },
+          });
+        }
+      }
+      const decreaseCount =() => {
+          if(count>1){
+            setCount(count-1)
+          }
+        
+      };
+      const increaseCount = () => {
+            setCount(count+1)
+      };
   useEffect(() => {
     const getpdbyid= ()=>{
         dispatch(getid(pdid.id))
@@ -39,11 +73,11 @@ function Chitiet() {
                     <p className="text-red-600 text-xl font-semibold">{get.Product.price}</p>
                     <div className="py-5 flex items-center">
                         <p className="mr-2">Số lượng:</p>
-                        <button className="px-2 py-1 bg-gray-200 rounded-l increment">-</button>
-                            <span className="px-2 py-1 bg-gray-200">0</span>
-                        <button className="px-2 py-1 bg-gray-200 rounded-r decrement">+</button>
+                        <button className="px-2 py-1 bg-gray-200 rounded-l increment" onClick={()=>decreaseCount()}>-</button>
+                            <span className="px-2 py-1 bg-gray-200">{count}</span>
+                        <button className="px-2 py-1 bg-gray-200 rounded-r decrement" onClick={()=>increaseCount()}>+</button>
                     </div>
-                    <button className="bg-gray-300 text-green-700 px-4 py-2 rounded-md">Thêm vào giỏ hàng</button>
+                    <button className="bg-gray-300 text-green-700 px-4 py-2 rounded-md" onClick={handlecart}>Thêm vào giỏ hàng</button>
                     <button className="ml-2 bg-red-500 text-white px-4 py-2 rounded-md">Đặt mua ngay</button>
                 </div>
             </div>

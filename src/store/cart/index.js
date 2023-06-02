@@ -2,7 +2,8 @@ import { createSlice,createAsyncThunk } from '@reduxjs/toolkit';
 import CartApi from '../../services/cart.services';
 export const addcart=createAsyncThunk("cart/add",async (data)=>{
     try {
-        const res=await CartApi.add(data)
+        await CartApi.add(data)
+        const res=await CartApi.get()
         return res.product_in_cart
     } catch (error) {
         if (error.response.status === 401) {
@@ -28,9 +29,9 @@ export const getcart=createAsyncThunk("cart/get",async ()=>{
 })
 export const updatecart=createAsyncThunk("cart/update",async (data)=>{
     try {
-        const res=await CartApi.updatesl(data)
-        const respd=await CartApi.get()
-        console.log(res,respd)
+            await CartApi.updatesl(data)
+        const res=await CartApi.get()
+        return res.product_in_cart
       
     } catch (error) {
         if (error.response.status === 401) {
@@ -41,6 +42,23 @@ export const updatecart=createAsyncThunk("cart/update",async (data)=>{
     }
     }
 })
+export const deletecart=createAsyncThunk("cart/delete",async (id)=>{
+   
+    try {
+        await CartApi.remove(id)
+        const res=await CartApi.get()
+         return res.product_in_cart
+      
+    } catch (error) {
+        if (error.response.status === 401) {
+           
+            throw new Error( " Cần phải Đăng Nhập mới thêm vào giỏ hàng");
+    }else{
+        console.log(error)
+    }
+    }
+})
+
 const cart = createSlice({
   name: 'cart',
   initialState: {
@@ -48,7 +66,9 @@ const cart = createSlice({
     isloading:true,
     err:null
   },
-  reducers: {},
+  reducers: {
+    
+  },
   extraReducers:(builercart)=>{
       builercart.addCase(addcart.fulfilled,(state,action)=>{
           state.cart=action.payload
@@ -66,16 +86,22 @@ const cart = createSlice({
         state.cart=null
         state.err=action.error
     })
-    // builercart.addCase(updatecart.fulfilled,(state,action)=>{
-    //     state.cart=action.payload
-    //     state.isloading=false
-    //     state.err=null
-    // })
-    // builercart.addCase(updatecart.rejected,(state,action)=>{
-    //     state.cart=null
-    //     state.err=action.error
-    // })
+    builercart.addCase(updatecart.fulfilled,(state,action)=>{
+        state.cart=action.payload
+        state.isloading=false
+        state.err=null
+    })
+    builercart.addCase(updatecart.rejected,(state,action)=>{
+        state.cart=null
+        state.err=action.error
+    })
+    builercart.addCase(deletecart.fulfilled,(state,action)=>{
+        state.cart=action.payload
+        state.err=null
+    })
+    builercart.addCase(deletecart.rejected,(state,action)=>{
+        state.err=action.error
+    })
   }
 });
-
 export default cart.reducer;
