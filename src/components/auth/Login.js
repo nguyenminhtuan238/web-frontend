@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
@@ -7,20 +7,14 @@ import { useDispatch } from 'react-redux';
 import { setmodal } from '../../store/hidden';
 import { LoginUser } from '../../store/auth';
 import { unwrapResult } from '@reduxjs/toolkit';
+import Cookies from 'js-cookie';
+import { ban } from '../../unilt/key';
 const Login = () => {
+  const [count, setCount] = useState( Cookies.get(ban)?parseInt(Cookies.get(ban)):0)
   const { enqueueSnackbar } = useSnackbar(); // khởi tạo useSnackbar
   const dispatch = useDispatch();
-  // const handleEmailChange = (event) => {
-  //   setEmail(event.target.value);
-  // };
-
-  // const handleSubmit = (evalue) => {
-  //   event.preventDefault();
-  //   // Xử lý đăng nhập tại đây (gửi thông tin đăng nhập đến server)
-  //   console.log(values);
-  //   // Hiển thị thông báo đăng nhập thành công
-  // };
   const login = async (values) => {
+    if(count!==3){
     try {
       const res = await dispatch(LoginUser(values));
       const user = unwrapResult(res);
@@ -38,7 +32,25 @@ const Login = () => {
         autoHideDuration: 1200,
         anchorOrigin: { vertical: 'top', horizontal: 'right' },
       });
+      setCount(count+1)
     }
+  }else{
+    Cookies.set(ban,count)
+     enqueueSnackbar("Đăng Nhập Quá số lần quay lại sau 3 phút", {
+     variant: 'error',
+      autoHideDuration: 1200,
+      anchorOrigin: { vertical: 'top', horizontal: 'right' },
+    });
+    // setInterval(() => {
+    //   console.log(futute)
+    // }, 1000);
+    setTimeout(() => {
+      Cookies.remove(ban)
+      setCount(0)
+    },30000 );
+    
+    
+  }
   };
   return (
     <Formik
@@ -53,26 +65,8 @@ const Login = () => {
       })}
       onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(false);
-        // registerAccount(values.name, values.email, values.password);
         login(values);
 
-        // if (values.email === 'a@gmail.com' && values.password === '123456') {
-        //   console.log('ok');
-        //   setSubmitting(false);
-        //   enqueueSnackbar('Đăng nhập thành công!', {
-        //     variant: 'success',
-        //     autoHideDuration: 1000,
-        //   });
-        //   setTimeout(() => {
-        //     navigate('/');
-        //   }, 1000);
-        // }
-        // enqueueSnackbar('Đăng nhập thành công!', {
-        //   variant: 'success',
-        //   autoHideDuration: 3000,
-        // });
-        //toast.success('Đăng ký thành công!');
-        //navigate('/');
       }}
     >
       {({

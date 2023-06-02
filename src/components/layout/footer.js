@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Search from '../search';
+import Search from './search';
 import Login from '../auth/Login';
 import { useSelector } from 'react-redux';
 const Footer = () => {

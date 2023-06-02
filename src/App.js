@@ -7,12 +7,10 @@ import Layout from './components/layout/layout';
 import NotFound from './components/Notfound';
 import Cart from './components/cart/cart';
 import Thongtin from './components/thongtin';
-import Admin from './components/admin';
-import Them from './components/them';
-import ProductsPage from './components/cart/products';
-import View from './components/cart/view';
-import Chitiet from './components/chitietsp';
-
+import Admin from './components/admin/admin';
+import Them from './components/admin/them';
+import ProductsPage from './components/products/products';
+import Chitiet from './components/products/chitietsp';
 function App() {
   return (
     <div className="App">
@@ -44,7 +42,6 @@ function App() {
             <Route path="/admin" element={<Admin />}></Route>
             <Route path="/them" element={<Them />}></Route>
             <Route path="/product" element={<ProductsPage />}></Route>
-            <Route path="/view" element={<View />}></Route>
           </Routes>
         </BrowserRouter>
       </SnackbarProvider>

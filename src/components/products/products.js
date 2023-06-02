@@ -43,6 +43,7 @@ const ProductsPage = () => {
   };
   useEffect(() => {
     const getPD = () => {
+      dispatch(setloading());
       dispatch(getpd(p));
     };
     getPD();
