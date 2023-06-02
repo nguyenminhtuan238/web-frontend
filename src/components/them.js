@@ -1,25 +1,35 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Storagekey, Userkey } from '../../unilt/key';
 
 function Them() {
+  // Khai báo các biến trạng thái cho tiêu đề và nội dung bài viết
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const token = localStorage.getItem(Storagekey);
 
+  // Hàm xử lý khi người dùng nhấn nút Thêm bài viết
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
         'http://192.168.1.9:5000/blog/create/',
-        { title, content }
+        { title, content },
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        }
       );
       console.log(response.data);
-      // Xử lý phản hồi từ API
+      alert('Thêm bài viết thành công!');
+      setTitle('');
+      setContent('');
     } catch (error) {
       console.log(error);
-      // Xử lý lỗi nếu có
+      alert('Thêm bài viết thất bại!');
     }
-  };
-
+  }
   return (
     <form
       className="w-full max-w-lg mx-auto mt-4 mt-20"
@@ -37,7 +47,7 @@ function Them() {
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="title"
             name="title"
-            type="text"
+           type="text"
             placeholder="Nhập tiêu đề bài viết"
             value={title}
             onChange={(e) => setTitle(e.target.value)}

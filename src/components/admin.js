@@ -1,9 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { Link, useHistory } from 'react-router-dom';
 
 function Admin() {
   const [blogs, setBlogs] = useState([]);
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const history = useHistory();
+
   useEffect(() => {
+    console.log(isLoggedIn)
+    if (!isLoggedIn) {
+      // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
+      history.push('/login');
+
+      return;
+    }
+
     axios
       .get('http://192.168.1.9:5000/blog/list')
       .then((response) => {
@@ -13,7 +26,12 @@ function Admin() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [isLoggedIn, history]);
+
+  if (!isLoggedIn) {
+    // Nếu chưa đăng nhập, không hiển thị trang admin
+    return null;
+  }
   return (
     <div>
       <nav className="bg-black border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
@@ -131,7 +149,10 @@ function Admin() {
                 type="submit"
                 className="ml-16 mb-2 mt-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-gray-200 hover:bg-indigo-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
-                Thêm bài viết
+                <Link to="/them">
+                  Thêm bài viết
+                </Link>
+                
               </button>
             </div>
           </div>
