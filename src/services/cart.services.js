@@ -8,13 +8,13 @@ const CartApi = {
     const url = `cart/delete/${id}`;
     return ApiServices.delete(url);
   },
-  get(){
+  get() {
     const url = 'cart/list/';
     return ApiServices.get(url);
   },
-  updatesl(data){
+  updatesl(data) {
     const url = 'cart/change';
     return ApiServices.put(url, data);
-  }
+  },
 };
 export default CartApi;

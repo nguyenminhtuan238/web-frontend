@@ -15,13 +15,15 @@ function Header() {
     dispatch(Logout());
   };
   return (
-    <div
-      className={hidden.changscroll ? ' hidden' : 'w-full sticky top-0 '}
-    >
+    <div className={hidden.changscroll ? ' hidden' : 'w-full sticky top-0 '}>
       <header>
         <nav className="bg-black border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 z-50">
           <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-            <Link to="/" onClick={()=>dispatch(setloading())} className="flex items-center">
+            <Link
+              to="/"
+              onClick={() => dispatch(setloading())}
+              className="flex items-center"
+            >
               <img
                 src="https://flowbite.com/docs/images/logo.svg"
                 className="mr-3 h-6 sm:h-9"
@@ -42,7 +44,9 @@ function Header() {
               )}
               {User.User && (
                 <button className="text-white dark:text-white cursor-pointer hover:bg-sky-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
-                  {JSON.parse(localStorage.getItem(Userkey)).firstname +" "+ JSON.parse(localStorage.getItem(Userkey)).lastname}
+                  {JSON.parse(localStorage.getItem(Userkey)).firstname +
+                    ' ' +
+                    JSON.parse(localStorage.getItem(Userkey)).lastname}
                 </button>
               )}
               {User.User && (
@@ -64,12 +68,11 @@ function Header() {
                 </Link>
               </div>
               <Link
-                  className="text-white ml-3 dark:text-white cursor-pointer hover:bg-sky-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-                  to="/Cart"
-                  
-                >
-                  <ShoppingCartIcon/>
-                </Link>
+                className="text-white ml-3 dark:text-white cursor-pointer hover:bg-sky-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                to="/Cart"
+              >
+                <ShoppingCartIcon />
+              </Link>
               <button
                 type="button"
                 className="inline-flex items-center p-2 ml-1 text-sm rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -100,7 +103,6 @@ function Header() {
                   ></path>
                 </svg>
               </button>
-              
             </div>
 
             <div

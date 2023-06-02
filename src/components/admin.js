@@ -4,12 +4,13 @@ import axios from 'axios';
 function Admin() {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    axios.get('http://192.168.1.9:5000/blog/list')
-      .then(response => {
+    axios
+      .get('http://192.168.1.9:5000/blog/list')
+      .then((response) => {
         setBlogs(response.data.result);
-        console.log(response.data.result)
+        console.log(response.data.result);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }, []);
@@ -31,8 +32,7 @@ function Admin() {
               className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
               aria-controls="mobile-menu-2"
               aria-expanded="false"
-            >
-            </button>
+            ></button>
           </div>
           <div
             className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
@@ -89,30 +89,42 @@ function Admin() {
                   </tr>
                 </thead>
                 <tbody>
-                {Array.isArray(blogs) && blogs.map((blog, index) => (
-                    <tr key={index} className="border-b dark:border-neutral-500">
-                      <td className="whitespace-nowrap px-6 py-4 font-medium">{blog.blog_id}</td>
-                      <td className="whitespace-nowrap px-6 py-4">{blog.title}</td>
-            
-                      <td className="whitespace-nowrap px-6 py-4">{blog.content}</td>
-                      <td className="whitespace-nowrap px-6 py-4">{blog.created_at}</td>
-                      {/* <td class="whitespace-nowrap px-6 py-4">23/5/2023</td> */}
-                      <td className="mt-8 mb-8 whitespace-nowrap px-6 py-4">
-                        <button
-                          type="submit"
-                          className="mr-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                          Sửa
-                        </button>
-                        <button
-                          type="submit"
-                          className="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-900 hover:bg-gray-900  mt-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                          Xóa
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
+                  {Array.isArray(blogs) &&
+                    blogs.map((blog, index) => (
+                      <tr
+                        key={index}
+                        className="border-b dark:border-neutral-500"
+                      >
+                        <td className="whitespace-nowrap px-6 py-4 font-medium">
+                          {blog.blog_id}
+                        </td>
+                        <td className="whitespace-nowrap px-6 py-4">
+                          {blog.title}
+                        </td>
+
+                        <td className="whitespace-nowrap px-6 py-4">
+                          {blog.content}
+                        </td>
+                        <td className="whitespace-nowrap px-6 py-4">
+                          {blog.created_at}
+                        </td>
+                        {/* <td class="whitespace-nowrap px-6 py-4">23/5/2023</td> */}
+                        <td className="mt-8 mb-8 whitespace-nowrap px-6 py-4">
+                          <button
+                            type="submit"
+                            className="mr-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                          >
+                            Sửa
+                          </button>
+                          <button
+                            type="submit"
+                            className="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-900 hover:bg-gray-900  mt-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                          >
+                            Xóa
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
               <button
