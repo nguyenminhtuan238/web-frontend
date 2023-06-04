@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Storagekey, Userkey } from '../../unilt/key';
+import { Storagekey, Userkey } from '../unilt/key';
 
-function Them() {
+function UpdateBlog() {
   // Khai báo các biến trạng thái cho tiêu đề và nội dung bài viết
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [user_id, setUser_id] = useState('');
+  const [blog_id, setBlog_id] = useState('');
   const token = localStorage.getItem(Storagekey);
 
   // Hàm xử lý khi người dùng nhấn nút Thêm bài viết
@@ -15,7 +15,7 @@ function Them() {
     try {
       const response = await axios.post(
         'http://192.168.1.9:5000/blog/create/',
-        { title, content, user_id},
+        { title, content, blog_id},
         {
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -23,12 +23,12 @@ function Them() {
         }
       );
       console.log(response.data);
-      alert('Thêm bài viết thành công!');
+      alert('Cập nhật bài viết thành công!');
       setTitle('');
       setContent('');
     } catch (error) {
       console.log(error);
-      alert('Thêm bài viết thất bại!');
+      alert('Cập nhật bài viết thất bại!');
     }
   }
   return (
@@ -81,18 +81,18 @@ function Them() {
         <div className="w-full px-3 mb-6 md:mb-0">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            htmlFor="user_id"
+            htmlFor="blog_id"
           >
-            Mã User
+            Mã Blog
           </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="user_id"
-            name="user_id"
+            id="blog_id"
+            name="blog_id"
            type="text"
             placeholder="Nhập mã user"
-            value={user_id}
-            onChange={(e) => setUser_id(e.target.value)}
+            value={blog_id}
+            onChange={(e) => setBlog_id(e.target.value)}
           />
         </div>
       </div>
@@ -102,7 +102,7 @@ function Them() {
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             type="submit"
           >
-            Thêm bài viết
+            Cập nhật bài viết
           </button>
         </div>
       </div>
@@ -110,4 +110,4 @@ function Them() {
   );
 }
 
-export default Them;
+export default UpdateBlog;

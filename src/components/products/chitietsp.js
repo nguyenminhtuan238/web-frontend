@@ -63,7 +63,7 @@ function Chitiet() {
           <div className="flex flex-wrap py-5 justify-betweenitems-center">
             <div className="float-right border-r border-gray-300">
               <img
-                className="object-contain mr-10 h-[400px] w-[500px]"
+                className="object-contain mr-10 h-[371px] w-[362px]"
                 src={
                   img +
                   get.Product.custom_attributes.find((a) => {
@@ -112,9 +112,11 @@ function Chitiet() {
               >
                 Thêm vào giỏ hàng
               </button>
-              <button className="ml-2 bg-red-500 text-white px-4 py-2 rounded-md">
+              <button className="ml-2 mb-2 bg-red-500 text-white px-4 py-2 rounded-md">
                 Đặt mua ngay
               </button>
+              <hr></hr>
+              <p className="font-medium">Mô tả chi tiết sản phẩm</p>
             </div>
           </div>
         </section>

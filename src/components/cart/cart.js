@@ -129,13 +129,16 @@ const CartPage = () => {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                           <span className="text-sm font-medium text-gray-700 mr-4">
-                            {item.price}
+                            {item.price.toLocaleString('vi-VN', {
+                              style: 'currency',
+                              currency: 'VND',
+                            })}
                           </span>
-                          {!isSmallScreen && (
+                          {/* {!isSmallScreen && (
                             <span className="hidden lg:inline-block text-gray-400">
                               đơn vị tính
                             </span>
-                          )}
+                          )} */}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                           <div className="flex items-center justify-between px-2 py-1 bg-gray-200 rounded w-[70px]">
@@ -162,13 +165,16 @@ const CartPage = () => {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                           <span className="text-sm font-medium text-gray-700 mr-4">
-                            {item.price * item.qty}
+                            {(item.price * item.qty).toLocaleString('vi-VN', {
+                              style: 'currency',
+                              currency: 'VND',
+                            })}
                           </span>
-                          {!isSmallScreen && (
+                          {/* {!isSmallScreen && (
                             <span className="hidden lg:inline-block text-gray-400">
                               đơn vị tính
                             </span>
-                          )}
+                          )} */}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                           <Link
@@ -199,21 +205,25 @@ const CartPage = () => {
             <p className="flex mb-1">
               Tạm tính
               <span className="ml-auto">
-                {get.isloading ? 0 : get.cart.reduce((a, b) => a + b.price, 0)}{' '}
-                VND
+                {get.isloading ? 0 : get.cart.reduce((a, b) => a + b.price, 0).toLocaleString('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND',
+                      })}
               </span>
             </p>
             {!isSmallScreen && (
               <p className="flex mb-4">
                 Giảm giá
-                <span className="text-green-500 ml-auto">-$0.00</span>
+                <span className="text-green-500 ml-auto">-0 đ</span>
               </p>
             )}
             <p className="flex mb-4">
               Tổng cộng
               <span className="text-blue-500 ml-auto font-bold">
-                {get.isloading ? 0 : get.cart.reduce((a, b) => a + b.price, 0)}{' '}
-                VND
+                {get.isloading ? 0 : get.cart.reduce((a, b) => a + b.price, 0).toLocaleString('vi-VN', {
+                  style: 'currency',
+                  currency: 'VND',
+                })}
               </span>
             </p>
             <button
