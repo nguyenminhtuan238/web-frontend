@@ -14,7 +14,7 @@ function Admin() {
   useEffect(() => {
     if (!isLoggedIn) {
       navigate('/login');
-      console.log(isLoggedIn)
+      console.log(isLoggedIn);
       return;
     }
 
@@ -33,15 +33,16 @@ function Admin() {
   const handleDelete = (blogId) => {
     if (window.confirm('Bạn có chắc chắn muốn xóa bài viết này không?')) {
       axios
-        .delete(`http://192.168.1.9:5000/blog/delete/${blogId}`,
-        {
+        .delete(`http://192.168.1.9:5000/blog/delete/${blogId}`, {
           headers: {
-            'Authorization': `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         })
         .then((response) => {
           // Xóa bài viết khỏi danh sách
-          setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog.blog_id !== blogId));
+          setBlogs((prevBlogs) =>
+            prevBlogs.filter((blog) => blog.blog_id !== blogId)
+          );
         })
         .catch((error) => {
           console.log(error);
@@ -158,9 +159,7 @@ function Admin() {
                             type="submit"
                             className="mr-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                           >
-                            <Link to="/update">
-                             Sửa  
-                            </Link>
+                            <Link to="/update">Sửa</Link>
                           </button>
                           <button
                             type="submit"
@@ -178,10 +177,7 @@ function Admin() {
                 type="submit"
                 className="ml-16 mb-2 mt-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-gray-200 hover:bg-indigo-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
-                <Link to="/them">
-                  Thêm bài viết
-                </Link>
-                
+                <Link to="/them">Thêm bài viết</Link>
               </button>
             </div>
           </div>

@@ -6,7 +6,7 @@ import { Userkey } from '../../unilt/key';
 import { Logout } from '../../store/auth';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { setloading } from '../../store/products';
-import Directory from './Directory'
+import Directory from './Directory';
 function Header() {
   const [isVisible, setIsVisible] = useState(false);
   const hidden = useSelector((state) => state.hidden);
@@ -126,9 +126,7 @@ function Header() {
         </nav>
       </header>
 
-      {isVisible && (
-      <Directory/>
-      )}
+      {isVisible && <Directory />}
     </div>
   );
 }

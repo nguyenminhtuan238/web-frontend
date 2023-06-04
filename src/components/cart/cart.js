@@ -205,7 +205,11 @@ const CartPage = () => {
             <p className="flex mb-1">
               Tạm tính
               <span className="ml-auto">
-                {get.isloading ? 0 : get.cart.reduce((a, b) => a + b.price, 0).toLocaleString('vi-VN', {
+                {get.isloading
+                  ? 0
+                  : get.cart
+                      .reduce((a, b) => a + b.price, 0)
+                      .toLocaleString('vi-VN', {
                         style: 'currency',
                         currency: 'VND',
                       })}
@@ -220,10 +224,14 @@ const CartPage = () => {
             <p className="flex mb-4">
               Tổng cộng
               <span className="text-blue-500 ml-auto font-bold">
-                {get.isloading ? 0 : get.cart.reduce((a, b) => a + b.price, 0).toLocaleString('vi-VN', {
-                  style: 'currency',
-                  currency: 'VND',
-                })}
+                {get.isloading
+                  ? 0
+                  : get.cart
+                      .reduce((a, b) => a + b.price, 0)
+                      .toLocaleString('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND',
+                      })}
               </span>
             </p>
             <button

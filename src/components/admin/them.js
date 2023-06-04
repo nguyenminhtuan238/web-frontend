@@ -15,10 +15,10 @@ function Them() {
     try {
       const response = await axios.post(
         'http://192.168.1.9:5000/blog/create/',
-        { title, content, user_id},
+        { title, content, user_id },
         {
           headers: {
-            'Authorization': `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -30,7 +30,7 @@ function Them() {
       console.log(error);
       alert('Thêm bài viết thất bại!');
     }
-  }
+  };
   return (
     <form
       className="w-full max-w-lg mx-auto mt-4 mt-20"
@@ -48,7 +48,7 @@ function Them() {
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="title"
             name="title"
-           type="text"
+            type="text"
             placeholder="Nhập tiêu đề bài viết"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -72,8 +72,6 @@ function Them() {
             value={content}
             onChange={(e) => setContent(e.target.value)}
           ></textarea>
-          
-          
         </div>
       </div>
 
@@ -89,7 +87,7 @@ function Them() {
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="user_id"
             name="user_id"
-           type="text"
+            type="text"
             placeholder="Nhập mã user"
             value={user_id}
             onChange={(e) => setUser_id(e.target.value)}
