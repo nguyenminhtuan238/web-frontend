@@ -14,38 +14,21 @@ const Login = () => {
     Cookies.get(ban) ? parseInt(Cookies.get(ban)) : 0
   );
   const [time, settimeban] = useState(0);
-  const [futute, setfutute] = useState(
-    Cookies.get('now')
-      ? new Date().getTime() - parseInt(Cookies.get('now'))
-      : new Date().getTime()
-  );
   const { enqueueSnackbar } = useSnackbar();
   const clean = useRef(null);
   const dispatch = useDispatch();
-  console.log(futute);
-  // console.log((new Date().getTime()-parseInt(Cookies.get("now"))))
   useEffect(() => {
     if (Cookies.get(timeban)) {
       clean.current = setInterval(async () => {
-        // console.log(parseInt(Cookies.get(timeban)))
-
-        await Cookies.set(
-          timeban,
-          parseInt(Cookies.get(timeban)) === 0
-            ? 0
-            : parseInt(Cookies.get(timeban)) - 1000
-        );
-        settimeban(time === 0 ? 0 : time - 1000);
-        setfutute(new Date().getTime() - parseInt(Cookies.get('now')));
-        //  console.log(Cookies.get(timeban)/1000)
-        if (parseInt(Cookies.get(timeban)) === 0) {
+        settimeban(time === 0 ? 0 : parseInt(Cookies.get('settime')) - 1000);
+        if (new Date().getTime() - parseInt(Cookies.get('now'))>parseInt( Cookies.get(timeban))) {        
+           Cookies.remove(timeban);
+           Cookies.remove(ban);
+           Cookies.remove("now");
+          //  Cookies.remove("settime");
           settimeban(0);
           setCount(0);
           clearInterval(clean.current);
-          await Cookies.remove(timeban);
-          await Cookies.remove(ban);
-          setfutute(0);
-          console.log(Cookies.get(timeban));
         }
       }, 1000);
     }
@@ -75,24 +58,23 @@ const Login = () => {
         setCount(count + 1);
       }
     } else {
-      await Cookies.set(ban, count);
-      await Cookies.set(timeban, 3000);
-      await Cookies.set('now', new Date().getTime());
-      enqueueSnackbar('Đăng Nhập Quá số lần quay lại sau 3 phút', {
+      if(Cookies.get(ban)){
+        enqueueSnackbar(`Đăng Nhập Quá số lần quay lại sau 1 phút`, {
+          variant: 'error',
+          autoHideDuration: 1200,
+          anchorOrigin: { vertical: 'top', horizontal: 'right' },
+        });
+      }else{
+       Cookies.set(ban, count);
+       Cookies.set(timeban, 60000);
+       Cookies.set('now', new Date().getTime());
+      enqueueSnackbar(`Đăng Nhập Quá số lần quay lại sau 1 phút`, {
         variant: 'error',
         autoHideDuration: 1200,
         anchorOrigin: { vertical: 'top', horizontal: 'right' },
       });
-      // console.log(parseInt(Cookies.get(timeban))-1000)
-      // console.log(parseInt(Cookies.get(timeban))===0)
-      // setInterval(() => {
-
       settimeban(parseInt(Cookies.get(timeban)));
-      // }, 1000);
-      // setTimeout(() => {
-      //   Cookies.remove(ban)
-      //   setCount(0)
-      // },30000 );
+    }
     }
   };
   return (
@@ -258,4 +240,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default memo(Login);
