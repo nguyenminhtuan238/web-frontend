@@ -173,12 +173,14 @@ function Admin() {
                     ))}
                 </tbody>
               </table>
-              <button
-                type="submit"
-                className="ml-16 mb-2 mt-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-gray-200 hover:bg-indigo-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                <Link to="/them">Thêm bài viết</Link>
-              </button>
+              <Link to="/add">
+                <button
+                  type="submit"
+                  className="ml-16 mb-2 mt-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-gray-200 hover:bg-indigo-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  Thêm bài viết
+                </button>
+              </Link>
             </div>
           </div>
         </div>

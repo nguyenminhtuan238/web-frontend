@@ -8,10 +8,10 @@ import NotFound from './components/Notfound';
 import Cart from './components/cart/cart';
 import Thongtin from './components/thongtin';
 import Admin from './components/admin/admin';
-import Them from './components/admin/them';
+import Them from './components/admin/add';
 import ProductsPage from './components/products/products';
 import Chitiet from './components/products/chitietsp';
-import UpdateBlog from './components/update';
+import UpdateBlog from './components/admin/update';
 import Baiviet from './components/baiviet';
 function App() {
   return (
@@ -42,7 +42,7 @@ function App() {
             <Route path="*" element={<NotFound />}></Route>
 
             <Route path="/admin" element={<Admin />}></Route>
-            <Route path="/them" element={<Them />}></Route>
+            <Route path="/add" element={<Them />}></Route>
             <Route path="/baiviet" element={<Baiviet />}></Route>
             <Route path="/product" element={<ProductsPage />}></Route>
             <Route path="/update" element={<UpdateBlog />}></Route>

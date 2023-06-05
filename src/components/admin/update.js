@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Storagekey, Userkey } from '../unilt/key';
+import { Storagekey, Userkey } from '../../unilt/key';
 
 function UpdateBlog() {
   // Khai báo các biến trạng thái cho tiêu đề và nội dung bài viết
@@ -13,9 +13,9 @@ function UpdateBlog() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        'http://192.168.1.9:5000/blog/create/',
-        { title, content, blog_id },
+      const response = await axios.put(
+        `http://192.168.1.9:5000/blog/update/${blog_id}`,
+        { title, content, blog_id},
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -23,12 +23,10 @@ function UpdateBlog() {
         }
       );
       console.log(response.data);
-      alert('Cập nhật bài viết thành công!');
-      setTitle('');
-      setContent('');
+      alert('Chỉnh sửa bài viết thành công!');
     } catch (error) {
       console.log(error);
-      alert('Cập nhật bài viết thất bại!');
+      alert('Chỉnh sửa bài viết thất bại!');
     }
   };
   return (
