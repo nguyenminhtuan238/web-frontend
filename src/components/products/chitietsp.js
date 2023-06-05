@@ -88,7 +88,10 @@ function Chitiet() {
               <p className="text-gray-700 text-lg mb-4"></p>
               <hr></hr>
               <p className="text-red-600 text-xl font-semibold">
-                {get.Product.price}
+                {get.Product.price.toLocaleString('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND',
+                })}
               </p>
               <div className="py-5 flex items-center">
                 <p className="mr-2">Số lượng:</p>

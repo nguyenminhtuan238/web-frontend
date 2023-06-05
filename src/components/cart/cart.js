@@ -193,14 +193,14 @@ const CartPage = () => {
           </table>
         </div>
       </div>
-      <div className="lg:col-span-1 mt-8 lg:mt-28 lg:mr-16">
+      <div className="lg:col-span-1 mt-4 lg:mt-28 lg:mr-16">
         <div className="grid grid-rows-2">
           <div className="bg-white border-2 rounded-lg p-4 shadow-2xl row-span-1 lg:mb-8">
             <h2 className="text-lg font-bold mb-4">Khuyến mãi</h2>
             <span>Đơn hàng chưa đủ điều kiện</span>
           </div>
 
-          <div className="bg-white border-2 rounded-lg p-4 shadow-2xl mt-8 row-span-1">
+          <div className="bg-white border-2 rounded-lg p-4 shadow-2xl mt-2 row-span-1 mb-16">
             <h2 className="text-lg font-bold mb-4">Thanh toán</h2>
             <p className="flex mb-1">
               Tạm tính
