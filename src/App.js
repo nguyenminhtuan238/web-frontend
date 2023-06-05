@@ -13,6 +13,7 @@ import ProductsPage from './components/products/products';
 import Chitiet from './components/products/chitietsp';
 import UpdateBlog from './components/admin/update';
 import Baiviet from './components/baiviet';
+import LoginAdminComponet from './components/admin/login_admin';
 function App() {
   return (
     <div className="App">
@@ -46,6 +47,7 @@ function App() {
             <Route path="/baiviet" element={<Baiviet />}></Route>
             <Route path="/product" element={<ProductsPage />}></Route>
             <Route path="/update" element={<UpdateBlog />}></Route>
+            <Route path="/admin/login" element={<LoginAdminComponet />}></Route>
           </Routes>
         </BrowserRouter>
       </SnackbarProvider>
