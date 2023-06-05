@@ -13,7 +13,7 @@ import ProductsPage from './components/cart/products';
 import View from './components/cart/view';
 import Chitiet from './components/chitietsp';
 import Baiviet from './components/baiviet';
-
+import Post from './components/post';
 function App() {
   return (
     <div className="App">
@@ -45,6 +45,7 @@ function App() {
             <Route path="/admin" element={<Admin />}></Route>
             <Route path="/them" element={<Them />}></Route>
             <Route path="/baiviet" element={<Baiviet />}></Route>
+            <Route path="/post" element={<Post />}></Route>
             <Route path="/product" element={<ProductsPage />}></Route>
             <Route path="/view" element={<View />}></Route>
           </Routes>
