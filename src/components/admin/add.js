@@ -1,34 +1,38 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { Storagekey, Userkey } from '../../unilt/key';
-
+import { useDispatch } from 'react-redux';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { useSnackbar } from 'notistack';
+import { addArt } from '../../store/Article';
+import { useNavigate } from 'react-router';
 function Them() {
   // Khai báo các biến trạng thái cho tiêu đề và nội dung bài viết
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [user_id, setUser_id] = useState('');
-  const token = localStorage.getItem(Storagekey);
+  const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
+  const naviagate = useNavigate();
 
-  // Hàm xử lý khi người dùng nhấn nút Thêm bài viết
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await axios.post(
-        'http://192.168.1.9:5000/blog/create/',
-        { title, content, user_id },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log(response.data);
-      alert('Thêm bài viết thành công!');
-      setTitle('');
-      setContent('');
+      const response = dispatch(addArt({ title, content, user_id }));
+      const Art = unwrapResult(response);
+      enqueueSnackbar('thêm thành công', {
+        variant: 'success',
+        autoHideDuration: 1200,
+        anchorOrigin: { vertical: 'top', horizontal: 'right' },
+      });
+      naviagate('/admin');
+      return Art;
     } catch (error) {
       console.log(error);
-      alert('Thêm bài viết thất bại!');
+      enqueueSnackbar(error.message, {
+        variant: 'error',
+        autoHideDuration: 1200,
+        anchorOrigin: { vertical: 'top', horizontal: 'right' },
+      });
     }
   };
   return (

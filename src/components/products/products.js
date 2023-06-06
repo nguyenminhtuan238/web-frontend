@@ -84,7 +84,7 @@ const ProductsPage = () => {
                         />
                       </div>
                     </div>
-                    <hr class="border-gray-200"></hr>
+                    <hr className="border-gray-200"></hr>
 
                     {/* Hiển thị tên sản phẩm */}
                     <div className="product-name overflow-hidden mt-2 ml-4 line-clamp-3 min-h-[70px]">
@@ -99,7 +99,9 @@ const ProductsPage = () => {
                         currency: 'VND',
                       })}
                     </span>
-
+                    <span className="text-lg font-bold text-red-700 ml-4">
+                      {product.qty}
+                    </span>
                     <Link
                       onClick={() => handlecart(product.sku)}
                       className="ml-auto mr-4 hover:bg-gray-300 rounded-full w-8 h-8 flex justify-center items-center"

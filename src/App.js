@@ -45,7 +45,7 @@ function App() {
             <Route path="/add" element={<Them />}></Route>
             <Route path="/baiviet" element={<Baiviet />}></Route>
             <Route path="/product" element={<ProductsPage />}></Route>
-            <Route path="/update" element={<UpdateBlog />}></Route>
+            <Route path="/update/:id" element={<UpdateBlog />}></Route>
           </Routes>
         </BrowserRouter>
       </SnackbarProvider>

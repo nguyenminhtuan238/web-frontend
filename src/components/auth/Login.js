@@ -21,10 +21,13 @@ const Login = () => {
     if (Cookies.get(timeban)) {
       clean.current = setInterval(async () => {
         settimeban(time === 0 ? 0 : parseInt(Cookies.get('settime')) - 1000);
-        if (new Date().getTime() - parseInt(Cookies.get('now'))>parseInt( Cookies.get(timeban))) {        
-           Cookies.remove(timeban);
-           Cookies.remove(ban);
-           Cookies.remove("now");
+        if (
+          new Date().getTime() - parseInt(Cookies.get('now')) >
+          parseInt(Cookies.get(timeban))
+        ) {
+          Cookies.remove(timeban);
+          Cookies.remove(ban);
+          Cookies.remove('now');
           //  Cookies.remove("settime");
           settimeban(0);
           setCount(0);
@@ -58,23 +61,23 @@ const Login = () => {
         setCount(count + 1);
       }
     } else {
-      if(Cookies.get(ban)){
+      if (Cookies.get(ban)) {
         enqueueSnackbar(`Đăng Nhập Quá số lần quay lại sau 1 phút`, {
           variant: 'error',
           autoHideDuration: 1200,
           anchorOrigin: { vertical: 'top', horizontal: 'right' },
         });
-      }else{
-       Cookies.set(ban, count);
-       Cookies.set(timeban, 60000);
-       Cookies.set('now', new Date().getTime());
-      enqueueSnackbar(`Đăng Nhập Quá số lần quay lại sau 1 phút`, {
-        variant: 'error',
-        autoHideDuration: 1200,
-        anchorOrigin: { vertical: 'top', horizontal: 'right' },
-      });
-      settimeban(parseInt(Cookies.get(timeban)));
-    }
+      } else {
+        Cookies.set(ban, count);
+        Cookies.set(timeban, 60000);
+        Cookies.set('now', new Date().getTime());
+        enqueueSnackbar(`Đăng Nhập Quá số lần quay lại sau 1 phút`, {
+          variant: 'error',
+          autoHideDuration: 1200,
+          anchorOrigin: { vertical: 'top', horizontal: 'right' },
+        });
+        settimeban(parseInt(Cookies.get(timeban)));
+      }
     }
   };
   return (

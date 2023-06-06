@@ -1,64 +1,52 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { Storagekey, Userkey } from '../../unilt/key';
-
+import { deleteArt, getArt } from '../../store/Article';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { useSnackbar } from 'notistack';
 function Admin() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [blogs, setBlogs] = useState([]);
-  const isLoggedIn = true; //useSelector((state) => state.isLoggedIn);
-  const navigate = useNavigate();
-  const token = localStorage.getItem(Storagekey);
+  const Art = useSelector((state) => state.Art);
+  const dispatch = useDispatch();
+  const [cofirm, setconfirm] = useState(null);
+  const { enqueueSnackbar } = useSnackbar();
+  const handleClose = () => {
+    setconfirm(null);
+  };
+  const handleOpen = (blogId) => {
+    setconfirm(blogId);
+  };
+  const handleDelete = () => {
+    try {
+      const res = dispatch(deleteArt(cofirm));
+      const Art = unwrapResult(res);
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate('/login');
-      console.log(isLoggedIn);
-      return;
-    }
-
-    axios
-      .get('http://192.168.1.9:5000/blog/list')
-      .then((response) => {
-        setBlogs(response.data.result);
-        setIsLoading(false); // Đã tải xong dữ liệu
-      })
-      .catch((error) => {
-        console.log(error);
-        setIsLoading(false); // Đã tải xong dữ liệu (kể cả khi có lỗi)
+      enqueueSnackbar('xóa thành công', {
+        variant: 'success',
+        autoHideDuration: 1200,
+        anchorOrigin: { vertical: 'top', horizontal: 'right' },
       });
-  }, [isLoggedIn, navigate]);
-
-  const handleDelete = (blogId) => {
-    if (window.confirm('Bạn có chắc chắn muốn xóa bài viết này không?')) {
-      axios
-        .delete(`http://192.168.1.9:5000/blog/delete/${blogId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
-          // Xóa bài viết khỏi danh sách
-          setBlogs((prevBlogs) =>
-            prevBlogs.filter((blog) => blog.blog_id !== blogId)
-          );
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      return Art;
+    } catch (error) {
+      console.log(error);
+      enqueueSnackbar(error.message, {
+        variant: 'error',
+        autoHideDuration: 1200,
+        anchorOrigin: { vertical: 'top', horizontal: 'right' },
+      });
     }
   };
-
-  if (isLoading) {
-    // Hiển thị màn hình chờ khi đang tải dữ liệu
-    return <div>Loading...</div>;
-  }
-
-  if (!isLoggedIn) {
-    // Nếu chưa đăng nhập, không hiển thị trang admin
-    return null;
-  }
+  useEffect(() => {
+    const get = async () => {
+      await dispatch(getArt());
+    };
+    get();
+  }, [dispatch]);
   return (
     <div>
       <nav className="bg-black border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
@@ -134,45 +122,71 @@ function Admin() {
                   </tr>
                 </thead>
                 <tbody>
-                  {Array.isArray(blogs) &&
-                    blogs.map((blog, index) => (
-                      <tr
-                        key={index}
-                        className="border-b dark:border-neutral-500"
-                      >
-                        <td className="whitespace-nowrap px-6 py-4 font-medium">
-                          {blog.blog_id}
-                        </td>
-                        <td className="whitespace-nowrap px-6 py-4">
-                          {blog.title}
-                        </td>
+                  {Art.isLoading
+                    ? 'ádasdasdasd'
+                    : Art.Arts.map((blog) => {
+                        return (
+                          <tr
+                            key={blog.blog_id}
+                            className="border-b dark:border-neutral-500"
+                          >
+                            <td className="whitespace-nowrap px-6 py-4 font-medium">
+                              {blog.blog_id}
+                            </td>
+                            <td className="whitespace-nowrap px-6 py-4">
+                              {blog.title}
+                            </td>
 
-                        <td className="whitespace-nowrap px-6 py-4 truncate w-5 overflow-hidden">
-                          {blog.content}
-                        </td>
-                        <td className="whitespace-nowrap px-6 py-4">
-                          {blog.created_at}
-                        </td>
-                        {/* <td class="whitespace-nowrap px-6 py-4">23/5/2023</td> */}
-                        <td className="mt-8 mb-8 whitespace-nowrap px-6 py-4">
-                          <button
-                            type="submit"
-                            className="mr-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                          >
-                            <Link to="/update">Sửa</Link>
-                          </button>
-                          <button
-                            type="submit"
-                            className="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-900 hover:bg-gray-900  mt-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                            onClick={() => handleDelete(blog.blog_id)}
-                          >
-                            Xóa
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
+                            <td className="whitespace-nowrap px-6 py-4 truncate w-5 overflow-hidden">
+                              {blog.content}
+                            </td>
+                            <td className="whitespace-nowrap px-6 py-4">
+                              {blog.created_at}
+                            </td>
+                            {/* <td class="whitespace-nowrap px-6 py-4">23/5/2023</td> */}
+                            <td className="mt-8 mb-8 whitespace-nowrap px-6 py-4">
+                              <button
+                                type="submit"
+                                className="mr-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                              >
+                                <Link to={'/update/' + blog.blog_id}>Sửa</Link>
+                              </button>
+                              <button
+                                type="submit"
+                                className="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-900 hover:bg-gray-900  mt-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                onClick={() => handleOpen(blog.blog_id)}
+                              >
+                                Xóa
+                              </button>
+                            </td>
+                            <Dialog
+                              open={cofirm === blog.blog_id}
+                              onClose={handleClose}
+                              aria-labelledby="alert-dialog-title"
+                              aria-describedby="alert-dialog-description"
+                            >
+                              <DialogTitle id="alert-dialog-title">
+                                {'Bạn thật sự muốn xóa?'}
+                              </DialogTitle>
+                              <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                  Bài viết sẽ bị mất vĩnh viễn bạn có thật muốn
+                                  xóa?
+                                </DialogContentText>
+                              </DialogContent>
+                              <DialogActions>
+                                <Button onClick={handleClose}>Thoát</Button>
+                                <Button onClick={handleDelete} autoFocus>
+                                  Đồng ý
+                                </Button>
+                              </DialogActions>
+                            </Dialog>
+                          </tr>
+                        );
+                      })}
                 </tbody>
               </table>
+
               <Link to="/add">
                 <button
                   type="submit"

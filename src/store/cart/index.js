@@ -8,6 +8,9 @@ export const addcart = createAsyncThunk('cart/add', async (data) => {
   } catch (error) {
     if (error.response.status === 401) {
       throw new Error(' Cần phải Đăng Nhập mới thêm vào giỏ hàng');
+    }
+    if (error.response.status === 400) {
+      throw new Error('Sản phẩm đã hết hàng');
     } else {
       console.log(error);
     }
@@ -55,7 +58,7 @@ export const deletecart = createAsyncThunk('cart/delete', async (id) => {
 const cart = createSlice({
   name: 'cart',
   initialState: {
-    cart: null,
+    cart: [],
     isloading: true,
     err: null,
   },
