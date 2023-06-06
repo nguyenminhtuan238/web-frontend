@@ -39,7 +39,7 @@ export const RegisterUser = createAsyncThunk(
 const User = createSlice({
   name: 'User',
   initialState: {
-    User: localStorage.getItem(Storagekey) || null,
+    User: localStorage.getItem(Userkey) || null,
     error: {},
   },
   reducers: {

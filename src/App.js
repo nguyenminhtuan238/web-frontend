@@ -7,11 +7,11 @@ import Layout from './components/layout/layout';
 import NotFound from './components/Notfound';
 import Cart from './components/cart/cart';
 import Thongtin from './components/thongtin';
-import Admin from './components/admin';
-import Them from './components/them';
-import ProductsPage from './components/cart/products';
-import View from './components/cart/view';
-import Chitiet from './components/chitietsp';
+import Admin from './components/admin/admin';
+import Them from './components/admin/add';
+import ProductsPage from './components/products/products';
+import Chitiet from './components/products/chitietsp';
+import UpdateBlog from './components/admin/update';
 import Baiviet from './components/baiviet';
 import Post from './components/post';
 function App() {
@@ -43,11 +43,11 @@ function App() {
             <Route path="*" element={<NotFound />}></Route>
 
             <Route path="/admin" element={<Admin />}></Route>
-            <Route path="/them" element={<Them />}></Route>
-            <Route path="/baiviet" element={<Baiviet />}></Route>
+            <Route path="/add" element={<Them />}></Route>
+            <Route path="/baiviet" element={<Baiviet/>}></Route>
             <Route path="/post" element={<Post />}></Route>
             <Route path="/product" element={<ProductsPage />}></Route>
-            <Route path="/view" element={<View />}></Route>
+            <Route path="/update" element={<UpdateBlog />}></Route>
           </Routes>
         </BrowserRouter>
       </SnackbarProvider>

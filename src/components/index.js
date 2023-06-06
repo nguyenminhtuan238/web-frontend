@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setScroll } from '../store/hidden';
 import { Outlet } from 'react-router-dom';
@@ -7,17 +7,20 @@ import { Outlet } from 'react-router-dom';
 const Home = () => {
   const myElementRef = useRef(null);
   const dispatch = useDispatch();
+  const hidden = useSelector((state) => state.hidden);
   const [activeTab, setActiveTab] = useState(window.location.pathname);
-  window.addEventListener('scroll', () => {
-    var crollw = window.scrollY;
-    if (myElementRef.current) {
-      if (crollw > myElementRef.current.offsetHeight + 80) {
-        dispatch(setScroll(true));
-      } else {
-        dispatch(setScroll(false));
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      var crollw = window.scrollY;
+      if (myElementRef.current) {
+        if (crollw > myElementRef.current.offsetHeight) {
+          dispatch(setScroll(true));
+        } else {
+          dispatch(setScroll(false));
+        }
       }
-    }
-  });
+    });
+  }, [dispatch]);
   const handle = () => {
     console.log(window.location.pathname);
   };
@@ -30,7 +33,11 @@ const Home = () => {
         id="Scroll"
         onClick={handle}
       />
-      <header className="w-full sticky top-0 z-10 sm:hidden lg:block bg-white ">
+      <header
+        className={`w-full ${
+          hidden.changscroll ? 'sticky top-0' : ''
+        }  sm:hidden lg:block bg-white `}
+      >
         <nav className="flex  flex-wrap items-center p-5 justify-between mx-auto   max-w-screen-xl  ">
           <div>
             <ul className="list-none p-2 m-0 flex overflow-x-auto flex justify-between">

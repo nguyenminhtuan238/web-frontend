@@ -1,25 +1,34 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Storagekey, Userkey } from '../../unilt/key';
 
-function Them() {
+function UpdateBlog() {
+  // Khai báo các biến trạng thái cho tiêu đề và nội dung bài viết
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [blog_id, setBlog_id] = useState('');
+  const token = localStorage.getItem(Storagekey);
 
+  // Hàm xử lý khi người dùng nhấn nút Thêm bài viết
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        'http://192.168.1.9:5000/blog/create/',
-        { title, content }
+      const response = await axios.put(
+        `http://192.168.1.9:5000/blog/update/${blog_id}`,
+        { title, content, blog_id},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       console.log(response.data);
-      // Xử lý phản hồi từ API
+      alert('Chỉnh sửa bài viết thành công!');
     } catch (error) {
       console.log(error);
-      // Xử lý lỗi nếu có
+      alert('Chỉnh sửa bài viết thất bại!');
     }
   };
-
   return (
     <form
       className="w-full max-w-lg mx-auto mt-4 mt-20"
@@ -63,13 +72,33 @@ function Them() {
           ></textarea>
         </div>
       </div>
+
+      <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="w-full px-3 mb-6 md:mb-0">
+          <label
+            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            htmlFor="blog_id"
+          >
+            Mã Blog
+          </label>
+          <input
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="blog_id"
+            name="blog_id"
+            type="text"
+            placeholder="Nhập mã user"
+            value={blog_id}
+            onChange={(e) => setBlog_id(e.target.value)}
+          />
+        </div>
+      </div>
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full px-3">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             type="submit"
           >
-            Thêm bài viết
+            Cập nhật bài viết
           </button>
         </div>
       </div>
@@ -77,4 +106,4 @@ function Them() {
   );
 }
 
-export default Them;
+export default UpdateBlog;

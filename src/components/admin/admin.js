@@ -1,19 +1,64 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import { Storagekey, Userkey } from '../../unilt/key';
 
 function Admin() {
+  const [isLoading, setIsLoading] = useState(true);
   const [blogs, setBlogs] = useState([]);
+  const isLoggedIn = true; //useSelector((state) => state.isLoggedIn);
+  const navigate = useNavigate();
+  const token = localStorage.getItem(Storagekey);
+
   useEffect(() => {
+    if (!isLoggedIn) {
+      navigate('/login');
+      console.log(isLoggedIn);
+      return;
+    }
+
     axios
       .get('http://192.168.1.9:5000/blog/list')
       .then((response) => {
         setBlogs(response.data.result);
-        console.log(response.data.result);
+        setIsLoading(false); // Đã tải xong dữ liệu
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false); // Đã tải xong dữ liệu (kể cả khi có lỗi)
       });
-  }, []);
+  }, [isLoggedIn, navigate]);
+
+  const handleDelete = (blogId) => {
+    if (window.confirm('Bạn có chắc chắn muốn xóa bài viết này không?')) {
+      axios
+        .delete(`http://192.168.1.9:5000/blog/delete/${blogId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          // Xóa bài viết khỏi danh sách
+          setBlogs((prevBlogs) =>
+            prevBlogs.filter((blog) => blog.blog_id !== blogId)
+          );
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+
+  if (isLoading) {
+    // Hiển thị màn hình chờ khi đang tải dữ liệu
+    return <div>Loading...</div>;
+  }
+
+  if (!isLoggedIn) {
+    // Nếu chưa đăng nhập, không hiển thị trang admin
+    return null;
+  }
   return (
     <div>
       <nav className="bg-black border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
@@ -49,13 +94,13 @@ function Admin() {
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/"
                   className="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
                   aria-current="page"
                 >
                   Home
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -67,7 +112,7 @@ function Admin() {
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
             <div className="overflow-hidden">
-              <table className="min-w-full text-left text-sm font-light ml-4">
+              <table className="min-w-full text-left text-sm font-light ml-4 truncate w-5 overflow-hidden">
                 <thead className="border-b font-medium dark:border-neutral-500">
                   <tr className="bg-gray-400">
                     <th scope="col" className="px-6 py-4">
@@ -102,7 +147,7 @@ function Admin() {
                           {blog.title}
                         </td>
 
-                        <td className="whitespace-nowrap px-6 py-4">
+                        <td className="whitespace-nowrap px-6 py-4 truncate w-5 overflow-hidden">
                           {blog.content}
                         </td>
                         <td className="whitespace-nowrap px-6 py-4">
@@ -114,11 +159,12 @@ function Admin() {
                             type="submit"
                             className="mr-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                           >
-                            Sửa
+                            <Link to="/update">Sửa</Link>
                           </button>
                           <button
                             type="submit"
                             className="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-900 hover:bg-gray-900  mt-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            onClick={() => handleDelete(blog.blog_id)}
                           >
                             Xóa
                           </button>
@@ -127,12 +173,14 @@ function Admin() {
                     ))}
                 </tbody>
               </table>
-              <button
-                type="submit"
-                className="ml-16 mb-2 mt-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-gray-200 hover:bg-indigo-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                Thêm bài viết
-              </button>
+              <Link to="/add">
+                <button
+                  type="submit"
+                  className="ml-16 mb-2 mt-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-gray-200 hover:bg-indigo-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  Thêm bài viết
+                </button>
+              </Link>
             </div>
           </div>
         </div>

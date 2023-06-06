@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 // import {getpd} from '../../store/products';
-import { img } from '../unilt/key';
+import { img } from '../../unilt/key';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getid } from '../store/products';
+import { getid } from '../../store/products';
 import { useSnackbar } from 'notistack';
-import { addcart } from '../store/cart';
+import { addcart } from '../../store/cart';
 import { unwrapResult } from '@reduxjs/toolkit';
 function Chitiet() {
   const get = useSelector((state) => state.products);

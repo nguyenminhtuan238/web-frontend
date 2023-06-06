@@ -1,4 +1,4 @@
-import { setIsSearch } from '../store/hidden';
+import { setIsSearch } from '../../store/hidden';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 const Search = () => {
