@@ -14,6 +14,7 @@ import Chitiet from './components/products/chitietsp';
 import UpdateBlog from './components/admin/update';
 import Baiviet from './components/baiviet';
 import LoginAdminComponet from './components/admin/login_admin';
+import Post from './components/post';
 function App() {
   return (
     <div className="App">
@@ -45,9 +46,11 @@ function App() {
             <Route path="/admin" element={<Admin />}></Route>
             <Route path="/add" element={<Them />}></Route>
             <Route path="/baiviet" element={<Baiviet />}></Route>
+            <Route path="/post" element={<Post />}></Route>
             <Route path="/product" element={<ProductsPage />}></Route>
             <Route path="/update" element={<UpdateBlog />}></Route>
             <Route path="/admin/login" element={<LoginAdminComponet />}></Route>
+            <Route path="/update/:id" element={<UpdateBlog />}></Route>
           </Routes>
         </BrowserRouter>
       </SnackbarProvider>

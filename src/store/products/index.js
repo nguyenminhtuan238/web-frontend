@@ -20,8 +20,8 @@ const product = createSlice({
   name: 'product',
   initialState: {
     isloading: true,
-    Product: null,
-    getpage: null,
+    Product: [],
+    getpage: 1,
     loadingid: true,
   },
   reducers: {
