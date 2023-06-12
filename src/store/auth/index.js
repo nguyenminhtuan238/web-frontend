@@ -21,6 +21,26 @@ export const LoginUser = createAsyncThunk('user/login', async (payload) => {
   }
 });
 
+export const LoginAdmin = createAsyncThunk('user/login', async (payload) => {
+  try {
+    const res = await AuthApi.Login(payload);
+    localStorage.setItem(Storagekey, res.token);
+    localStorage.setItem(Userkey, JSON.stringify(res.customer_info));
+    return res.customer_info;
+  } catch (error) {
+    if (error.response.status === 401) {
+      // console.log(JSON.stringify(error.response.data.message))
+      throw error.response.data.message;
+    }
+    if (error.response.status === 402) {
+      throw error.response.data.message;
+    } else {
+      console.log(error);
+    }
+    //throw error
+  }
+});
+
 export const RegisterUser = createAsyncThunk(
   'user/register',
   async (payload) => {
