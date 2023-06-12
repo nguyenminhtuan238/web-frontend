@@ -1,9 +1,35 @@
 import { setIsSearch } from '../../store/hidden';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { search } from '../../store/products';
+import { useEffect, useState } from 'react';
+import { unwrapResult } from '@reduxjs/toolkit';
 const Search = () => {
   const dispatch = useDispatch();
+  const [values,setvalues]=useState("")
+  const [gets,sets]=useState([])
+  const [loading,setloading]=useState(true)
+  useEffect(() => {
+    async function setsearch(){
+    try {
+     
+      const res=await dispatch(search(values))
+      const searchs=await unwrapResult(res)
+      sets(searchs)
+      setloading(false)
+      console.log(values)
+    } catch (error) {
+      if(error){
+        sets([])
+        setvalues("")
+      }
+    }
+     
+    }
+    setsearch()
+  }, [dispatch,values]);
   return (
+    
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center   py-12 sm:px-6 lg:px-8 fixed inset-0  bg-opacity-30 backdrop-blur-sm z-50  ">
       <div
         className=" w-[640px] bg-gray-100  animate-slideRight min-h-screen ml-auto  absolute top-0 right-0 z-50 shadow-lg "
@@ -41,6 +67,8 @@ const Search = () => {
                 id="simple-search"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search"
+                value={values}
+                onChange={(e)=>setvalues(e.target.value)}
                 required
               ></input>
             </div>
@@ -65,6 +93,19 @@ const Search = () => {
             </button>
           </form>
         </div>
+        <div className=" absolute mx-auto text-gray-600 top-[150px] right-[50px] w-[550px]">
+        {loading?<div className="w-6 h-6 border-4 border-gray-200 rounded-full animate-spin absolute mx-auto text-gray-600 top-[150px] right-[50px] w-[550px]"></div>:
+        <div>
+        {
+          gets.length===0?"Không thể tìm kiếm": <ul className="list-disc">
+        {gets.map((item) => (
+          <li key={item.id}>{item.name}</li>
+        ))}
+      </ul>
+        }
+        </div>
+        }
+      </div>
       </div>
     </div>
   );

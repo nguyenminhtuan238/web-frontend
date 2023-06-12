@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useSnackbar } from 'notistack';
 import { getidArt, updateArt } from '../../store/Article';
+import { StorageAdminkey } from '../../unilt/key';
 function UpdateBlog() {
   // Khai báo các biến trạng thái cho tiêu đề và nội dung bài viết
   const Art = useSelector((state) => state.Art);
@@ -16,6 +17,7 @@ function UpdateBlog() {
   const { enqueueSnackbar } = useSnackbar();
   const [selectedFile, setSelectedFile] = useState(null);
   const handleChange = (event) => {
+    localStorage.setItem(StorageAdminkey,"asdsadasd")
     setSelectedFile(event.target.files[0]);
   };
   useEffect(() => {

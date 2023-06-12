@@ -33,7 +33,7 @@ function Post() {
               }
               alt="Ảnh minh họa"
             />
-            <p className="mx-5 text-gray-700 text-sm">{post[0].created_at}</p>
+            <p className="mx-5 text-gray-700 text-sm">{new Date(post[0].created_at).getDay()}</p>
             <p className="mx-5 text-base font-medium line-clamp-2">
               {post[0].content}
             </p>

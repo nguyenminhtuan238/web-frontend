@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import AuthApi from '../../services/auth.services';
-import { Storagekey, Userkey} from '../../unilt/key';
+import { Storagekey, Userkey,StorageAdminkey} from '../../unilt/key';
 export const LoginUser = createAsyncThunk('user/login', async (payload) => {
   try {
     const res = await AuthApi.Login(payload);
@@ -21,11 +21,11 @@ export const LoginUser = createAsyncThunk('user/login', async (payload) => {
   }
 });
 
-export const LoginAdmin = createAsyncThunk('user/login', async (payload) => {
+export const LoginAdmin = createAsyncThunk('admin/login', async (payload) => {
   try {
-    const res = await AuthApi.Login(payload);
-    localStorage.setItem(Storagekey, res.token);
-    localStorage.setItem(Userkey, JSON.stringify(res.customer_info));
+    console.log(payload)
+    const res = await AuthApi.Loginadmin(payload);
+    localStorage.setItem(StorageAdminkey, res.token);
     return res.customer_info;
   } catch (error) {
     if (error.response.status === 401) {
@@ -61,11 +61,13 @@ const User = createSlice({
   initialState: {
     User: localStorage.getItem(Userkey) || null,
     error: {},
+    admin:localStorage.getItem(StorageAdminkey)||null
   },
   reducers: {
     Logout: (state) => {
       localStorage.removeItem(Storagekey);
       localStorage.removeItem(Userkey);
+      localStorage.removeItem(StorageAdminkey);
       state.User = null;
     },
   },
@@ -80,6 +82,12 @@ const User = createSlice({
       state.User = null;
 
       state.error = action.error.message;
+    },
+    [LoginAdmin.rejected]: (state, action) => {
+      state.error = action.error.message;
+    },
+    [LoginAdmin.fulfilled]: (state) => {
+      state.admin = localStorage.getItem(StorageAdminkey);
     },
     [RegisterUser.rejected]: (state, action) => {
       state.User = null;

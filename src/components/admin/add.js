@@ -4,6 +4,7 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import { useSnackbar } from 'notistack';
 import { addArt } from '../../store/Article';
 import { useNavigate } from 'react-router';
+import { StorageAdminkey } from '../../unilt/key';
 function Them() {
   // Khai báo các biến trạng thái cho tiêu đề và nội dung bài viết
   const [title, setTitle] = useState('');
@@ -11,13 +12,17 @@ function Them() {
   const [user_id, setUser_id] = useState('');
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
+  const [selectedFile, setSelectedFile] = useState(null);
   const naviagate = useNavigate();
-
+  const handleChange = (event) => {
+    localStorage.setItem(StorageAdminkey,"asdsadasd")
+    setSelectedFile(event.target.files[0]);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = dispatch(addArt({ title, content, user_id }));
+      const response = dispatch(addArt({ title, content, user_id,img:selectedFile }));
       const Art = unwrapResult(response);
       enqueueSnackbar('thêm thành công', {
         variant: 'success',
@@ -78,7 +83,22 @@ function Them() {
           ></textarea>
         </div>
       </div>
-
+      <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full px-3">
+              <label
+                className="block text-gray-700 font-bold mb-2"
+                htmlFor="fileInput"
+              >
+                Chọn Hình
+              </label>
+              <input
+                id="fileInput"
+                type="file"
+                className="border rounded-lg py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline-blue focus:border-blue-500"
+                onChange={handleChange}
+              />
+            </div>
+          </div>
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full px-3 mb-6 md:mb-0">
           <label

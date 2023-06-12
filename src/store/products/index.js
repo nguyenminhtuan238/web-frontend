@@ -16,6 +16,18 @@ export const getid = createAsyncThunk('get/product/id', async (id) => {
     console.log(error);
   }
 });
+export const search = createAsyncThunk('get/search/id', async (values) => {
+  try {
+    const res = await ProductsAPI.search(values);
+    return res.product?.items?res.product?.items:[];
+  } catch (error) {
+    if(error.response.status===404){
+      throw new Error("Phai co gia tri")
+    }else{
+      console.log(error)
+    }
+  } 
+});
 const product = createSlice({
   name: 'product',
   initialState: {
@@ -23,6 +35,9 @@ const product = createSlice({
     Product: [],
     getpage: 1,
     loadingid: true,
+    isloadingSearch:true,
+    Search:[],
+    error:null
   },
   reducers: {
     setloading: (state) => {
@@ -41,6 +56,14 @@ const product = createSlice({
       state.loadingid = false;
       state.isloading = true;
       state.Product = action.payload;
+    },
+    [search.fulfilled]: (state, action) => {
+      state.isloadingSearch=false;
+      state.Search = action.payload;
+    },
+    [search.rejected]: (state, action) => {
+      state.Search=[]
+      state.error = action.error;
     },
   },
 });
