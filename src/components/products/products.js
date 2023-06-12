@@ -92,22 +92,25 @@ const ProductsPage = () => {
                     </div>
                   </Link>
                   {/* Hiển thị giá sản phẩm */}
-                  <div className="product-price mt-2 mb-4 flex">
+                  <div className="product-price mt-2 mb-1 flex">
                     <span className="text-lg font-bold text-red-700 ml-4">
                       {product.price.toLocaleString('vi-VN', {
                         style: 'currency',
                         currency: 'VND',
                       })}
                     </span>
-                    <span className="text-lg font-bold text-red-700 ml-4">
-                      {product.qty}
-                    </span>
+                    
                     <Link
                       onClick={() => handlecart(product.sku)}
                       className="ml-auto mr-4 hover:bg-gray-300 rounded-full w-8 h-8 flex justify-center items-center"
                     >
                       <AddShoppingCartIcon />
                     </Link>
+                  </div>
+                  <div className="rounded-full bg-red-400 ml-2 mr-2 mb-2 flex items-center justify-center">
+                    <span className=" text-white">
+                        {product.qty} sản phẩm có sẵn
+                    </span>
                   </div>
                 </div>
               </div>
