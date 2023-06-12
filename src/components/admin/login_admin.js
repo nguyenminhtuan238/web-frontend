@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef, useState } from 'react';
+import React, {  useEffect, useRef, useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
@@ -8,24 +8,22 @@ import { setmodal } from '../../store/hidden';
 import { LoginAdmin } from '../../store/auth';
 import { unwrapResult } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
-import { ban, timeban } from '../../unilt/key';
 const LoginAdminComponet = () => {
   const [count, setCount] = useState(
-    Cookies.get(ban) ? parseInt(Cookies.get(ban)) : 0
+    Cookies.get("banadmin") ? parseInt(Cookies.get("banadmin")) : 0
   );
   const [time, setTimeban] = useState(0);
   const { enqueueSnackbar } = useSnackbar();
   const clean = useRef(null);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (Cookies.get(timeban)) {
-        console.log()
+    if (Cookies.get("timebanadmin")) {
       clean.current = setInterval(async () => {
-        setTimeban(time === 0 ? 0 : parseInt(Cookies.get('setTime')) - 1000);
-        if (new Date().getTime() - parseInt(Cookies.get('now'))>parseInt( Cookies.get(timeban))) {        
-           Cookies.remove(timeban);
-           Cookies.remove(ban);
-           Cookies.remove("now");
+        setTimeban(time === 0 ? 0 : parseInt(Cookies.get('timebanadmin')) - 1000);
+        if (new Date().getTime() - parseInt(Cookies.get('nowadmin'))>parseInt( Cookies.get("timebanadmin"))) {        
+           Cookies.remove("banadmin");
+           Cookies.remove("timebanadmin");
+           Cookies.remove("nowadmin");
           //  Cookies.remove("settime");
           setTimeban(0);
           setCount(0);
@@ -39,6 +37,7 @@ const LoginAdminComponet = () => {
   }, [time]);
   const login = async (values) => {
     if (count !== 3) {
+      console.log(count)
       try {
         const res = await dispatch(LoginAdmin(values));
         const Username = unwrapResult(res);
@@ -59,30 +58,30 @@ const LoginAdminComponet = () => {
         setCount(count + 1);
       }
     } else {
-      if(Cookies.get(ban)){
+      if(Cookies.get("banadmin")){
         enqueueSnackbar(`Đăng Nhập Quá số lần quay lại sau 1 phút`, {
           variant: 'error',
           autoHideDuration: 1200,
           anchorOrigin: { vertical: 'top', horizontal: 'right' },
         });
       }else{
-       Cookies.set(ban, count);
-       Cookies.set(timeban, 60000);
-       Cookies.set('now', new Date().getTime());
+       Cookies.set("banadmin", count);
+       Cookies.set("timebanadmin", 60000);
+       Cookies.set('nowadmin', new Date().getTime());
       enqueueSnackbar(`Đăng Nhập Quá số lần quay lại sau 1 phút`, {
         variant: 'error',
         autoHideDuration: 1200,
         anchorOrigin: { vertical: 'top', horizontal: 'right' },
       });
-      setTimeban(parseInt(Cookies.get(timeban)));
+      setTimeban(parseInt(Cookies.get("timebanadmin")));
     }
     }
   };
   return (
     <Formik
-      initialValues={{ Username: '', password: '' }}
+      initialValues={{ username: '', password: '' }}
       validationSchema={Yup.object({
-      Username: Yup.string()
+      username: Yup.string()
         .matches(/^[a-zA-Z0-9_]+$/, 'Username không hợp lệ')
         .required('Bắt buộc nhập'),
         password: Yup.string()
@@ -109,14 +108,6 @@ const LoginAdminComponet = () => {
               <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
                 Đăng Nhập Admin
               </h2>
-              <p className="mt-2 text-center text-sm text-gray-600">
-                <Link
-                  className="font-medium text-indigo-600 hover:text-indigo-500 text-red-300"
-                  to="/"
-                >
-                  <b onClick={() => dispatch(setmodal())}>Quay lại</b>
-                </Link>
-              </p>
             </div>
             <div className="">
               <form className=" space-y-6" onSubmit={handleSubmit}>
@@ -124,7 +115,7 @@ const LoginAdminComponet = () => {
                 <div className="rounded-md py-6 shadow-sm -space-y-px-10">
                   <div className="form-outline mb-4">
                     <label
-                      htmlFor="Username"
+                      htmlFor="username"
                       className="block text-sm font-medium text-gray-700"
                     >
                       Tài khoản Admin
@@ -141,7 +132,7 @@ const LoginAdminComponet = () => {
                         // onChange={(e) => setEmail(e.target.value)}
                         onChange={handleChange}
                         required
-                        placeholder="user name"
+                        placeholder="admin name"
                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
                       { touched.Username && (
@@ -177,45 +168,7 @@ const LoginAdminComponet = () => {
                       )}
                     </div>
                   </div>
-
-                  <div className="flex items-center">
-                    <input
-                      id="remember_me"
-                      name="remember_me"
-                      type="checkbox"
-                      className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                    />
-                    <label
-                      htmlFor="remember_me"
-                      className="ml-2 block text-sm text-gray-900"
-                    >
-                      Ghi nhớ đăng nhập
-                    </label>
-                  </div>
                 </div>
-
-                <div className="flex items-center justify-between ">
-                  <div className="text-sm">
-                    <Link
-                      to="/Register"
-                      className="font-medium text-indigo-600 hover:text-indigo-500"
-                      onClick={() => dispatch(setmodal())}
-                    >
-                      <b>Bạn chưa đăng ký tài khoản?</b>
-                    </Link>
-                  </div>
-
-                  <div className="text-sm">
-                    <Link
-                      to="/Forget"
-                      className="font-medium text-indigo-600 hover:text-indigo-500"
-                      onClick={() => dispatch(setmodal())}
-                    >
-                      <b>Quên mật khẩu?</b>
-                    </Link>
-                  </div>
-                </div>
-
                 <div className="py-6 w-full flex justify-center  space-x-36 ">
                   <Link
                     type="submit"

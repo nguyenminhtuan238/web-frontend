@@ -8,5 +8,9 @@ const ProductsAPI = {
     const url = `product/${id}`;
     return ApiServices.get(url);
   },
+  search(values){
+    const url = `product/list/name/${values}`;
+    return ApiServices.get(url);
+  }
 };
 export default ProductsAPI;

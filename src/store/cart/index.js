@@ -94,6 +94,7 @@ const cart = createSlice({
       state.err = null;
     });
     builercart.addCase(deletecart.rejected, (state, action) => {
+      state.
       state.err = action.error;
     });
   },

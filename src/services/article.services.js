@@ -1,24 +1,24 @@
-import ApiServices from './api.services';
+import ApiadminServices from './apiad.services';
 const ArtApi = {
   add(data) {
     const url = 'blog/create/';
-    return ApiServices.post(url, data);
+    return ApiadminServices.post(url, data);
   },
   remove(id) {
     const url = `blog/delete/${id}`;
-    return ApiServices.delete(url);
+    return ApiadminServices.delete(url);
   },
   get() {
     const url = 'blog/list/';
-    return ApiServices.get(url);
+    return ApiadminServices.get(url);
   },
   getid(id) {
     const url = `Blog/detail/${id}`;
-    return ApiServices.get(url);
+    return ApiadminServices.get(url);
   },
   update(data) {
     const url = `blog/update`;
-    return ApiServices.put(url, data);
+    return ApiadminServices.put(url, data);
   },
 };
 export default ArtApi;

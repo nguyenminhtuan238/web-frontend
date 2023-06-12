@@ -8,5 +8,9 @@ const AuthApi = {
     const url = 'account/login/';
     return ApiServices.post(url, data);
   },
+  Loginadmin(data) {
+    const url = 'account/admin/login/';
+    return ApiServices.post(url, data);
+  },
 };
 export default AuthApi;
