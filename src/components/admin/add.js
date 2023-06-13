@@ -1,23 +1,27 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useSnackbar } from 'notistack';
 import { addArt } from '../../store/Article';
 import { useNavigate } from 'react-router';
-import { StorageAdminkey } from '../../unilt/key';
 function Them() {
   // Khai báo các biến trạng thái cho tiêu đề và nội dung bài viết
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const admin = useSelector((state) => state.User);
   const [user_id, setUser_id] = useState('');
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const [selectedFile, setSelectedFile] = useState(null);
   const naviagate = useNavigate();
   const handleChange = (event) => {
-    localStorage.setItem(StorageAdminkey,"asdsadasd")
     setSelectedFile(event.target.files[0]);
   };
+  useEffect(() => {
+    if(!admin.admin){
+      naviagate("/admin/login")
+    }
+  }, [admin,naviagate]);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -105,21 +109,17 @@ function Them() {
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             htmlFor="user_id"
           >
-            Mã Admin
+            Mã User
           </label>
-          <select
-            className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          <input
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="user_id"
             name="user_id"
+            type="text"
+            placeholder="Nhập mã user"
             value={user_id}
             onChange={(e) => setUser_id(e.target.value)}
-          >
-            <option value="">-- Chọn mã user --</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
+          />
         </div>
       </div>
       <div className="flex flex-wrap -mx-3 mb-6">
