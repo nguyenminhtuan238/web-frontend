@@ -41,6 +41,18 @@ function Admin() {
       });
     }
   };
+
+  // Lấy thời gian hiện tại
+  const now = new Date();
+  
+  // Trích xuất các thành phần ngày và giờ
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1;
+  const day = now.getDate();
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+  const seconds = now.getSeconds();
+
   useEffect(() => {
     const get = async () => {
       await dispatch(getArt());
@@ -110,6 +122,9 @@ function Admin() {
                       Tên bài viết
                     </th>
                     <th scope="col" className="px-6 py-4">
+                      Hình ảnh bài viết
+                    </th>
+                    <th scope="col" className="px-6 py-4">
                       Mô tả
                     </th>
 
@@ -136,7 +151,11 @@ function Admin() {
                             <td className="whitespace-nowrap px-6 py-4">
                               {blog.title}
                             </td>
-
+                            <td className="whitespace-nowrap px-8 py-4 ">
+                              <img src={'http://192.168.1.9/magento2/pub/media/catalog/blog/' + blog.img}
+                                className="object-cover h-[100px] w-[100px]"
+                              />
+                            </td>
                             <td className="whitespace-nowrap px-6 py-4 truncate w-5 overflow-hidden">
                               {blog.content}
                             </td>

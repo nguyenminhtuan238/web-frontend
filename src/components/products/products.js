@@ -87,7 +87,7 @@ const ProductsPage = () => {
                     <hr className="border-gray-200"></hr>
 
                     {/* Hiển thị tên sản phẩm */}
-                    <div className="product-name overflow-hidden mt-2 ml-4 line-clamp-3 min-h-[70px]">
+                    <div className="product-name overflow-hidden mt-2 ml-4 line-clamp-2 min-h-[50px]" title={product.name}>
                       {product.name}
                     </div>
                   </Link>
