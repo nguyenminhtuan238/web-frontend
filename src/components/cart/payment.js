@@ -35,11 +35,9 @@ function PaymentPage() {
 
   return (
     <div >
-      <h1 className="my-10 text-3xl font-bold text-center sm:w-full">
+      <h1 className="my-5 text-3xl font-bold text-center sm:w-full">
             Thông Tin Thanh Toán
       </h1>
-
-      {/* Lấy thông tin hiện có */}
 
       <div>
         <label className="flex items-center justify-center w-screen mb-2 ">
@@ -52,9 +50,23 @@ function PaymentPage() {
           />
           Lấy thông tin hiện có
         </label>
+        <label  className="flex items-center justify-center w-screen mr-4 mb-2">
+          <input
+            type="radio"
+            value="new-information"
+            checked={selectedOption === 'new-information'}
+            onChange={handleOptionChange}
+            // onClick={handleNewInformation}
+            className="mr-2 "
+          />
+          Nhập thông tin mới
+        </label>
+
+        {/* Lấy thông tin hiện có */}
+
         {selectedOption === 'existing-information' && (
             <div className="max-w-2xl mx-auto">
-            <form onSubmit={handleSubmit} className="pb-1 pl-4 pr-4 mb-4 pt-2 shadow-2xl">
+            <form onSubmit={handleSubmit} className="pb-1 pl-4 pr-4 pt-2 shadow-2xl border-2 rounded-3xl">
     
             <div className="block mb-8">
               <h1 className="font-bold mb-2">
@@ -93,25 +105,13 @@ function PaymentPage() {
           </form>
           </div>
         )}
-      </div>
+      
 
-      {/* Phần Thêm Thông tin */}
+      {/* Phần Nhập Thông tin mới */}
 
-      <div>
-        <label  className="flex items-center justify-center w-screen mr-4 mb-2">
-          <input
-            type="radio"
-            value="new-information"
-            checked={selectedOption === 'new-information'}
-            onChange={handleOptionChange}
-            // onClick={handleNewInformation}
-            className="mr-2 "
-          />
-          Thêm thông tin mới
-        </label>
         {selectedOption === 'new-information' && (
             <div className="max-w-2xl mx-auto">
-            <form onSubmit={handleSubmit} className="pb-1 pl-4 pr-4  pt-2 shadow-2xl">
+            <form onSubmit={handleSubmit} className="pb-1 pl-4 pr-4 pt-2 shadow-2xl border-2 rounded-3xl">
         
                 <label className="block mb-2 font-bold text-gray-700" htmlFor="firstname">
                 Họ:
