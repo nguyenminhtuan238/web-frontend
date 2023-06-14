@@ -68,7 +68,7 @@ const cart = createSlice({
       state.cart = action.payload;
     });
     builercart.addCase(addcart.rejected, (state, action) => {
-      state.cart = null;
+      state.cart = [];
       state.err = action.error;
     });
     builercart.addCase(getcart.fulfilled, (state, action) => {
@@ -77,7 +77,7 @@ const cart = createSlice({
       state.err = null;
     });
     builercart.addCase(getcart.rejected, (state, action) => {
-      state.cart = null;
+      state.cart = [];
       state.err = action.error;
     });
     builercart.addCase(updatecart.fulfilled, (state, action) => {
@@ -86,7 +86,6 @@ const cart = createSlice({
       state.err = null;
     });
     builercart.addCase(updatecart.rejected, (state, action) => {
-      state.cart = null;
       state.err = action.error;
     });
     builercart.addCase(deletecart.fulfilled, (state, action) => {
@@ -94,7 +93,6 @@ const cart = createSlice({
       state.err = null;
     });
     builercart.addCase(deletecart.rejected, (state, action) => {
-      state.
       state.err = action.error;
     });
   },

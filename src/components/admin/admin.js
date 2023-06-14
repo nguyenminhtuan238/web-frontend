@@ -11,6 +11,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useSnackbar } from 'notistack';
 import { Logout } from '../../store/auth';
+import { Artsimg, defaultimg } from '../../unilt/key';
 function Admin() {
   const Art = useSelector((state) => state.Art);
   const admin = useSelector((state) => state.User);
@@ -119,6 +120,9 @@ function Admin() {
                       Tên bài viết
                     </th>
                     <th scope="col" className="px-6 py-4">
+                      Hình ảnh bài viết
+                    </th>
+                    <th scope="col" className="px-6 py-4">
                       Mô tả
                     </th>
 
@@ -145,10 +149,16 @@ function Admin() {
                             <td className="whitespace-nowrap px-6 py-4">
                               {blog.title}
                             </td>
-
+                            <td className="whitespace-nowrap px-8 py-4 ">
+                              <img src={blog.img?Artsimg+blog.img:defaultimg}
+                                className="object-cover h-[100px] w-[100px]"
+                                alt="Lỗi Hình"
+                              />
+                            </td>
                             <td className="whitespace-nowrap px-6 py-4 truncate w-5 overflow-hidden">
                               {blog.content}
                             </td>
+                            
                             <td className="whitespace-nowrap px-6 py-4">
                               {blog.created_at}
                             </td>

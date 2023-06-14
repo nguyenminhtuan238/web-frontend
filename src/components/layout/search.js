@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { search } from '../../store/products';
 import { useEffect, useState } from 'react';
 import { unwrapResult } from '@reduxjs/toolkit';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 const Search = () => {
   const dispatch = useDispatch();
   const [values,setvalues]=useState("")
@@ -94,7 +96,9 @@ const Search = () => {
           </form>
         </div>
         <div className=" absolute mx-auto text-gray-600 top-[150px] right-[50px] w-[550px]">
-        {loading?<div className="w-6 h-6 border-4 border-gray-200 rounded-full animate-spin absolute mx-auto text-gray-600 top-[150px] right-[50px] w-[550px]"></div>:
+        {loading?<Box sx={{ width: '100%' }}>
+      <LinearProgress />
+    </Box>:
         <div>
         {
           gets.length===0?"Không thể tìm kiếm": <ul className="list-disc">

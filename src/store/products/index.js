@@ -52,6 +52,12 @@ const product = createSlice({
       state.Product = action.payload.product.items;
       state.getpage = action.payload.totalPage;
     },
+    [getpd.rejected]: (state, action) => {
+      state.isloading = true;
+      state.loadingid = true;
+      state.Product = [];
+      state.getpage = 1;
+    },
     [getid.fulfilled]: (state, action) => {
       state.loadingid = false;
       state.isloading = true;

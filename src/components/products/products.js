@@ -13,6 +13,7 @@ import { setScroll } from '../../store/hidden';
 const ProductsPage = () => {
   const [p, setp] = useState(1);
   const get = useSelector((state) => state.products);
+  const [activeTab, setActiveTab] = useState(window.location.pathname);
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
   const handleChange = (event, value) => {
@@ -43,11 +44,21 @@ const ProductsPage = () => {
   };
   useEffect(() => {
     const getPD = () => {
+
       dispatch(setloading());
       dispatch(getpd(p));
+      setActiveTab(window.location.pathname)
     };
-    getPD();
-  }, [dispatch, p]);
+    if(activeTab==="/ALL"){
+      dispatch(setloading());
+   
+      dispatch(getpd());
+      setActiveTab(window.location.pathname)
+    }else{
+      getPD();
+    }
+    
+  }, [dispatch, p,activeTab]);
   const handle = () => {
     dispatch(setloading());
     dispatch(setScroll(false));
