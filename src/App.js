@@ -16,7 +16,7 @@ import Baiviet from './components/baiviet';
 import LoginAdminComponet from './components/admin/login_admin';
 import Post from './components/post';
 import PaymentPage from './components/cart/payment';
-
+import SortBy from './components/cart/sort_by';
 function App() {
   return (
     <div className="App">
@@ -54,6 +54,7 @@ function App() {
             <Route path="/admin/login" element={<LoginAdminComponet />}></Route>
             <Route path="/update/:id" element={<UpdateBlog />}></Route>
             <Route path="/payment" element={<PaymentPage />}></Route>
+            <Route path="/sortby" element={<SortBy />}></Route>
           </Routes>
         </BrowserRouter>
       </SnackbarProvider>
