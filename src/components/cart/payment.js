@@ -118,15 +118,15 @@ function PaymentPage() {
               </h1>
               <label className="block ml-2">
                 <input type="radio" name="payment-method" value="checkmo "  onChange={(e)=>setpayment(e.target.value)}/>
-                <span className="ml-2">checkmo</span>
+                <span className="ml-2">Hình thức thanh toán</span>
               </label>
               <label className="block ml-2">
                 <input type="radio" name="payment-method" value="purchaseorder" onChange={(e)=>setpayment(e.target.value)}/>
-                <span className="ml-2">purchaseorder</span>
+                <span className="ml-2">Chuyển khoản ngân hàng</span>
               </label>
               <label className="block ml-2">
                 <input type="radio" name="payment-method" value="free" onChange={(e)=>setpayment(e.target.value)}/>
-                <span className="ml-2">free</span>
+                <span className="ml-2">Ví điện tử</span>
               </label>
             </div>
             <div className="mx-auto flex justify-center">
