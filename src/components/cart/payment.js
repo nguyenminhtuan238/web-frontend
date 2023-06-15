@@ -110,7 +110,7 @@ function PaymentPage() {
 
         {selectedOption === 'existing-information' && (
             <div className="max-w-2xl mx-auto">
-            <form onSubmit={handleSubmit} className="pb-1 pl-4 pr-4 pt-2 shadow-2xl border-2 rounded-3xl">
+            <form onSubmit={handleSubmit} className="pb-1 pl-12 pr-12 pt-8 shadow-2xl border-2 rounded-3xl">
     
             <div className="block mb-8">
               <h1 className="font-bold mb-2">
@@ -153,7 +153,7 @@ function PaymentPage() {
 
         {selectedOption === 'new-information' && (
             <div className="max-w-2xl mx-auto">
-            <form onSubmit={handleSubmit} className="pb-1 pl-4 pr-4 pt-2 mb-8 shadow-2xl border-2 rounded-3xl">
+            <form onSubmit={handleSubmit} className="pb-1 pl-12 pr-12 pt-8 mb-8 shadow-2xl border-2 rounded-3xl">
         
             <label className="block mb-2 font-bold text-gray-700" htmlFor="firstname">
               Họ:
