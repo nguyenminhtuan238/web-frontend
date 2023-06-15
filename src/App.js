@@ -17,6 +17,8 @@ import LoginAdminComponet from './components/admin/login_admin';
 import Post from './components/post';
 import PaymentPage from './components/cart/payment';
 import SortBy from './components/cart/sort_by';
+import Hoadon from './components/hoadon';
+import Chitiethd from './components/chitiethd';
 function App() {
   return (
     <div className="App">
@@ -26,7 +28,7 @@ function App() {
             <Route path="/" element={<Layout />}>
               <Route path="" element={<Home />}>
                 <Route path="/SP" element={<ProductsPage />}></Route>
-                <Route path="/ALL" element={<Home />}></Route>
+                <Route path="/ALL" element={<SortBy />}></Route>
               </Route>
               <Route path="/thongtin" element={<Thongtin />}></Route>
 
@@ -52,6 +54,8 @@ function App() {
             <Route path="/post" element={<Post />}></Route>
             <Route path="/product" element={<ProductsPage />}></Route>
             <Route path="/update" element={<UpdateBlog />}></Route>
+            <Route path="/hoadon" element={<Hoadon />}></Route>
+            <Route path="/chitiethd" element={<Chitiethd />}></Route>
             <Route path="/admin/login" element={<LoginAdminComponet />}></Route>
             <Route path="/update/:id" element={<UpdateBlog />}></Route>
             <Route path="/payment" element={<PaymentPage />}></Route>

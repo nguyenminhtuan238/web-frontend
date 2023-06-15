@@ -103,7 +103,10 @@ const Search = () => {
         {
           gets.length===0?"Không thể tìm kiếm": <ul className="list-disc">
         {gets.map((item) => (
-          <li key={item.id}>{item.name}</li>
+          <Link to={`SP/chitietsp/${item.sku}`} className="py-4 px-2  text-blue-600 hover:text-black"key={item.id}>
+            {item.name}
+            <hr className="mt-6"></hr>
+          </Link>
         ))}
       </ul>
         }
