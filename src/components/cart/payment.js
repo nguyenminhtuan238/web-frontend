@@ -117,15 +117,15 @@ function PaymentPage() {
                 Hình thức thanh toán
               </h1>
               <label className="block ml-2">
-                <input type="radio" name="payment-method" value="checkmo"  onChange={(e)=>setpayment(e.target.value)}/>
-                <span className="ml-2">Hình thức thanh toán</span>
+                <input type="radio" name="payment-method" value="checkmo" required onChange={(e)=>setpayment(e.target.value)}/>
+                <span className="ml-2">Thanh toán khi nhận hàng</span>
               </label>
               <label className="block ml-2">
-                <input type="radio" name="payment-method" value="purchaseorder" onChange={(e)=>setpayment(e.target.value)}/>
+                <input type="radio" name="payment-method" value="purchaseorder" required onChange={(e)=>setpayment(e.target.value)}/>
                 <span className="ml-2">Chuyển khoản ngân hàng</span>
               </label>
               <label className="block ml-2">
-                <input type="radio" name="payment-method" value="free" onChange={(e)=>setpayment(e.target.value)}/>
+                <input type="radio" name="payment-method" value="free" required onChange={(e)=>setpayment(e.target.value)}/>
                 <span className="ml-2">Ví điện tử</span>
               </label>
             </div>
@@ -278,15 +278,15 @@ function PaymentPage() {
                       Hình thức thanh toán
                   </h1>
                   <label className="block ml-2">
-                    <input type="radio" name="payment-method" value="checkmo"  onChange={(e)=>setpayment(e.target.value)}/>
-                    <span className="ml-2">Hình thức thanh toán</span>
+                    <input type="radio" name="payment-method" value="checkmo" required onChange={(e)=>setpayment(e.target.value)}/>
+                    <span className="ml-2">Thanh toán khi nhận hàng</span>
                   </label>
                   <label className="block ml-2">
-                    <input type="radio" name="payment-method" value="purchaseorder" onChange={(e)=>setpayment(e.target.value)}/>
+                    <input type="radio" name="payment-method" value="purchaseorder" required onChange={(e)=>setpayment(e.target.value)}/>
                     <span className="ml-2">Chuyển khoản ngân hàng</span>
                   </label>
                   <label className="block ml-2">
-                    <input type="radio" name="payment-method" value="free" onChange={(e)=>setpayment(e.target.value)}/>
+                    <input type="radio" name="payment-method" value="free" required onChange={(e)=>setpayment(e.target.value)}/>
                     <span className="ml-2">Ví điện tử</span>
                   </label>
                 </div>
