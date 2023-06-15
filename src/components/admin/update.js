@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useSnackbar } from 'notistack';
 import { getidArt, updateArt } from '../../store/Article';
-import { StorageAdminkey } from '../../unilt/key';
 function UpdateBlog() {
   // Khai báo các biến trạng thái cho tiêu đề và nội dung bài viết
   const Art = useSelector((state) => state.Art);
+  const admin = useSelector((state) => state.User);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [blog_id, setBlog_id] = useState('');
@@ -17,11 +17,16 @@ function UpdateBlog() {
   const { enqueueSnackbar } = useSnackbar();
   const [selectedFile, setSelectedFile] = useState(null);
   const handleChange = (event) => {
-    localStorage.setItem(StorageAdminkey,"asdsadasd")
     setSelectedFile(event.target.files[0]);
   };
   useEffect(() => {
+    if(!admin.admin){
+      naviagate("/admin/login")
+    }
+  }, [admin,naviagate]);
+  useEffect(() => {
     async function getArt() {
+     
       try {
         const res = await dispatch(getidArt(getid.id));
         const Art = unwrapResult(res);
@@ -33,7 +38,7 @@ function UpdateBlog() {
       }
     }
     getArt();
-  }, [dispatch, getid.id]);
+  }, [dispatch, getid.id,naviagate]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(selectedFile);

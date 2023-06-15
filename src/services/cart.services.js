@@ -16,5 +16,13 @@ const CartApi = {
     const url = 'cart/change';
     return ApiServices.put(url, data);
   },
+  cartAddress(data){
+    const url='cart/address'
+    return ApiServices.post(url,data)
+  },
+  Checkout(data){
+    const url='cart/check_out';
+    return ApiServices.post(url,data)
+  },
 };
 export default CartApi;

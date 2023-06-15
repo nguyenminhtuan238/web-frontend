@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import { provinces } from 'vietnam-provinces';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { CartAddress, Checkout } from '../../store/cart';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { useSnackbar } from 'notistack';
+import { useNavigate } from 'react-router';
 function PaymentPage() {
   const [selectedOption, setSelectedOption] = useState('existing-information');
-  const [country_id, setCountry_id] = useState('');
+  const [countryId, setCountry_id] = useState('');
   const [street, setStreet] = useState('');
   const [telephone, setTelephone] = useState('');
   const [postcode, setPostcode] = useState('');
@@ -11,28 +15,68 @@ function PaymentPage() {
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
-
-  const handleSubmit = (event) => {
+  const User = useSelector((state) => state.User);
+  const [payment, setpayment] = useState('checkmo');
+  const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
+  const navigate=useNavigate()
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Country_id:', country_id);
-    console.log('Street:', street);
-    console.log('Telephone:', telephone);
-    console.log('Postcode:', postcode);
-    console.log('City:', city);
-    console.log('Firstname:', firstname);
-    console.log('Lastname:', lastname);
-    console.log('Email:', email);
-    // Add code to process the payment here
+    // console.log(payment)
+    try {
+      if(selectedOption==='existing-information'){
+        const data={
+          firstname:User.User.firstname,
+          lastname:User.User.lastname,
+          countryId:User.User.addresses[0].country_id,
+          street:User.User.addresses[0].street[0],
+          city:User.User.addresses[0].city,
+          telephone:User.User.addresses[0].telephone,
+          postcode:User.User.addresses[0].postcode,
+          email:User.User.email
+        }
+          await dispatch(CartAddress(data))
+         const res=await dispatch(Checkout({method:payment}))
+         const check=unwrapResult(res)
+         enqueueSnackbar('Thanh Toán Thành Công', {
+          variant: 'success',
+          autoHideDuration: 1200,
+          anchorOrigin: { vertical: 'top', horizontal: 'right' },
+        });
+        navigate("/")
+        return check
+      }
+      if(selectedOption==='new-information'){
+        const data={
+          firstname,
+          lastname,
+          countryId,
+          street,
+          city,
+          telephone,
+          postcode,
+          email:User.User.email
+        }
+        await dispatch(CartAddress(data))
+        const res=await dispatch(Checkout({method:payment}))
+        const check=unwrapResult(res)
+        enqueueSnackbar('Thanh Toán Thành Công', {
+         variant: 'success',
+         autoHideDuration: 1200,
+         anchorOrigin: { vertical: 'top', horizontal: 'right' },
+       });
+       navigate("/")
+       return check
+      }  
+    } catch (error) {
+      console.log(error)
+    }
+   
   }; 
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
-
-  const handleNewInformation = () => {
-    window.location.href = '/cart';
-  };
-
   return (
     <div >
       <h1 className="my-5 text-3xl font-bold text-center sm:w-screen">
@@ -73,24 +117,22 @@ function PaymentPage() {
                 Hình thức thanh toán
               </h1>
               <label className="block ml-2">
-                <input type="radio" name="payment-method" value="cash"/>
-                <span className="ml-2">Thanh toán bằng tiền mặt</span>
+                <input type="radio" name="payment-method" value="checkmo "  onChange={(e)=>setpayment(e.target.value)}/>
+                <span className="ml-2">checkmo</span>
               </label>
               <label className="block ml-2">
-                <input type="radio" name="payment-method" value="bank-transfer"/>
-                <span className="ml-2">Chuyển khoản ngân hàng</span>
+                <input type="radio" name="payment-method" value="purchaseorder" onChange={(e)=>setpayment(e.target.value)}/>
+                <span className="ml-2">purchaseorder</span>
               </label>
               <label className="block ml-2">
-                <input type="radio" name="payment-method" value="digital-wallet" />
-                <span className="ml-2">Ví điện tử</span>
-                
+                <input type="radio" name="payment-method" value="free" onChange={(e)=>setpayment(e.target.value)}/>
+                <span className="ml-2">free</span>
               </label>
             </div>
             <div className="mx-auto flex justify-center">
               <button
               className="w-1/2  px-4 py-2 mb-8 mr-4 font-bold text-white bg-gray-700 rounded hover:bg-gray-900 focus:outline-none focus:shadow-outline"
               type="submit"
-              onClick={handleNewInformation}
               >
                 Hủy
               </button>
@@ -171,7 +213,7 @@ function PaymentPage() {
                 <select
                 className="w-full px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                 id="country_id"
-                value={country_id}
+                value={countryId}
                 onChange={(event) => setCountry_id(event.target.value)}
                 >
                 <option value=""> Chọn quốc gia </option>
@@ -238,7 +280,6 @@ function PaymentPage() {
                   <button
                   className="w-1/2  px-4 py-2 mb-8 mr-4 font-bold text-white bg-gray-700 rounded hover:bg-gray-900 focus:outline-none focus:shadow-outline"
                   type="submit"
-                  onClick={handleNewInformation}
                   >
                     Hủy
                   </button>

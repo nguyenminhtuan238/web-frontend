@@ -1,23 +1,27 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useSnackbar } from 'notistack';
 import { addArt } from '../../store/Article';
 import { useNavigate } from 'react-router';
-import { StorageAdminkey } from '../../unilt/key';
 function Them() {
   // Khai báo các biến trạng thái cho tiêu đề và nội dung bài viết
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const admin = useSelector((state) => state.User);
   const [user_id, setUser_id] = useState('');
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const [selectedFile, setSelectedFile] = useState(null);
   const naviagate = useNavigate();
   const handleChange = (event) => {
-    localStorage.setItem(StorageAdminkey,"asdsadasd")
     setSelectedFile(event.target.files[0]);
   };
+  useEffect(() => {
+    if(!admin.admin){
+      naviagate("/admin/login")
+    }
+  }, [admin,naviagate]);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -112,6 +116,8 @@ function Them() {
             className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="user_id"
             name="user_id"
+            type="text"
+            placeholder="Nhập mã user"
             value={user_id}
             onChange={(e) => setUser_id(e.target.value)}
           >

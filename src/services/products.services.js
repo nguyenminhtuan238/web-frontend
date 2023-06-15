@@ -1,8 +1,10 @@
 import ApiServices from './api.services';
 const ProductsAPI = {
   getpd(page) {
-    const url = `product/list?currentPage= ${page}`;
-    return ApiServices.get(url);
+
+      const url = `product/list?currentPage= ${page}`;
+      return ApiServices.get(url);
+    
   },
   getid(id) {
     const url = `product/${id}`;

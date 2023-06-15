@@ -10,11 +10,15 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useSnackbar } from 'notistack';
+import { Logout } from '../../store/auth';
+import { Artsimg, defaultimg } from '../../unilt/key';
 function Admin() {
   const Art = useSelector((state) => state.Art);
+  const admin = useSelector((state) => state.User);
   const dispatch = useDispatch();
   const [cofirm, setconfirm] = useState(null);
   const { enqueueSnackbar } = useSnackbar();
+  const nav=useNavigate();
   const handleClose = () => {
     setconfirm(null);
   };
@@ -41,20 +45,14 @@ function Admin() {
       });
     }
   };
-
-  // Lấy thời gian hiện tại
-  const now = new Date();
-  
-  // Trích xuất các thành phần ngày và giờ
-  const year = now.getFullYear();
-  const month = now.getMonth() + 1;
-  const day = now.getDate();
-  const hours = now.getHours();
-  const minutes = now.getMinutes();
-  const seconds = now.getSeconds();
-
+  useEffect(() => {
+    if(!admin.admin){
+      nav("/admin/login")
+    }
+  }, [admin,nav]);
   useEffect(() => {
     const get = async () => {
+
       await dispatch(getArt());
     };
     get();
@@ -65,12 +63,13 @@ function Admin() {
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <div className="flex items-center lg:order-2">
             {/* <a href="#" className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Log in</a> */}
-            <a
-              href="#"
+            <Link
               className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+              onClick={()=>dispatch(Logout())}
+              to="/admin/login"
             >
               Đăng xuất
-            </a>
+            </Link>
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
@@ -85,13 +84,12 @@ function Admin() {
           >
             <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
               <li>
-                <a
-                  href="#"
+                <Link
                   className="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
                   aria-current="page"
                 >
                   Quản lí bài viết
-                </a>
+                </Link>
               </li>
               <li>
                 <Link
@@ -162,15 +160,17 @@ function Admin() {
                             <td className="whitespace-nowrap px-6 py-4 text-center">
                               {blog.title}
                             </td>
-                            <td className="whitespace-nowrap px-8 py-4 text-center">
-                              <img src={'http://192.168.1.9/magento2/pub/media/catalog/blog/' + blog.img}
+                            <td className="whitespace-nowrap px-8 py-4 ">
+                              <img src={blog.img?Artsimg+blog.img:defaultimg}
                                 className="object-cover h-[100px] w-[100px]"
+                                alt="Lỗi Hình"
                               />
                             </td>
                             <td className="whitespace-normal px-6 py-4 overflow-hidden max-w-[600px] min-w-[600px] max-h-[120px] line-clamp-5 ">
                               {blog.content}
                             </td>
-                            <td className="whitespace-nowrap px-6 py-4 text-center">
+                            
+                            <td className="whitespace-nowrap px-6 py-4">
                             {new Date(blog.created_at).toLocaleDateString('vi-VN', {
                               day: '2-digit',
                               month: '2-digit',
