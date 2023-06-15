@@ -2,7 +2,7 @@ dimport { useState } from 'react';
 import { provinces } from 'vietnam-provinces';
 
 function PaymentPage() {
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState('existing-information');
   const [country_id, setCountry_id] = useState('');
   const [street, setStreet] = useState('');
   const [telephone, setTelephone] = useState('');
@@ -29,17 +29,15 @@ function PaymentPage() {
     setSelectedOption(event.target.value);
   };
 
-//   const handleNewInformation = () => {
-//     // window.location.href = '/payment';
-//   };
+  const handleNewInformation = () => {
+    window.location.href = '/cart';
+  };
 
   return (
     <div >
-      <h1 className="my-5 text-3xl font-bold text-center sm:w-full">
+      <h1 className="my-5 text-3xl font-bold text-center sm:w-screen">
             Thông Tin Thanh Toán
       </h1>
-
-      {/* Lấy thông tin hiện có */}
 
       <div>
         <label className="flex items-center justify-center w-screen mb-2 ">
@@ -52,12 +50,26 @@ function PaymentPage() {
           />
           Lấy thông tin hiện có
         </label>
+        <label  className="flex items-center justify-center w-screen mb-2">
+          <input
+            type="radio"
+            value="new-information"
+            checked={selectedOption === 'new-information'}
+            onChange={handleOptionChange}
+            // onClick={handleNewInformation}
+            className="mr-2 "
+          />
+          Nhập thông tin mới
+        </label>
+
+        {/* Lấy thông tin hiện có */}
+
         {selectedOption === 'existing-information' && (
-            <div className="max-w-6xl mx-auto">
-            <form onSubmit={handleSubmit} className="sm:ml-[300px] sm:mr-[300px] pb-1 pl-4 pr-4 mb-4 pt-2 shadow-2xl">
+            <div className="max-w-2xl mx-auto">
+            <form onSubmit={handleSubmit} className="pb-1 pl-4 pr-4 pt-2 shadow-2xl border-2 rounded-3xl">
     
             <div className="block mb-8">
-              <h1 className="font-bold mb-4">
+              <h1 className="font-bold mb-2">
                 Hình thức thanh toán
               </h1>
               <label className="block ml-2">
@@ -74,41 +86,38 @@ function PaymentPage() {
                 
               </label>
             </div>
-    
-            <button
-              className="w-full sm:w-[505px] px-4 py-2 mb-8 block font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+            <div className="mx-auto flex justify-center">
+              <button
+              className="w-1/2  px-4 py-2 mb-8 mr-4 font-bold text-white bg-gray-700 rounded hover:bg-gray-900 focus:outline-none focus:shadow-outline"
               type="submit"
-            >
-              Thanh Toán
-            </button>
+              onClick={handleNewInformation}
+              >
+                Hủy
+              </button>
+              <button
+                className="w-1/2  px-4 py-2 mb-8 font-bold text-white bg-blue-700 rounded hover:bg-blue-900 focus:outline-none focus:shadow-outline"
+                type="submit"
+              >
+                Thanh Toán
+              </button>
+            </div>
+            
           </form>
           </div>
         )}
-      </div>
+      
 
-      {/* Phần Thêm Thông tin */}
+      {/* Phần Nhập Thông tin mới */}
 
-      <div>
-        <label  className="flex items-center justify-center w-screen mr-4 mb-2">
-          <input
-            type="radio"
-            value="new-information"
-            checked={selectedOption === 'new-information'}
-            onChange={handleOptionChange}
-            // onClick={handleNewInformation}
-            className="mr-2 "
-          />
-          Thêm thông tin mới
-        </label>
         {selectedOption === 'new-information' && (
-            <div className="max-w-6xl mx-auto">
-            <form onSubmit={handleSubmit} className="sm:ml-[300px] sm:mr-[290px] pb-1 pl-4 pr-4  pt-2 shadow-2xl">
+            <div className="max-w-2xl mx-auto">
+            <form onSubmit={handleSubmit} className="pb-1 pl-4 pr-4 pt-2 shadow-2xl border-2 rounded-3xl">
         
-                <label className=" mb-2 mr-4 font-bold text-gray-700" htmlFor="firstname">
+                <label className="block mb-2 font-bold text-gray-700" htmlFor="firstname">
                 Họ:
                 </label>
                 <input
-                className="w-full sm:w-[200px] px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                 id="firstname"
                 type="text"
                 placeholder="Enter your firstname"
@@ -116,11 +125,11 @@ function PaymentPage() {
                 onChange={(event) => setFirstname(event.target.value)}
                 />
         
-                <label className=" mb-2 mr-4 ml-4 font-bold text-gray-700" htmlFor="lastname">
+                <label className=" block mb-2 font-bold text-gray-700" htmlFor="lastname">
                 Tên:
                 </label>
                 <input
-                className="w-full sm:w-[200px] px-3 py-2 mb-5 mr-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                 id="lastname"
                 type="text"
                 placeholder="Enter your lastname"
@@ -129,10 +138,10 @@ function PaymentPage() {
                 />
         
                 <label className=" block mb-2 font-bold text-gray-700" htmlFor="street">
-                Tên đường:
+                Địa chỉ nhà:
                 </label>
                 <input
-                className="w-full sm:w-[505px] block px-3 py-2 mb-10 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                className="w-full block px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                 id="street"
                 type="text"
                 placeholder="Enter your street"
@@ -140,11 +149,11 @@ function PaymentPage() {
                 onChange={(event) => setStreet(event.target.value)}
                 />
                 
-                <label className=" mb-2 mr-4 font-bold text-gray-700" htmlFor="city">
+                <label className="block mb-2 font-bold text-gray-700" htmlFor="city">
                 Thành phố:
                 </label>
                 <select
-                className=" w-full sm:w-[150px] px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                className=" w-full px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                 id="city"
                 value={city}
                 onChange={(event) => setCity(event.target.value)}
@@ -157,11 +166,11 @@ function PaymentPage() {
                 ))}
                 </select>
                 
-                <label className=" mb-2 ml-4 mr-4 font-bold text-gray-700" htmlFor="country_id">
+                <label className="block mb-2 font-bold text-gray-700" htmlFor="country_id">
                 Quốc gia:
                 </label>
                 <select
-                className="w-full sm:w-[150px] px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                 id="country_id"
                 value={country_id}
                 onChange={(event) => setCountry_id(event.target.value)}
@@ -174,7 +183,7 @@ function PaymentPage() {
                 Số điện thoại:
                 </label>
                 <input
-                className="w-full sm:w-[505px] px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                 id="telephone"
                 type="text"
                 placeholder="Enter your telephone"
@@ -186,7 +195,7 @@ function PaymentPage() {
                 Email:
                 </label>
                 <input
-                className="w-full sm:w-[505px] px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                 id="email"
                 type="email"
                 placeholder="Enter your email address"
@@ -198,7 +207,7 @@ function PaymentPage() {
                 Mã bưu điện:
                 </label>
                 <input
-                className="w-full sm:w-[505px] px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                 id="postcode"
                 type="text"
                 placeholder="Enter your number postcode"
@@ -207,7 +216,7 @@ function PaymentPage() {
                 />
         
                 <div className="block mb-8">
-                <h1 className="font-bold">
+                <h1 className="font-bold mb-2">
                     Hình thức thanh toán
                 </h1>
                 <label className="block ml-2">
@@ -225,12 +234,21 @@ function PaymentPage() {
                 </label>
                 </div>
         
-                <button
-                className="w-full sm:w-[505px] px-4 py-2 mb-8 block font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-                type="submit"
-                >
-                Thanh Toán
-                </button>
+                <div className="mx-auto flex justify-center">
+                  <button
+                  className="w-1/2  px-4 py-2 mb-8 mr-4 font-bold text-white bg-gray-700 rounded hover:bg-gray-900 focus:outline-none focus:shadow-outline"
+                  type="submit"
+                  onClick={handleNewInformation}
+                  >
+                    Hủy
+                  </button>
+                  <button
+                    className="w-1/2  px-4 py-2 mb-8 font-bold text-white bg-blue-700 rounded hover:bg-blue-900 focus:outline-none focus:shadow-outline"
+                    type="submit"
+                  >
+                    Thanh Toán
+                  </button>
+                </div>
             </form>
             </div>
         )} 
