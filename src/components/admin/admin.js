@@ -105,7 +105,18 @@ function Admin() {
         </div>
       </nav>
 
-      <p className="mt-4 ml-16">Quản lí bài viết</p>
+      <div>
+        <h1 className="mt-4 flex items-center justify-center w-screen font-bold text-3xl">Quản Lí Bài Viết</h1>
+        <Link to="/add">
+          <button
+            type="submit"
+            className="ml-16 mb-2 mt-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-gray-200 hover:bg-indigo-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Thêm bài viết
+          </button>
+        </Link>
+      </div>
+      
       <div className="flex flex-col mt-4">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -160,19 +171,28 @@ function Admin() {
                             </td>
                             
                             <td className="whitespace-nowrap px-6 py-4">
-                              {blog.created_at}
+                            {new Date(blog.created_at).toLocaleDateString('vi-VN', {
+                              day: '2-digit',
+                              month: '2-digit',
+                              year: 'numeric',
+                              hour: '2-digit',
+                              minute: '2-digit',
+                              second: '2-digit'
+                            })}
                             </td>
                             {/* <td class="whitespace-nowrap px-6 py-4">23/5/2023</td> */}
                             <td className="mt-8 mb-8 whitespace-nowrap px-6 py-4">
+                              <Link to={'/update/' + blog.blog_id}>
+                                <button
+                                  type="submit"
+                                  className="mr-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-stone-200 hover:bg-stone-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                >
+                                  Sửa
+                                </button>
+                              </Link>
                               <button
                                 type="submit"
-                                className="mr-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-stone-200 hover:bg-stone-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                              >
-                                <Link to={'/update/' + blog.blog_id}>Sửa</Link>
-                              </button>
-                              <button
-                                type="submit"
-                                className="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-900 hover:bg-gray-900  mt-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                className="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-900  mt-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                 onClick={() => handleOpen(blog.blog_id)}
                               >
                                 Xóa
@@ -206,14 +226,6 @@ function Admin() {
                 </tbody>
               </table>
 
-              <Link to="/add">
-                <button
-                  type="submit"
-                  className="ml-16 mb-2 mt-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-gray-200 hover:bg-indigo-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  Thêm bài viết
-                </button>
-              </Link>
             </div>
           </div>
         </div>

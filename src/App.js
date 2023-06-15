@@ -15,6 +15,8 @@ import UpdateBlog from './components/admin/update';
 import Baiviet from './components/baiviet';
 import LoginAdminComponet from './components/admin/login_admin';
 import Post from './components/post';
+import PaymentPage from './components/cart/payment';
+
 function App() {
   return (
     <div className="App">
@@ -52,6 +54,7 @@ function App() {
             <Route path="/update" element={<UpdateBlog />}></Route>
             <Route path="/admin/login" element={<LoginAdminComponet />}></Route>
             <Route path="/update/:id" element={<UpdateBlog />}></Route>
+            <Route path="/payment" element={<PaymentPage />}></Route>
           </Routes>
         </BrowserRouter>
       </SnackbarProvider>
