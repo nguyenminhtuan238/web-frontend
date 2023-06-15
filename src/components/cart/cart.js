@@ -4,8 +4,8 @@ import { deletecart, getcart, updatecart } from '../../store/cart';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { img, Userkey } from '../../unilt/key';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Link } from '@mui/material';
 import { useSnackbar } from 'notistack';
+import { Link } from 'react-router-dom';
 const CartPage = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const get = useSelector((state) => state.cart);
@@ -73,9 +73,7 @@ const CartPage = () => {
       });
     }
   };
-  const handleNewInformation = () => {
-    window.location.href = '/payment';
-  };
+  
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3">
       <div className="lg:col-span-2 lg:ml-16 lg:mr-16">
@@ -237,13 +235,14 @@ const CartPage = () => {
                       })}
               </span>
             </p>
-            <button
-              type="submit"
-              className="group w-full flex justify-center py-2 px-4 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 uppercase text-lg"
-              onClick={handleNewInformation}
+            <Link
+              className="group w-full flex justify-center py-2 px-4 cursor-pointer	 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 uppercase text-lg"
+              to="/payment"
             >
-              Thanh toán
-            </button>
+             <p className="group w-full flex justify-center py-2 px-4 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 uppercase text-lg"> 
+             Thanh toán
+             </p> 
+            </Link>
           </div>
         </div>
       </div>
