@@ -165,6 +165,7 @@ function PaymentPage() {
                 placeholder="Enter your firstname"
                 value={firstname}
                 onChange={(event) => setFirstname(event.target.value)}
+                required
                 />
         
                 <label className=" block mb-2 font-bold text-gray-700" htmlFor="lastname">
@@ -177,6 +178,7 @@ function PaymentPage() {
                 placeholder="Enter your lastname"
                 value={lastname}
                 onChange={(event) => setLastname(event.target.value)}
+                required
                 />
         
                 <label className=" block mb-2 font-bold text-gray-700" htmlFor="street">
@@ -189,6 +191,7 @@ function PaymentPage() {
                 placeholder="Enter your street"
                 value={street}
                 onChange={(event) => setStreet(event.target.value)}
+                required
                 />
                 
                 <label className="block mb-2 font-bold text-gray-700" htmlFor="city">
@@ -199,7 +202,9 @@ function PaymentPage() {
                 id="city"
                 value={city}
                 onChange={(event) => setCity(event.target.value)}
+                required
                 >
+                  <option value=""> Chọn thành phố </option>
                 {provinces.sort((a, b) => a.name.localeCompare(b.name)).map((province) => (
                   <option key={province.code} value={province.name}>
                     {province.name}
@@ -215,6 +220,7 @@ function PaymentPage() {
                 id="country_id"
                 value={countryId}
                 onChange={(event) => setCountry_id(event.target.value)}
+                required
                 >
                 <option value=""> Chọn quốc gia </option>
                 <option value="VN"> Việt Nam </option>
@@ -230,7 +236,7 @@ function PaymentPage() {
                 placeholder="Enter your telephone"
                 value={telephone}
                 onChange={(event) => setTelephone(event.target.value)}
-                pattern="[0-9]*"
+                name="phone" pattern="[0-9]{10,}" required title="Số điện thoại phải có ít nhất 10 chữ số"
                 />
                 
                 <label className="block mb-2 font-bold text-gray-700" htmlFor="email">
@@ -243,6 +249,7 @@ function PaymentPage() {
                 placeholder="Enter your email address"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
+                required
                 />
         
                 <label className="block mb-2 font-bold text-gray-700" htmlFor="postcode">
@@ -255,25 +262,28 @@ function PaymentPage() {
                 placeholder="Enter your number postcode"
                 value={postcode}
                 onChange={(event) => setPostcode(event.target.value)}
+                pattern="^[0-9a-zA-Z]{5,}$"
+                required 
+                title="Mã bưu điện phải có ít nhất 5 ký tự, không chứa dấu cách hoặc ký tự đặc biệt"
                 />
         
-                <div className="block mb-8">
-                <h1 className="font-bold mb-2">
-                    Hình thức thanh toán
-                </h1>
-                <label className="block ml-2">
-                    <input type="radio" name="payment-method" value="cash"/>
-                    <span className="ml-2">Thanh toán bằng tiền mặt</span>
-                </label>
-                <label className="block ml-2">
-                    <input type="radio" name="payment-method" value="bank-transfer"/>
-                    <span className="ml-2">Chuyển khoản ngân hàng</span>
-                </label>
-                <label className="block ml-2">
-                    <input type="radio" name="payment-method" value="digital-wallet" />
-                    <span className="ml-2">Ví điện tử</span>
-                    
-                </label>
+                <div className="block mb-8" >
+                  <h1 className="font-bold mb-2">
+                      Hình thức thanh toán
+                  </h1>
+                  <label className="block ml-2">
+                      <input type="radio" name="payment-method" value="cash"/>
+                      <span className="ml-2">Thanh toán bằng tiền mặt</span>
+                  </label>
+                  <label className="block ml-2">
+                      <input type="radio" name="payment-method" value="bank-transfer"/>
+                      <span className="ml-2">Chuyển khoản ngân hàng</span>
+                  </label>
+                  <label className="block ml-2">
+                      <input type="radio" name="payment-method" value="digital-wallet" />
+                      <span className="ml-2">Ví điện tử</span>
+                      
+                  </label>
                 </div>
         
                 <div className="mx-auto flex justify-center">
