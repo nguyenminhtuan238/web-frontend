@@ -111,7 +111,7 @@ function PaymentPage() {
 
         {selectedOption === 'new-information' && (
             <div className="max-w-2xl mx-auto">
-            <form onSubmit={handleSubmit} className="pb-1 pl-4 pr-4 pt-2 shadow-2xl border-2 rounded-3xl">
+            <form onSubmit={handleSubmit} className="pb-1 pl-4 pr-4 pt-2 mb-8 shadow-2xl border-2 rounded-3xl">
         
                 <label className="block mb-2 font-bold text-gray-700" htmlFor="firstname">
                 Họ:
@@ -158,11 +158,10 @@ function PaymentPage() {
                 value={city}
                 onChange={(event) => setCity(event.target.value)}
                 >
-                <option value="">Chọn thành phố </option>
-                {provinces.map((province) => (
-                    <option key={province.code} value={province.name}>
+                {provinces.sort((a, b) => a.name.localeCompare(b.name)).map((province) => (
+                  <option key={province.code} value={province.name}>
                     {province.name}
-                    </option>
+                  </option>
                 ))}
                 </select>
                 
@@ -185,10 +184,11 @@ function PaymentPage() {
                 <input
                 className="w-full px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                 id="telephone"
-                type="text"
+                type="tel"
                 placeholder="Enter your telephone"
                 value={telephone}
                 onChange={(event) => setTelephone(event.target.value)}
+                pattern="[0-9]*"
                 />
                 
                 <label className="block mb-2 font-bold text-gray-700" htmlFor="email">
