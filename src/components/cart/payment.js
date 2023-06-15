@@ -117,7 +117,7 @@ function PaymentPage() {
                 Hình thức thanh toán
               </h1>
               <label className="block ml-2">
-                <input type="radio" name="payment-method" value="checkmo "  onChange={(e)=>setpayment(e.target.value)}/>
+                <input type="radio" name="payment-method" value="checkmo"  onChange={(e)=>setpayment(e.target.value)}/>
                 <span className="ml-2">Hình thức thanh toán</span>
               </label>
               <label className="block ml-2">
@@ -155,18 +155,21 @@ function PaymentPage() {
             <div className="max-w-2xl mx-auto">
             <form onSubmit={handleSubmit} className="pb-1 pl-4 pr-4 pt-2 mb-8 shadow-2xl border-2 rounded-3xl">
         
-                <label className="block mb-2 font-bold text-gray-700" htmlFor="firstname">
-                Họ:
-                </label>
-                <input
-                className="w-full px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                id="firstname"
-                type="text"
-                placeholder="Enter your firstname"
-                value={firstname}
-                onChange={(event) => setFirstname(event.target.value)}
-                required
-                />
+            <label className="block mb-2 font-bold text-gray-700" htmlFor="firstname">
+              Họ:
+            </label>
+            <input
+              className="w-full px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              id="firstname"
+              type="text"
+              placeholder="Nhập họ của bạn"
+              value={firstname}
+              onChange={(event) => setFirstname(event.target.value)}
+              required
+              title="Vui lòng nhập họ của bạn"
+              pattern="([a-zA-Z]+\s)*[a-zA-Z]+"
+
+            />
         
                 <label className=" block mb-2 font-bold text-gray-700" htmlFor="lastname">
                 Tên:
@@ -178,7 +181,9 @@ function PaymentPage() {
                 placeholder="Enter your lastname"
                 value={lastname}
                 onChange={(event) => setLastname(event.target.value)}
-                required
+                required 
+                title="Vui lòng nhập tên của bạn"
+                pattern="([a-zA-Z]+\s)*[a-zA-Z]+"
                 />
         
                 <label className=" block mb-2 font-bold text-gray-700" htmlFor="street">
@@ -192,6 +197,7 @@ function PaymentPage() {
                 value={street}
                 onChange={(event) => setStreet(event.target.value)}
                 required
+                pattern="[0-9A-Za-z\s\-\,\./]+"
                 />
                 
                 <label className="block mb-2 font-bold text-gray-700" htmlFor="city">
@@ -236,7 +242,7 @@ function PaymentPage() {
                 placeholder="Enter your telephone"
                 value={telephone}
                 onChange={(event) => setTelephone(event.target.value)}
-                name="phone" pattern="[0-9]{10,}" required title="Số điện thoại phải có ít nhất 10 chữ số"
+                name="phone" pattern="0\d{1,3}[\-\s]?\d{8,}" required title="Số điện thoại phải đúng định dạng, tối thiểu 10 chữ số"
                 />
                 
                 <label className="block mb-2 font-bold text-gray-700" htmlFor="email">
@@ -272,17 +278,16 @@ function PaymentPage() {
                       Hình thức thanh toán
                   </h1>
                   <label className="block ml-2">
-                      <input type="radio" name="payment-method" value="cash"/>
-                      <span className="ml-2">Thanh toán bằng tiền mặt</span>
+                    <input type="radio" name="payment-method" value="checkmo"  onChange={(e)=>setpayment(e.target.value)}/>
+                    <span className="ml-2">Hình thức thanh toán</span>
                   </label>
                   <label className="block ml-2">
-                      <input type="radio" name="payment-method" value="bank-transfer"/>
-                      <span className="ml-2">Chuyển khoản ngân hàng</span>
+                    <input type="radio" name="payment-method" value="purchaseorder" onChange={(e)=>setpayment(e.target.value)}/>
+                    <span className="ml-2">Chuyển khoản ngân hàng</span>
                   </label>
                   <label className="block ml-2">
-                      <input type="radio" name="payment-method" value="digital-wallet" />
-                      <span className="ml-2">Ví điện tử</span>
-                      
+                    <input type="radio" name="payment-method" value="free" onChange={(e)=>setpayment(e.target.value)}/>
+                    <span className="ml-2">Ví điện tử</span>
                   </label>
                 </div>
         

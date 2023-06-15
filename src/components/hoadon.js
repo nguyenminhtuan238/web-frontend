@@ -2,8 +2,6 @@ import React from "react";
 
 
 function Hoadon(){
-
-
     return(
         <div class="py-5 flex flex-col">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
