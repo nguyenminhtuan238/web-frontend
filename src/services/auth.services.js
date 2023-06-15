@@ -8,6 +8,10 @@ const AuthApi = {
     const url = 'account/login/';
     return ApiServices.post(url, data);
   },
+  update(data) {
+    const url = 'account/update_address/';
+    return ApiServices.put(url, data);
+  },
   Loginadmin(data) {
     const url = 'account/admin/login/';
     return ApiServices.post(url, data);

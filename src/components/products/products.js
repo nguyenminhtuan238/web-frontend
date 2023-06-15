@@ -43,10 +43,12 @@ const ProductsPage = () => {
   };
   useEffect(() => {
     const getPD = () => {
+
       dispatch(setloading());
       dispatch(getpd(p));
     };
-    getPD();
+getPD()
+    
   }, [dispatch, p]);
   const handle = () => {
     dispatch(setloading());
@@ -87,27 +89,30 @@ const ProductsPage = () => {
                     <hr className="border-gray-200"></hr>
 
                     {/* Hiển thị tên sản phẩm */}
-                    <div className="product-name overflow-hidden mt-2 ml-4 line-clamp-3 min-h-[70px]">
+                    <div className="product-name overflow-hidden mt-2 ml-4 line-clamp-2 min-h-[50px]" title={product.name}>
                       {product.name}
                     </div>
                   </Link>
                   {/* Hiển thị giá sản phẩm */}
-                  <div className="product-price mt-2 mb-4 flex">
+                  <div className="product-price mt-2 mb-1 flex">
                     <span className="text-lg font-bold text-red-700 ml-4">
                       {product.price.toLocaleString('vi-VN', {
                         style: 'currency',
                         currency: 'VND',
                       })}
                     </span>
-                    <span className="text-lg font-bold text-red-700 ml-4">
-                      {product.qty}
-                    </span>
+                    
                     <Link
                       onClick={() => handlecart(product.sku)}
                       className="ml-auto mr-4 hover:bg-gray-300 rounded-full w-8 h-8 flex justify-center items-center"
                     >
                       <AddShoppingCartIcon />
                     </Link>
+                  </div>
+                  <div className="rounded-full bg-red-400 ml-2 mr-2 mb-2 flex items-center justify-center">
+                    <span className=" text-white">
+                        {product.qty} sản phẩm có sẵn
+                    </span>
                   </div>
                 </div>
               </div>
