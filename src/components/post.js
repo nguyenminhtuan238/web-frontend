@@ -6,7 +6,7 @@ function Post() {
   const [l, setl] = useState(true);
   useEffect(() => {
     axios
-      .get(`http://192.168.1.9:5000/blog/detail/9`)
+      .get(`http://192.168.1.9:5000/blog/list`)
       .then((response) => {
         console.log(response.data);
         setPost(response.data.result);
@@ -24,20 +24,27 @@ function Post() {
         'lỗi'
       ) : (
         <div className="grid grid-cols-3 gap-4 ">
-          <div>
+          {post.map((post)=>
+          <div key={post.id}>
             <img
               className="mb-2 object-fill h-[200px] w-[400px]"
               src={
                 'http://192.168.1.9/magento2/pub/media/catalog/blog/' +
-                post[0].img
+                post.img
               }
               alt="Ảnh minh họa"
             />
-            <p className="mx-5 text-gray-700 text-sm">{new Date(post[0].created_at).getDay()}</p>
+            <p className="mx-5 text-gray-700 text-sm">
+              {new Date(post.created_at).toLocaleDateString('vi-VN',{
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+            })}</p>
             <p className="mx-5 text-base font-medium line-clamp-2">
-              {post[0].content}
+              {post.content}
             </p>
           </div>
+          )}
         </div>
       )}
     </div>

@@ -15,6 +15,8 @@ import UpdateBlog from './components/admin/update';
 import Baiviet from './components/baiviet';
 import LoginAdminComponet from './components/admin/login_admin';
 import Post from './components/post';
+import Hoadon from './components/hoadon';
+import Chitiethd from './components/chitiethd';
 function App() {
   return (
     <div className="App">
@@ -49,6 +51,8 @@ function App() {
             <Route path="/post" element={<Post />}></Route>
             <Route path="/product" element={<ProductsPage />}></Route>
             <Route path="/update" element={<UpdateBlog />}></Route>
+            <Route path="/hoadon" element={<Hoadon />}></Route>
+            <Route path="/chitiethd" element={<Chitiethd />}></Route>
             <Route path="/admin/login" element={<LoginAdminComponet />}></Route>
             <Route path="/update/:id" element={<UpdateBlog />}></Route>
           </Routes>
