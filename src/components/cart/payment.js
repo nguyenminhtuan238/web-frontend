@@ -35,7 +35,7 @@ function PaymentPage() {
 
   return (
     <div >
-      <h1 className="my-5 text-3xl font-bold text-center sm:w-full">
+      <h1 className="my-5 text-3xl font-bold text-center sm:w-screen">
             Thông Tin Thanh Toán
       </h1>
 
@@ -50,7 +50,7 @@ function PaymentPage() {
           />
           Lấy thông tin hiện có
         </label>
-        <label  className="flex items-center justify-center w-screen mr-4 mb-2">
+        <label  className="flex items-center justify-center w-screen mb-2">
           <input
             type="radio"
             value="new-information"
