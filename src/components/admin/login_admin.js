@@ -1,6 +1,6 @@
 import React, {  useEffect, useRef, useState } from 'react';
 import { useSnackbar } from 'notistack';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
@@ -15,6 +15,7 @@ const LoginAdminComponet = () => {
   const [time, setTimeban] = useState(0);
   const { enqueueSnackbar } = useSnackbar();
   const clean = useRef(null);
+  const navigate=useNavigate()
   const dispatch = useDispatch();
   useEffect(() => {
     if (Cookies.get("timebanadmin")) {
@@ -37,18 +38,17 @@ const LoginAdminComponet = () => {
   }, [time]);
   const login = async (values) => {
     if (count !== 3) {
-      console.log(count)
       try {
         const res = await dispatch(LoginAdmin(values));
         const Username = unwrapResult(res);
-        if (Username !== undefined) {
           enqueueSnackbar('Đăng nhập thành công', {
             variant: 'success',
             autoHideDuration: 1200,
             anchorOrigin: { vertical: 'top', horizontal: 'right' },
           });
           dispatch(setmodal());
-        }
+          navigate("/admin")
+        return Username
       } catch (error) {
         enqueueSnackbar(error.message, {
           variant: 'error',
@@ -124,11 +124,11 @@ const LoginAdminComponet = () => {
                     <div className="mt-1">
                       <input
                         id="Username"
-                        name="Username"
+                        name="username"
                         type="Username"
                         autoComplete="Username"
                         onBlur={handleBlur}
-                        value={values.Username}
+                        value={values.username}
                         // onChange={(e) => setEmail(e.target.value)}
                         onChange={handleChange}
                         required

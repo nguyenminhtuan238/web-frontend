@@ -132,6 +132,7 @@ const cart = createSlice({
       state.err = null;
     });
     builercart.addCase(CartAddress.rejected, (state, action) => {
+      state.cart = [];
       state.err = action.error;
     });
     builercart.addCase(Checkout.fulfilled, (state, action) => {
