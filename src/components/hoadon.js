@@ -10,11 +10,9 @@ function Hoadon(){
         try {
           // Lấy token từ localStorage
           const token = localStorage.getItem(Storagekey);
-  
           // Gửi yêu cầu HTTP GET đến endpoint trên server với Authorization header chứa token
           const response = await axios.get('http://192.168.1.9:5000/order/list/', {
             headers: { Authorization: `Bearer ${token}` },
-            
           });
           console.log(response.data);
           // Cập nhật state với dữ liệu trả về từ server
@@ -23,7 +21,6 @@ function Hoadon(){
           console.error(error);
         }
       }
-  
       fetchOrders();
     }, []);
   
@@ -89,12 +86,12 @@ function Hoadon(){
                               })}</div>
                         ))}
                       </td>
-                      <td className="whitespace-nowrap px-6 py-4">{order.updated_at}</td>
-                      
                       <td className="whitespace-nowrap px-6 py-4">{order.total_due.toLocaleString('vi-VN', {
                           style: 'currency',
                           currency: 'VND',
-                        })}</td>
+                        })}
+                      </td>
+                      <td className="whitespace-nowrap px-6 py-4">{order.updated_at}</td>
                     </tr>
                   ))}
                 </tbody>
