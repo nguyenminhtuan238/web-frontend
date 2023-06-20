@@ -3,7 +3,7 @@ import OrderAPI from '../../services/order.services';
 export const GetOrder = createAsyncThunk('get/Order', async () => {
   try {
     const res = await OrderAPI.getorder();
-    console.log(res)
+    console.log(res);
     return res.orders;
   } catch (error) {
     console.log(error);
@@ -15,7 +15,7 @@ const product = createSlice({
   initialState: {
     isloading: true,
     Order: [],
-    error:null
+    error: null,
   },
   reducers: {},
   extraReducers: {
@@ -26,9 +26,7 @@ const product = createSlice({
     [GetOrder.rejected]: (state, action) => {
       state.isloading = false;
       state.Order = [];
-      
     },
-  
   },
 });
 export const { setloading } = product.actions;

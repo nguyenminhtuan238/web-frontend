@@ -1,6 +1,6 @@
-import React, {  useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSnackbar } from 'notistack';
-import { Link,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
@@ -10,21 +10,26 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 const LoginAdminComponet = () => {
   const [count, setCount] = useState(
-    Cookies.get("banadmin") ? parseInt(Cookies.get("banadmin")) : 0
+    Cookies.get('banadmin') ? parseInt(Cookies.get('banadmin')) : 0
   );
   const [time, setTimeban] = useState(0);
   const { enqueueSnackbar } = useSnackbar();
   const clean = useRef(null);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
-    if (Cookies.get("timebanadmin")) {
+    if (Cookies.get('timebanadmin')) {
       clean.current = setInterval(async () => {
-        setTimeban(time === 0 ? 0 : parseInt(Cookies.get('timebanadmin')) - 1000);
-        if (new Date().getTime() - parseInt(Cookies.get('nowadmin'))>parseInt( Cookies.get("timebanadmin"))) {        
-           Cookies.remove("banadmin");
-           Cookies.remove("timebanadmin");
-           Cookies.remove("nowadmin");
+        setTimeban(
+          time === 0 ? 0 : parseInt(Cookies.get('timebanadmin')) - 1000
+        );
+        if (
+          new Date().getTime() - parseInt(Cookies.get('nowadmin')) >
+          parseInt(Cookies.get('timebanadmin'))
+        ) {
+          Cookies.remove('banadmin');
+          Cookies.remove('timebanadmin');
+          Cookies.remove('nowadmin');
           //  Cookies.remove("settime");
           setTimeban(0);
           setCount(0);
@@ -41,14 +46,14 @@ const LoginAdminComponet = () => {
       try {
         const res = await dispatch(LoginAdmin(values));
         const Username = unwrapResult(res);
-          enqueueSnackbar('Đăng nhập thành công', {
-            variant: 'success',
-            autoHideDuration: 1200,
-            anchorOrigin: { vertical: 'top', horizontal: 'right' },
-          });
-          dispatch(setmodal());
-          navigate("/admin")
-        return Username
+        enqueueSnackbar('Đăng nhập thành công', {
+          variant: 'success',
+          autoHideDuration: 1200,
+          anchorOrigin: { vertical: 'top', horizontal: 'right' },
+        });
+        dispatch(setmodal());
+        navigate('/admin');
+        return Username;
       } catch (error) {
         enqueueSnackbar(error.message, {
           variant: 'error',
@@ -58,32 +63,32 @@ const LoginAdminComponet = () => {
         setCount(count + 1);
       }
     } else {
-      if(Cookies.get("banadmin")){
+      if (Cookies.get('banadmin')) {
         enqueueSnackbar(`Đăng Nhập Quá số lần quay lại sau 1 phút`, {
           variant: 'error',
           autoHideDuration: 1200,
           anchorOrigin: { vertical: 'top', horizontal: 'right' },
         });
-      }else{
-       Cookies.set("banadmin", count);
-       Cookies.set("timebanadmin", 60000);
-       Cookies.set('nowadmin', new Date().getTime());
-      enqueueSnackbar(`Đăng Nhập Quá số lần quay lại sau 1 phút`, {
-        variant: 'error',
-        autoHideDuration: 1200,
-        anchorOrigin: { vertical: 'top', horizontal: 'right' },
-      });
-      setTimeban(parseInt(Cookies.get("timebanadmin")));
-    }
+      } else {
+        Cookies.set('banadmin', count);
+        Cookies.set('timebanadmin', 60000);
+        Cookies.set('nowadmin', new Date().getTime());
+        enqueueSnackbar(`Đăng Nhập Quá số lần quay lại sau 1 phút`, {
+          variant: 'error',
+          autoHideDuration: 1200,
+          anchorOrigin: { vertical: 'top', horizontal: 'right' },
+        });
+        setTimeban(parseInt(Cookies.get('timebanadmin')));
+      }
     }
   };
   return (
     <Formik
       initialValues={{ username: '', password: '' }}
       validationSchema={Yup.object({
-      username: Yup.string()
-        .matches(/^[a-zA-Z0-9_]+$/, 'Username không hợp lệ')
-        .required('Bắt buộc nhập'),
+        username: Yup.string()
+          .matches(/^[a-zA-Z0-9_]+$/, 'Username không hợp lệ')
+          .required('Bắt buộc nhập'),
         password: Yup.string()
           .min(8, 'Password cần ít nhất 8 số')
           .required('Bắt buộc nhập'),
@@ -135,7 +140,7 @@ const LoginAdminComponet = () => {
                         placeholder="admin name"
                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
-                      { touched.Username && (
+                      {touched.Username && (
                         <p className="text-red-500">{errors.Username}</p>
                       )}
                     </div>

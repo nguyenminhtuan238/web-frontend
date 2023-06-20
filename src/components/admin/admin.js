@@ -18,7 +18,7 @@ function Admin() {
   const dispatch = useDispatch();
   const [cofirm, setconfirm] = useState(null);
   const { enqueueSnackbar } = useSnackbar();
-  const nav=useNavigate();
+  const nav = useNavigate();
   const handleClose = () => {
     setconfirm(null);
   };
@@ -46,13 +46,12 @@ function Admin() {
     }
   };
   useEffect(() => {
-    if(!admin.admin){
-      nav("/admin/login")
+    if (!admin.admin) {
+      nav('/admin/login');
     }
-  }, [admin,nav]);
+  }, [admin, nav]);
   useEffect(() => {
     const get = async () => {
-
       await dispatch(getArt());
     };
     get();
@@ -65,7 +64,7 @@ function Admin() {
             {/* <a href="#" className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Log in</a> */}
             <Link
               className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
-              onClick={()=>dispatch(Logout())}
+              onClick={() => dispatch(Logout())}
               to="/admin/login"
             >
               Đăng xuất
@@ -106,7 +105,9 @@ function Admin() {
       </nav>
 
       <div>
-        <h1 className="mt-4 flex items-center justify-center w-screen font-bold text-3xl">Quản Lí Bài Viết</h1>
+        <h1 className="mt-4 flex items-center justify-center w-screen font-bold text-3xl">
+          Quản Lí Bài Viết
+        </h1>
         <Link to="/add">
           <button
             type="submit"
@@ -116,7 +117,7 @@ function Admin() {
           </button>
         </Link>
       </div>
-      
+
       <div className="flex flex-col mt-4">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -161,7 +162,8 @@ function Admin() {
                               {blog.title}
                             </td>
                             <td className="whitespace-nowrap px-8 py-4 ">
-                              <img src={blog.img?Artsimg+blog.img:defaultimg}
+                              <img
+                                src={blog.img ? Artsimg + blog.img : defaultimg}
                                 className="object-cover h-[100px] w-[100px]"
                                 alt="Lỗi Hình"
                               />
@@ -169,16 +171,19 @@ function Admin() {
                             <td className="whitespace-normal px-6 py-4 overflow-hidden max-w-[600px] min-w-[600px] max-h-[120px] line-clamp-5 ">
                               {blog.content}
                             </td>
-                            
+
                             <td className="whitespace-nowrap px-6 py-4">
-                            {new Date(blog.created_at).toLocaleDateString('vi-VN', {
-                              day: '2-digit',
-                              month: '2-digit',
-                              year: 'numeric',
-                              hour: '2-digit',
-                              minute: '2-digit',
-                              second: '2-digit'
-                            })}
+                              {new Date(blog.created_at).toLocaleDateString(
+                                'vi-VN',
+                                {
+                                  day: '2-digit',
+                                  month: '2-digit',
+                                  year: 'numeric',
+                                  hour: '2-digit',
+                                  minute: '2-digit',
+                                  second: '2-digit',
+                                }
+                              )}
                             </td>
                             {/* <td class="whitespace-nowrap px-6 py-4">23/5/2023</td> */}
                             <td className="mt-8 mb-8 whitespace-nowrap px-6 py-4 text-center">
@@ -225,7 +230,6 @@ function Admin() {
                       })}
                 </tbody>
               </table>
-
             </div>
           </div>
         </div>

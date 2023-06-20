@@ -1,4 +1,4 @@
-import React, { memo, useState,useEffect } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsSearch, setmodal } from '../../store/hidden';
@@ -8,7 +8,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { setloading } from '../../store/products';
 import Directory from './Directory';
 import Badge from '@mui/material/Badge';
-import {  getcart } from '../../store/cart';
+import { getcart } from '../../store/cart';
 
 function Header() {
   const [isVisible, setIsVisible] = useState(false);
@@ -20,12 +20,12 @@ function Header() {
     dispatch(Logout());
   };
   useEffect(() => {
-    if(User.User){
-      dispatch(getcart())
-    }else{
-      dispatch(getcart())
+    if (User.User) {
+      dispatch(getcart());
+    } else {
+      dispatch(getcart());
     }
-  }, [dispatch,User.User]);
+  }, [dispatch, User.User]);
   return (
     <div className={hidden.changscroll ? ' hidden' : 'w-full sticky top-0 '}>
       <header>
@@ -55,7 +55,8 @@ function Header() {
                 </button>
               )}
               {User.User && (
-                <Link className="text-white dark:text-white cursor-pointer hover:bg-sky-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                <Link
+                  className="text-white dark:text-white cursor-pointer hover:bg-sky-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
                   to="/thongtin"
                 >
                   {JSON.parse(localStorage.getItem(Userkey)).firstname +
@@ -85,10 +86,14 @@ function Header() {
                 className="text-white ml-3 dark:text-white cursor-pointer hover:bg-sky-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
                 to="/Cart"
               >
-                 <Badge badgeContent={cart.cart.length===undefined?0:cart.cart.length} color="primary">
-                      <ShoppingCartIcon />
+                <Badge
+                  badgeContent={
+                    cart.cart.length === undefined ? 0 : cart.cart.length
+                  }
+                  color="primary"
+                >
+                  <ShoppingCartIcon />
                 </Badge>
-
               </Link>
               <button
                 type="button"

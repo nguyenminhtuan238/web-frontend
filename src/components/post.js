@@ -1,12 +1,12 @@
-import React, { useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getArt } from '../store/Article';
 import { Link } from 'react-router-dom';
 function Post() {
-  const Arts=useSelector(state=>state.Art)
-  const dispatch=useDispatch()
+  const Arts = useSelector((state) => state.Art);
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getArt())
+    dispatch(getArt());
   }, [dispatch]);
 
   return (
@@ -19,26 +19,26 @@ function Post() {
       ) : (
         <div className="grid grid-cols-3 gap-4 ">
           {Arts.Arts.map((post) => (
-            <Link  to={"../baiviet/"+post.blog_id}>
-            <div key={post.blog_id}>
-
-              <img
-                className="mb-2 object-fill h-[200px] w-[400px]"
-                src={
-                  'http://192.168.1.9/magento2/pub/media/catalog/blog/' +
-                  post.img
-                }
-                alt="Ảnh minh họa"
-              />
-              <p className="mx-5 text-gray-700 text-sm">{new Date(post.created_at).getDay()}</p>
-              <p className="mx-5 text-base font-medium line-clamp-2">
-                {post.content}
-              </p>
-            </div>
+            <Link to={'../baiviet/' + post.blog_id}>
+              <div key={post.blog_id}>
+                <img
+                  className="mb-2 object-fill h-[200px] w-[400px]"
+                  src={
+                    'http://192.168.1.9/magento2/pub/media/catalog/blog/' +
+                    post.img
+                  }
+                  alt="Ảnh minh họa"
+                />
+                <p className="mx-5 text-gray-700 text-sm">
+                  {new Date(post.created_at).getDay()}
+                </p>
+                <p className="mx-5 text-base font-medium line-clamp-2">
+                  {post.content}
+                </p>
+              </div>
             </Link>
           ))}
         </div>
-
       )}
     </div>
   );

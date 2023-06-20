@@ -46,8 +46,8 @@ function App() {
               <Route path="SP/chitietsp/:id" element={<Chitiet />}></Route>
               <Route path="/payment" element={<PaymentPage />}></Route>
               <Route path="/baiviet/:id" element={<Baiviet />}></Route>
-            <Route path="/post" element={<Post />}></Route>
-            <Route path="/hoadon" element={<Hoadon />}></Route>
+              <Route path="/post" element={<Post />}></Route>
+              <Route path="/hoadon" element={<Hoadon />}></Route>
             </Route>
             <Route path="*" element={<NotFound />}></Route>
             <Route path="/admin" element={<Admin />}></Route>

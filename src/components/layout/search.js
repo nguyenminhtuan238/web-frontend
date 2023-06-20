@@ -8,30 +8,27 @@ import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 const Search = () => {
   const dispatch = useDispatch();
-  const [values,setvalues]=useState("")
-  const [gets,sets]=useState([])
-  const [loading,setloading]=useState(true)
+  const [values, setvalues] = useState('');
+  const [gets, sets] = useState([]);
+  const [loading, setloading] = useState(true);
   useEffect(() => {
-    async function setsearch(){
-    try {
-     
-      const res=await dispatch(search(values))
-      const searchs=await unwrapResult(res)
-      sets(searchs)
-      setloading(false)
-      console.log(values)
-    } catch (error) {
-      if(error){
-        sets([])
-        setvalues("")
+    async function setsearch() {
+      try {
+        const res = await dispatch(search(values));
+        const searchs = await unwrapResult(res);
+        sets(searchs);
+        setloading(false);
+        console.log(values);
+      } catch (error) {
+        if (error) {
+          sets([]);
+          setvalues('');
+        }
       }
     }
-     
-    }
-    setsearch()
-  }, [dispatch,values]);
+    setsearch();
+  }, [dispatch, values]);
   return (
-    
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center   py-12 sm:px-6 lg:px-8 fixed inset-0  bg-opacity-30 backdrop-blur-sm z-50  ">
       <div
         className=" w-[640px] bg-gray-100  animate-slideRight min-h-screen ml-auto  absolute top-0 right-0 z-50 shadow-lg "
@@ -70,7 +67,7 @@ const Search = () => {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search"
                 value={values}
-                onChange={(e)=>setvalues(e.target.value)}
+                onChange={(e) => setvalues(e.target.value)}
                 required
               ></input>
             </div>
@@ -96,23 +93,31 @@ const Search = () => {
           </form>
         </div>
         <div className=" absolute mx-auto text-gray-600 top-[150px] right-[50px] w-[550px]">
-        {loading?<Box sx={{ width: '100%' }}>
-      <LinearProgress />
-    </Box>:
-        <div>
-        {
-          gets.length===0?"Không thể tìm kiếm": <ul className="list-disc">
-        {gets.map((item) => (
-          <Link to={`SP/chitietsp/${item.sku}`} className="py-4 px-2  text-blue-600 hover:text-black"key={item.id}>
-            {item.name}
-            <hr className="mt-6"></hr>
-          </Link>
-        ))}
-      </ul>
-        }
+          {loading ? (
+            <Box sx={{ width: '100%' }}>
+              <LinearProgress />
+            </Box>
+          ) : (
+            <div>
+              {gets.length === 0 ? (
+                'Không thể tìm kiếm'
+              ) : (
+                <ul className="list-disc">
+                  {gets.map((item) => (
+                    <Link
+                      to={`SP/chitietsp/${item.sku}`}
+                      className="py-4 px-2  text-blue-600 hover:text-black"
+                      key={item.id}
+                    >
+                      {item.name}
+                      <hr className="mt-6"></hr>
+                    </Link>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
         </div>
-        }
-      </div>
       </div>
     </div>
   );

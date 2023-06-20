@@ -1,7 +1,3 @@
-
-function IOT () {
-    return (
-        <div>
-        </div>
-    )
+function IOT() {
+  return <div></div>;
 }

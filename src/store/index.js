@@ -12,7 +12,7 @@ const reducer = combineReducers({
   products,
   cart,
   Art,
-  order
+  order,
 });
 const store = configureStore({
   reducer,

@@ -19,16 +19,14 @@ export const addcart = createAsyncThunk('cart/add', async (data) => {
 export const getcart = createAsyncThunk('cart/get', async () => {
   try {
     const res = await CartApi.get();
-    return res.product_in_cart?res.product_in_cart:[];
+    return res.product_in_cart ? res.product_in_cart : [];
   } catch (error) {
     if (error.response.status === 404) {
       throw new Error(' Cần phải Giỏ Hàng rỗng');
-    }if(error.response.status === 401){
-      throw new Error(' Cần phải Đăng Nhập mới thêm vào giỏ hàng');
-
     }
-    
-     else {
+    if (error.response.status === 401) {
+      throw new Error(' Cần phải Đăng Nhập mới thêm vào giỏ hàng');
+    } else {
       console.log(error);
     }
   }
@@ -59,23 +57,26 @@ export const deletecart = createAsyncThunk('cart/delete', async (id) => {
     }
   }
 });
-export const CartAddress = createAsyncThunk('cart/CartAddress', async (data) => {
-  try {
+export const CartAddress = createAsyncThunk(
+  'cart/CartAddress',
+  async (data) => {
+    try {
       await CartApi.cartAddress(data);
-    const res = await CartApi.get();
+      const res = await CartApi.get();
 
-    return res.product_in_cart
-  } catch (error) {
-    if (error.response.status === 401) {
-      throw new Error(' Cần phải Đăng Nhập mới thêm vào giỏ hàng');
-    } if (error.response.status === 400) {
-      throw new Error(' Cần phải có thông tin');
-    } 
-    else {
-      console.log(error);
+      return res.product_in_cart;
+    } catch (error) {
+      if (error.response.status === 401) {
+        throw new Error(' Cần phải Đăng Nhập mới thêm vào giỏ hàng');
+      }
+      if (error.response.status === 400) {
+        throw new Error(' Cần phải có thông tin');
+      } else {
+        console.log(error);
+      }
     }
   }
-});
+);
 export const Checkout = createAsyncThunk('cart/checkout', async (data) => {
   try {
     await CartApi.Checkout(data);
@@ -95,7 +96,7 @@ const cart = createSlice({
     cart: [],
     isloading: true,
     err: null,
-    Check:false
+    Check: false,
   },
   reducers: {},
   extraReducers: (builercart) => {
@@ -113,7 +114,7 @@ const cart = createSlice({
     });
     builercart.addCase(getcart.rejected, (state, action) => {
       state.cart = [];
-      state.isloading=false
+      state.isloading = false;
       state.err = action.error;
     });
     builercart.addCase(updatecart.fulfilled, (state, action) => {

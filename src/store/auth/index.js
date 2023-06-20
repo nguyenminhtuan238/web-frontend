@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import AuthApi from '../../services/auth.services';
-import { Storagekey, Userkey,StorageAdminkey} from '../../unilt/key';
+import { Storagekey, Userkey, StorageAdminkey } from '../../unilt/key';
 export const LoginUser = createAsyncThunk('user/login', async (payload) => {
   try {
     const res = await AuthApi.Login(payload);
@@ -75,16 +75,16 @@ export const RegisterUser = createAsyncThunk(
 const User = createSlice({
   name: 'User',
   initialState: {
-    User: JSON.parse( localStorage.getItem(Userkey)) || null,
+    User: JSON.parse(localStorage.getItem(Userkey)) || null,
     error: {},
-    admin:localStorage.getItem(StorageAdminkey)||null
+    admin: localStorage.getItem(StorageAdminkey) || null,
   },
   reducers: {
     Logout: (state) => {
       localStorage.removeItem(Storagekey);
       localStorage.removeItem(Userkey);
       localStorage.removeItem(StorageAdminkey);
-      state.admin=null
+      state.admin = null;
       state.User = null;
     },
   },

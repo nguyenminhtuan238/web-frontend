@@ -12,17 +12,17 @@ const ApiadminServices = axios.create({
 });
 ApiadminServices.interceptors.request.use(
   async (config) => {
-    const admin=await getAdminToken()
-    if(admin){
+    const admin = await getAdminToken();
+    if (admin) {
       config.headers = {
         Authorization: `Bearer ${admin}`,
-        'Content-Type':'multipart/form-data',
+        'Content-Type': 'multipart/form-data',
       };
-    }else {
-        config.headers = {
-        'Content-Type':'multipart/form-data',
-        };
-      }
+    } else {
+      config.headers = {
+        'Content-Type': 'multipart/form-data',
+      };
+    }
     return config;
   },
   (error) => {

@@ -18,15 +18,17 @@ function Them() {
     setSelectedFile(event.target.files[0]);
   };
   useEffect(() => {
-    if(!admin.admin){
-      naviagate("/admin/login")
+    if (!admin.admin) {
+      naviagate('/admin/login');
     }
-  }, [admin,naviagate]);
+  }, [admin, naviagate]);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = dispatch(addArt({ title, content, user_id,img:selectedFile }));
+      const response = dispatch(
+        addArt({ title, content, user_id, img: selectedFile })
+      );
       const Art = unwrapResult(response);
       enqueueSnackbar('thêm thành công', {
         variant: 'success',
@@ -51,7 +53,9 @@ function Them() {
     >
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full px-3 mb-6 md:mb-0">
-          <h1 className="uppercase mb-8 font-bold text-center">Thêm Bài Viết Mới</h1>
+          <h1 className="uppercase mb-8 font-bold text-center">
+            Thêm Bài Viết Mới
+          </h1>
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             htmlFor="title"
@@ -89,21 +93,21 @@ function Them() {
         </div>
       </div>
       <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full px-3">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="fileInput"
-              >
-                Chọn Hình
-              </label>
-              <input
-                id="fileInput"
-                type="file"
-                className="border rounded-lg py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline-blue focus:border-blue-500"
-                onChange={handleChange}
-              />
-            </div>
-          </div>
+        <div className="w-full px-3">
+          <label
+            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            htmlFor="fileInput"
+          >
+            Chọn Hình
+          </label>
+          <input
+            id="fileInput"
+            type="file"
+            className="border rounded-lg py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline-blue focus:border-blue-500"
+            onChange={handleChange}
+          />
+        </div>
+      </div>
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full px-3 mb-6 md:mb-0">
           <label

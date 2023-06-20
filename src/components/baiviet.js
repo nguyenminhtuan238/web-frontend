@@ -1,14 +1,14 @@
-import React, { useEffect} from 'react';
-import { Link,useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getidArt } from '../store/Article';
 function Baiviet() {
-  const Arts=useSelector(state=>state.Art)
-  const dispatch=useDispatch()
-  const id=useParams()
+  const Arts = useSelector((state) => state.Art);
+  const dispatch = useDispatch();
+  const id = useParams();
   useEffect(() => {
-    dispatch(getidArt(id.id))
-  }, [dispatch,id.id]);
+    dispatch(getidArt(id.id));
+  }, [dispatch, id.id]);
   return (
     <div className="max-w-2xl mx-auto mt-3 mb-3">
       {Arts.loadingArt ? (
