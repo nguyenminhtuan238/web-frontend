@@ -51,6 +51,7 @@ function Them() {
     >
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full px-3 mb-6 md:mb-0">
+          <h1 className="uppercase mb-8 font-bold text-center">Thêm Bài Viết Mới</h1>
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             htmlFor="title"
@@ -90,7 +91,7 @@ function Them() {
       <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full px-3">
               <label
-                className="block text-gray-700 font-bold mb-2"
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 htmlFor="fileInput"
               >
                 Chọn Hình

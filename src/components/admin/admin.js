@@ -58,7 +58,7 @@ function Admin() {
     get();
   }, [dispatch]);
   return (
-    <div>
+    <div className="w-screen">
       <nav className="bg-black border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <div className="flex items-center lg:order-2">
@@ -79,7 +79,7 @@ function Admin() {
             ></button>
           </div>
           <div
-            className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
+            className="hidden justify-between items-center w-screen lg:flex lg:w-auto lg:order-1"
             id="mobile-menu-2"
           >
             <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
@@ -123,7 +123,7 @@ function Admin() {
             <div className="overflow-hidden">
               <table className="min-w-full text-left text-sm font-light ml-4 truncate w-5 overflow-hidden">
                 <thead className="border-b font-medium dark:border-neutral-500">
-                  <tr className="bg-gray-400">
+                  <tr className="bg-gray-400 text-center">
                     <th scope="col" className="px-6 py-4">
                       #
                     </th>
@@ -154,10 +154,10 @@ function Admin() {
                             key={blog.blog_id}
                             className="border-b dark:border-neutral-500"
                           >
-                            <td className="whitespace-nowrap px-6 py-4 font-medium">
+                            <td className="whitespace-nowrap px-6 py-4 font-medium text-center">
                               {blog.blog_id}
                             </td>
-                            <td className="whitespace-nowrap px-6 py-4">
+                            <td className="whitespace-nowrap px-6 py-4 text-center">
                               {blog.title}
                             </td>
                             <td className="whitespace-nowrap px-8 py-4 ">
@@ -166,7 +166,7 @@ function Admin() {
                                 alt="Lỗi Hình"
                               />
                             </td>
-                            <td className="whitespace-nowrap px-6 py-4 truncate w-5 overflow-hidden">
+                            <td className="whitespace-normal px-6 py-4 overflow-hidden max-w-[600px] min-w-[600px] max-h-[120px] line-clamp-5 ">
                               {blog.content}
                             </td>
                             
@@ -181,7 +181,7 @@ function Admin() {
                             })}
                             </td>
                             {/* <td class="whitespace-nowrap px-6 py-4">23/5/2023</td> */}
-                            <td className="mt-8 mb-8 whitespace-nowrap px-6 py-4">
+                            <td className="mt-8 mb-8 whitespace-nowrap px-6 py-4 text-center">
                               <Link to={'/update/' + blog.blog_id}>
                                 <button
                                   type="submit"

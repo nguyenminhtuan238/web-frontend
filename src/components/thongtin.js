@@ -124,12 +124,18 @@ const Thongtin = () => {
             onChange={(e)=>settelephone(e.target.value)} 
            className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phone" type="tel" placeholder="(123) 456-7890"/>
         </div>
-        <div className="py-6 w-full flex justify-center  space-x-36 ">
+        <div className="py-6 w-full flex justify-center   ">
           <Link
             to="/"
             className="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 mr-5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Quản lí IOT
+          </Link>
+          <Link
+            to="/hoadon"
+            className="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 mr-5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Quản lí Hóa Đơn
           </Link>
           <button
             type="submit"

@@ -128,7 +128,7 @@ function PaymentPage() {
 
         {selectedOption === 'existing-information' && (
             <div className="max-w-2xl mx-auto">
-            <form onSubmit={handleSubmit} className="pb-1 pl-4 pr-4 pt-2 shadow-2xl border-2 rounded-3xl">
+            <form onSubmit={handleSubmit} className="pb-1 pl-12 pr-12 pt-8 shadow-2xl border-2 rounded-3xl">
     
             <div className="block mb-8">
               <h1 className="font-bold mb-2">
@@ -171,19 +171,23 @@ function PaymentPage() {
 
         {selectedOption === 'new-information' && (
             <div className="max-w-2xl mx-auto">
-            <form onSubmit={handleSubmit} className="pb-1 pl-4 pr-4 pt-2 shadow-2xl border-2 rounded-3xl">
+            <form onSubmit={handleSubmit} className="pb-1 pl-12 pr-12 pt-8 mb-8 shadow-2xl border-2 rounded-3xl">
         
-                <label className="block mb-2 font-bold text-gray-700" htmlFor="firstname">
-                Họ:
-                </label>
-                <input
-                className="w-full px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                id="firstname"
-                type="text"
-                placeholder="Enter your firstname"
-                value={firstname}
-                onChange={(event) => setFirstname(event.target.value)}
-                />
+            <label className="block mb-2 font-bold text-gray-700" htmlFor="firstname">
+              Họ:
+            </label>
+            <input
+              className="w-full px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              id="firstname"
+              type="text"
+              placeholder="Nhập họ của bạn"
+              value={firstname}
+              onChange={(event) => setFirstname(event.target.value)}
+              required
+              title="Vui lòng nhập họ của bạn"
+              pattern="([a-zA-Z]+\s)*[a-zA-Z]+"
+
+            />
         
                 <label className=" block mb-2 font-bold text-gray-700" htmlFor="lastname">
                 Tên:
@@ -195,6 +199,9 @@ function PaymentPage() {
                 placeholder="Enter your lastname"
                 value={lastname}
                 onChange={(event) => setLastname(event.target.value)}
+                required 
+                title="Vui lòng nhập tên của bạn"
+                pattern="([a-zA-Z]+\s)*[a-zA-Z]+"
                 />
         
                 <label className=" block mb-2 font-bold text-gray-700" htmlFor="street">
@@ -207,6 +214,8 @@ function PaymentPage() {
                 placeholder="Enter your street"
                 value={street}
                 onChange={(event) => setStreet(event.target.value)}
+                required
+                pattern="[0-9A-Za-z\s\-\,\./]+"
                 />
                 
                 <label className="block mb-2 font-bold text-gray-700" htmlFor="city">
@@ -217,12 +226,13 @@ function PaymentPage() {
                 id="city"
                 value={city}
                 onChange={(event) => setCity(event.target.value)}
+                required
                 >
-                <option value="">Chọn thành phố </option>
-                {provinces.map((province) => (
-                    <option key={province.code} value={province.name}>
+                  <option value=""> Chọn thành phố </option>
+                {provinces.sort((a, b) => a.name.localeCompare(b.name)).map((province) => (
+                  <option key={province.code} value={province.name}>
                     {province.name}
-                    </option>
+                  </option>
                 ))}
                 </select>
                 
@@ -234,6 +244,7 @@ function PaymentPage() {
                 id="country_id"
                 value={countryId}
                 onChange={(event) => setCountry_id(event.target.value)}
+                required
                 >
                 <option value=""> Chọn quốc gia </option>
                 <option value="VN"> Việt Nam </option>
@@ -245,10 +256,11 @@ function PaymentPage() {
                 <input
                 className="w-full px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                 id="telephone"
-                type="text"
+                type="tel"
                 placeholder="Enter your telephone"
                 value={telephone}
                 onChange={(event) => setTelephone(event.target.value)}
+                name="phone" pattern="0\d{1,3}[\-\s]?\d{8,}" required title="Số điện thoại phải đúng định dạng, tối thiểu 10 chữ số"
                 />
                 
                 <label className="block mb-2 font-bold text-gray-700" htmlFor="email">
@@ -261,6 +273,7 @@ function PaymentPage() {
                 placeholder="Enter your email address"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
+                required
                 />
         
                 <label className="block mb-2 font-bold text-gray-700" htmlFor="postcode">
@@ -273,6 +286,9 @@ function PaymentPage() {
                 placeholder="Enter your number postcode"
                 value={postcode}
                 onChange={(event) => setPostcode(event.target.value)}
+                pattern="^[0-9a-zA-Z]{5,}$"
+                required 
+                title="Mã bưu điện phải có ít nhất 5 ký tự, không chứa dấu cách hoặc ký tự đặc biệt"
                 />
         
                 <div className="block mb-8">
@@ -290,8 +306,7 @@ function PaymentPage() {
                 <label className="block ml-2">
                     <input type="radio" name="payment-method" value="free" checked={payment === 'free'}/>
                     <span className="ml-2">Ví điện tử</span>
-                    
-                </label>
+                  </label>
                 </div>
         
                 <div className="mx-auto flex justify-center">
