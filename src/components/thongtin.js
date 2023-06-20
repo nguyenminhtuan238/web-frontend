@@ -21,11 +21,11 @@ const Thongtin = () => {
     }else{
       setfirstname(User.User.firstname)
       setlastname(User.User.lastname)
-      setcountry_id(User.User.addresses[0].country_id?User.User.addresses[0].country_id:"")
-      setstreet(User.User.addresses[0].street?User.User.addresses[0].street:"")
-      setcity(User.User.addresses[0].city?User.User.addresses[0].city:"")
-      settelephone(User.User.addresses[0].telephone?User.User.addresses[0].telephone:"")
-      setpostcode(User.User.addresses[0].postcode?User.User.addresses[0].postcode:"")
+      setcountry_id(User.User.addresses[0]?.country_id?User.User.addresses[0].country_id:"")
+      setstreet(User.User.addresses[0]?.street?User.User.addresses[0].street:"")
+      setcity(User.User.addresses[0]?.city?User.User.addresses[0].city:"")
+      settelephone(User.User.addresses[0]?.telephone?User.User.addresses[0].telephone:"")
+      setpostcode(User.User.addresses[0]?.postcode?User.User.addresses[0].postcode:"")
     }
   }, [User.User,navigate]);
   const updateifn=async (e)=>{

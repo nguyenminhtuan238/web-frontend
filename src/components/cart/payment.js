@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { provinces } from 'vietnam-provinces';
 import { useDispatch, useSelector } from 'react-redux';
 import { CartAddress, Checkout } from '../../store/cart';
@@ -16,10 +16,17 @@ function PaymentPage() {
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const User = useSelector((state) => state.User);
+  const get = useSelector((state) => state.cart);
   const [payment, setpayment] = useState('checkmo');
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const navigate=useNavigate()
+  useEffect(() => {
+    if(!User.User ){
+      navigate("/")
+    }
+  
+  }, [navigate,get.cart,User.User]);
   const handleSubmit = async (event) => {
     event.preventDefault();
     // console.log(payment)
@@ -28,15 +35,18 @@ function PaymentPage() {
         const data={
           firstname:User.User.firstname,
           lastname:User.User.lastname,
-          countryId:User.User.addresses[0].country_id,
-          street:User.User.addresses[0].street[0],
-          city:User.User.addresses[0].city,
-          telephone:User.User.addresses[0].telephone,
-          postcode:User.User.addresses[0].postcode,
+          countryId:User.User.addresses[0]?.country_id?User.User.addresses[0]?.country_id:null,
+          street:User.User.addresses[0]?.street[0]?User.User.addresses[0]?.street:null,
+          city:User.User.addresses[0]?.city?User.User.addresses[0]?.city:null,
+          telephone:User.User.addresses[0]?.telephone?User.User.addresses[0].telephone:null,
+          postcode:User.User.addresses[0]?.postcode?User.User.addresses[0]?.postcode:null,
           email:User.User.email
         }
-          await dispatch(CartAddress(data))
-         const res=await dispatch(Checkout({method:payment}))
+        
+        const setaddress=  await dispatch(CartAddress(data))
+        const kq=unwrapResult(setaddress)
+        if(kq){
+          const res=await dispatch(Checkout({method:payment}))
          const check=unwrapResult(res)
          enqueueSnackbar('Thanh Toán Thành Công', {
           variant: 'success',
@@ -45,6 +55,8 @@ function PaymentPage() {
         });
         navigate("/")
         return check
+        }
+
       }
       if(selectedOption==='new-information'){
         const data={
@@ -69,7 +81,13 @@ function PaymentPage() {
        return check
       }  
     } catch (error) {
-      console.log(error)
+      enqueueSnackbar(error.message, {
+        variant: 'error',
+        autoHideDuration: 1200,
+        anchorOrigin: { vertical: 'top', horizontal: 'right' },
+      });
+      navigate("/thongtin")
+      // console.log(error)
     }
    
   }; 
@@ -117,15 +135,15 @@ function PaymentPage() {
                 Hình thức thanh toán
               </h1>
               <label className="block ml-2">
-                <input type="radio" name="payment-method" value="checkmo "  onChange={(e)=>setpayment(e.target.value)}/>
+                <input type="radio" name="payment-method" value="checkmo"   checked={payment === 'checkmo'}  onChange={(e)=>setpayment(e.target.value)}/>
                 <span className="ml-2">checkmo</span>
               </label>
               <label className="block ml-2">
-                <input type="radio" name="payment-method" value="purchaseorder" onChange={(e)=>setpayment(e.target.value)}/>
+                <input type="radio" name="payment-method" value="purchaseorder" checked={payment === 'purchaseorder'} onChange={(e)=>setpayment(e.target.value)}/>
                 <span className="ml-2">purchaseorder</span>
               </label>
               <label className="block ml-2">
-                <input type="radio" name="payment-method" value="free" onChange={(e)=>setpayment(e.target.value)}/>
+                <input type="radio" name="payment-method" value="free" checked={payment === 'free'} onChange={(e)=>setpayment(e.target.value)}/>
                 <span className="ml-2">free</span>
               </label>
             </div>
@@ -262,15 +280,15 @@ function PaymentPage() {
                     Hình thức thanh toán
                 </h1>
                 <label className="block ml-2">
-                    <input type="radio" name="payment-method" value="cash"/>
+                    <input type="radio" name="payment-method"  value="checkmo "  checked={payment === 'checkmo'}/>
                     <span className="ml-2">Thanh toán bằng tiền mặt</span>
                 </label>
                 <label className="block ml-2">
-                    <input type="radio" name="payment-method" value="bank-transfer"/>
+                    <input type="radio" name="payment-method" value="purchaseorder" checked={payment === 'purchaseorder'}/>
                     <span className="ml-2">Chuyển khoản ngân hàng</span>
                 </label>
                 <label className="block ml-2">
-                    <input type="radio" name="payment-method" value="digital-wallet" />
+                    <input type="radio" name="payment-method" value="free" checked={payment === 'free'}/>
                     <span className="ml-2">Ví điện tử</span>
                     
                 </label>

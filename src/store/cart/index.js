@@ -19,14 +19,15 @@ export const addcart = createAsyncThunk('cart/add', async (data) => {
 export const getcart = createAsyncThunk('cart/get', async () => {
   try {
     const res = await CartApi.get();
-    return res.product_in_cart;
+    return res.product_in_cart?res.product_in_cart:[];
   } catch (error) {
-    if (error.response.status === 400) {
+    if (error.response.status === 404) {
       throw new Error(' Cần phải Giỏ Hàng rỗng');
-    }if(error.response.status === 404){
+    }if(error.response.status === 401){
       throw new Error(' Cần phải Đăng Nhập mới thêm vào giỏ hàng');
 
     }
+    
      else {
       console.log(error);
     }
@@ -67,7 +68,10 @@ export const CartAddress = createAsyncThunk('cart/CartAddress', async (data) => 
   } catch (error) {
     if (error.response.status === 401) {
       throw new Error(' Cần phải Đăng Nhập mới thêm vào giỏ hàng');
-    } else {
+    } if (error.response.status === 400) {
+      throw new Error(' Cần phải có thông tin');
+    } 
+    else {
       console.log(error);
     }
   }

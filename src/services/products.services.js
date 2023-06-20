@@ -6,6 +6,12 @@ const ProductsAPI = {
       return ApiServices.get(url);
     
   },
+  getALL() {
+
+    const url = `product/list1/`;
+    return ApiServices.get(url);
+  
+},
   getid(id) {
     const url = `product/${id}`;
     return ApiServices.get(url);
@@ -13,6 +19,20 @@ const ProductsAPI = {
   search(values){
     const url = `product/list/name/${values}`;
     return ApiServices.get(url);
+  },
+  searchPrice(data){
+    const url = `product/price?min=${data.min}&max=${data.max}`;
+    return ApiServices.get(url);
+  },
+  searchtype(type){
+    if(type){
+      const url = `product/list/name?type=DESC`;
+      return ApiServices.get(url);
+    }else{
+      const url = `product/list/name`;
+      return ApiServices.get(url);
+    }
+   
   }
 };
 export default ProductsAPI;

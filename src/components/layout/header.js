@@ -22,7 +22,8 @@ function Header() {
   useEffect(() => {
     if(User.User){
       dispatch(getcart())
-
+    }else{
+      dispatch(getcart())
     }
   }, [dispatch,User.User]);
   return (

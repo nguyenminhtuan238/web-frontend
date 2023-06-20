@@ -89,7 +89,7 @@ const Art = createSlice({
       state.err = null;
     });
     builerArt.addCase(getArt.rejected, (state, action) => {
-      state.Arts = null;
+      state.Arts = [];
       state.err = action.error;
     });
     builerArt.addCase(getidArt.fulfilled, (state, action) => {
@@ -98,6 +98,7 @@ const Art = createSlice({
       state.err = null;
     });
     builerArt.addCase(getidArt.rejected, (state, action) => {
+      state.Art=[]
       state.err = action.error;
     });
     builerArt.addCase(updateArt.fulfilled, (state, action) => {

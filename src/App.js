@@ -45,21 +45,18 @@ function App() {
               ></Route>
               <Route path="Cart" element={<Cart />}></Route>
               <Route path="SP/chitietsp/:id" element={<Chitiet />}></Route>
+              <Route path="/payment" element={<PaymentPage />}></Route>
+              <Route path="/baiviet/:id" element={<Baiviet />}></Route>
+            <Route path="/post" element={<Post />}></Route>
             </Route>
             <Route path="*" element={<NotFound />}></Route>
-
             <Route path="/admin" element={<Admin />}></Route>
             <Route path="/add" element={<Them />}></Route>
-            <Route path="/baiviet" element={<Baiviet />}></Route>
-            <Route path="/post" element={<Post />}></Route>
-            <Route path="/product" element={<ProductsPage />}></Route>
             <Route path="/update" element={<UpdateBlog />}></Route>
             <Route path="/hoadon" element={<Hoadon />}></Route>
             <Route path="/chitiethd" element={<Chitiethd />}></Route>
             <Route path="/admin/login" element={<LoginAdminComponet />}></Route>
             <Route path="/update/:id" element={<UpdateBlog />}></Route>
-            <Route path="/payment" element={<PaymentPage />}></Route>
-            <Route path="/sortby" element={<SortBy />}></Route>
           </Routes>
         </BrowserRouter>
       </SnackbarProvider>

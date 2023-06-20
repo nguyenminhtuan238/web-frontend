@@ -1,32 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-
+import React, { useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getArt } from '../store/Article';
+import { Link } from 'react-router-dom';
 function Post() {
-  const [post, setPost] = useState({});
-  const [l, setl] = useState(true);
-  
+  const Arts=useSelector(state=>state.Art)
+  const dispatch=useDispatch()
   useEffect(() => {
-    axios
-      .get(`http://192.168.1.9:5000/blog/list`)
-      .then((response) => {
-        console.log(response.data);
-        setPost(response.data.result);
-        setl(false);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+    dispatch(getArt())
+  }, [dispatch]);
 
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-6xl mx-auto mt-5 mb-3">
       <h1 className="mx-2 my-[20px] text-3xl font-sans font-open-sans">
         Bài viết mới nhất
       </h1>
-      {l ? (
+      {Arts.isloading ? (
         'lỗi'
       ) : (
         <div className="grid grid-cols-3 gap-4 ">
-          {post.map((post) => (
-            <div key={post.id}>
+          {Arts.Arts.map((post) => (
+            <Link  to={"../baiviet/"+post.blog_id}>
+            <div key={post.blog_id}>
+
               <img
                 className="mb-2 object-fill h-[200px] w-[400px]"
                 src={
@@ -40,8 +35,10 @@ function Post() {
                 {post.content}
               </p>
             </div>
+            </Link>
           ))}
         </div>
+
       )}
     </div>
   );
