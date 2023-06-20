@@ -30,12 +30,12 @@ function Hoadon(){
     };
 
     return (
-      <div className="py-5 flex flex-col">
-        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div className="w-full py-5 flex flex-col">
+        <div className="overflow-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
             <div className="overflow-hidden">
               <h1 className="text-center mb-8 uppercase font-bold">Hóa Đơn Của Bạn</h1>
-              <table className="min-w-full text-left text-sm font-light w-5 overflow-hidden">
+              <table className="w-full text-left text-sm font-light w-5 overflow-hidden ">
                 <thead className="bg-gray-700 text-white border-b font-medium dark:border-neutral-500">
                   <tr className="px-4 py-6 text-center ">
                     <th scope="col" className="px-6 py-4">
