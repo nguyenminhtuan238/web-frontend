@@ -4,6 +4,7 @@ import { Storagekey } from '../unilt/key';
 
 function Hoadon(){
     const [orders, setOrders] = useState([]);
+    const [selectedRowIndex, setSelectedRowIndex] = useState(null);
 
     useEffect(() => {
       async function fetchOrders() {
@@ -24,19 +25,24 @@ function Hoadon(){
       fetchOrders();
     }, []);
   
+    const handleRowClick = (index) => {
+      setSelectedRowIndex(index);
+    };
+
     return (
       <div className="py-5 flex flex-col">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
             <div className="overflow-hidden">
+              <h1 className="text-center mb-8 uppercase font-bold">Hóa Đơn Của Bạn</h1>
               <table className="min-w-full text-left text-sm font-light w-5 overflow-hidden">
-                <thead className="bg-zinc-900 text-white border-b font-medium dark:border-neutral-500">
-                  <tr className="px-4 py-6">
+                <thead className="bg-gray-700 text-white border-b font-medium dark:border-neutral-500">
+                  <tr className="px-4 py-6 text-center ">
                     <th scope="col" className="px-6 py-4">
                       #
                     </th>
                     <th scope="col" className="px-6 py-4">
-                        Tên khách hàng
+                        Tài khoản
                     </th>
                     <th scope="col" className="px-6 py-4">
                         Địa chỉ
@@ -54,16 +60,18 @@ function Hoadon(){
                          Giá sản phẩm
                     </th>
                     <th scope="col" className="px-6 py-4">
-                         Ngày lập hóa đơn
+                         Tổng tiền
                     </th>
                     <th scope="col" className="px-6 py-4">
-                         Tổng tiền
+                         Ngày lập hóa đơn
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                { orders?.length > 0 && orders.map((order) => (
-                    <tr key={order.entity_id} className="border-b dark:border-neutral-500">
+                { orders?.length > 0 && orders.map((order, index) => (
+                    <tr key={order.entity_id}
+                        className={`border-b dark:border-neutral-500 text-center ${selectedRowIndex === index ? 'bg-gray-100' : ''}`}
+                        onClick={() => handleRowClick(index)}>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{order.entity_id}</td>
                       <td className="whitespace-nowrap px-6 py-4">{order.customer_firstname} {order.customer_lastname}</td>
                       <td className="whitespace-nowrap px-6 py-4">{order.billing_address.city}</td>
@@ -77,7 +85,7 @@ function Hoadon(){
                         {order.items.map((item) => (
                             <div key={item.id}>{item.qty_ordered}</div>
                         ))}
-                      </td>
+                     </td>
                       <td className="whitespace-nowrap px-6 py-4">
                         {order.items.map((item) => (
                             <div key={item.id}>{item.price.toLocaleString('vi-VN', {
