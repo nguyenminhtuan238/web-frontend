@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deletecart, getcart, updatecart } from '../../store/cart';
 import { unwrapResult } from '@reduxjs/toolkit';
-import { img, Userkey } from '../../unilt/key';
+import { img } from '../../unilt/key';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useSnackbar } from 'notistack';
 import { Link } from 'react-router-dom';
 const CartPage = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const get = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.User);
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
   useEffect(() => {
@@ -73,7 +74,7 @@ const CartPage = () => {
       });
     }
   };
-  
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3">
       <div className="lg:col-span-2 lg:ml-16 lg:mr-16">
@@ -102,8 +103,26 @@ const CartPage = () => {
                 </th>
               </tr>
             </thead>
-            {!localStorage.getItem(Userkey) ? (
-              ''
+            {!user.User ? (
+              <tbody>
+                <tr>
+                  <td colSpan="4" className="px-4 py-2">
+                    <div className="flex justify-center items-center">
+                      Chưa Có đăng Nhập
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            ) : get.cart.length <= 0 ? (
+              <tbody>
+                <tr>
+                  <td colSpan="4" className="px-4 py-2">
+                    <div className="flex justify-center items-center">
+                      Không Có Sản Phẩm trong giỏ Hàng
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
             ) : (
               <tbody>
                 {get.isloading ? (
@@ -235,14 +254,30 @@ const CartPage = () => {
                       })}
               </span>
             </p>
-            <Link
-              className="group w-full flex justify-center py-2 px-4 cursor-pointer	 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 uppercase text-lg"
-              to="/payment"
-            >
-             <p className="group w-full flex justify-center py-2 px-4 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 uppercase text-lg"> 
-             Thanh toán
-             </p> 
-            </Link>
+            {user.User ? (
+              get.cart.length <= 0 ? (
+                <Link className="group w-full flex justify-center py-2 px-4 cursor-pointer	 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 uppercase text-lg">
+                  <p className="group w-full flex justify-center py-2 px-4 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 uppercase text-lg">
+                    Khống có sản phẩm để Thanh Toán
+                  </p>
+                </Link>
+              ) : (
+                <Link
+                  className="group w-full flex justify-center py-2 px-4 cursor-pointer	 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 uppercase text-lg"
+                  to="/payment"
+                >
+                  <p className="group w-full flex justify-center py-2 px-4 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 uppercase text-lg">
+                    Thanh toán
+                  </p>
+                </Link>
+              )
+            ) : (
+              <Link className="group w-full flex justify-center py-2 px-4 cursor-pointer	 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 uppercase text-lg">
+                <p className="group w-full flex justify-center py-2 px-4 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 uppercase text-lg">
+                  Chưa Đăng Nhập
+                </p>
+              </Link>
+            )}
           </div>
         </div>
       </div>

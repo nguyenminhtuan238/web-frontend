@@ -20,13 +20,12 @@ function UpdateBlog() {
     setSelectedFile(event.target.files[0]);
   };
   useEffect(() => {
-    if(!admin.admin){
-      naviagate("/admin/login")
+    if (!admin.admin) {
+      naviagate('/admin/login');
     }
-  }, [admin,naviagate]);
+  }, [admin, naviagate]);
   useEffect(() => {
     async function getArt() {
-     
       try {
         const res = await dispatch(getidArt(getid.id));
         const Art = unwrapResult(res);
@@ -38,7 +37,7 @@ function UpdateBlog() {
       }
     }
     getArt();
-  }, [dispatch, getid.id,naviagate]);
+  }, [dispatch, getid.id, naviagate]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(selectedFile);
@@ -72,7 +71,9 @@ function UpdateBlog() {
         >
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full px-3 mb-6 md:mb-0">
-            <h1 className="uppercase mb-8 font-bold text-center">Cập nhật Viết Mới</h1>
+              <h1 className="uppercase mb-8 font-bold text-center">
+                Cập nhật Viết Mới
+              </h1>
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 htmlFor="title"
