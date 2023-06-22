@@ -15,6 +15,7 @@ function PaymentPage() {
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
+  const [loading, setloading] = useState(true);
   const User = useSelector((state) => state.User);
   const get = useSelector((state) => state.cart);
   const [payment, setpayment] = useState('checkmo');
@@ -31,6 +32,7 @@ function PaymentPage() {
     // console.log(payment)
     try {
       if (selectedOption === 'existing-information') {
+        setloading(false)
         const data = {
           firstname: User.User.firstname,
           lastname: User.User.lastname,
@@ -57,12 +59,14 @@ function PaymentPage() {
         if (kq) {
           const res = await dispatch(Checkout({ method: payment }));
           const check = unwrapResult(res);
-          enqueueSnackbar('Thanh Toán Thành Công', {
-            variant: 'success',
-            autoHideDuration: 1200,
-            anchorOrigin: { vertical: 'top', horizontal: 'right' },
-          });
-          navigate('/');
+            enqueueSnackbar('Thanh Toán Thành Công', {
+              variant: 'success',
+              autoHideDuration: 1200,
+              anchorOrigin: { vertical: 'top', horizontal: 'right' },
+            });
+            navigate('/');
+          
+        
           return check;
         }
       }
@@ -174,17 +178,24 @@ function PaymentPage() {
               </div>
               <div className="mx-auto flex justify-center">
                 <button
-                  className="w-1/2  px-4 py-2 mb-8 mr-4 font-bold text-white bg-gray-700 rounded hover:bg-gray-900 focus:outline-none focus:shadow-outline"
+                  className="w-1/2  px-4 py-2 mb-8 mr-4 font-bold  text-white bg-gray-700 rounded hover:bg-gray-900 focus:outline-none focus:shadow-outline"
                   type="submit"
                 >
                   Hủy
                 </button>
-                <button
-                  className="w-1/2  px-4 py-2 mb-8 font-bold text-white bg-blue-700 rounded hover:bg-blue-900 focus:outline-none focus:shadow-outline"
-                  type="submit"
+              {
+                loading? <button
+                
+                  className="w-1/2  px-4 py-2 mb-8 font-bold cursor-pointer text-white bg-blue-700 rounded hover:bg-blue-900 focus:outline-none focus:shadow-outline"
+                >
+                  Thanh Toán
+                </button>:  <button
+                disabled
+                  className="w-1/2  px-4 py-2 mb-8 font-bold cursor-pointer text-white bg-gray-700 rounded hover:bg-blue-900 focus:outline-none focus:shadow-outline"
                 >
                   Thanh Toán
                 </button>
+              }
               </div>
             </form>
           </div>

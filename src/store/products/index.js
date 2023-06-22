@@ -19,6 +19,7 @@ export const getid = createAsyncThunk('get/product/id', async (id) => {
 });
 export const search = createAsyncThunk('get/search/id', async (values) => {
   try {
+    
     const res = await ProductsAPI.search(values);
     return res.product?.items ? res.product?.items : [];
   } catch (error) {
@@ -99,6 +100,7 @@ const product = createSlice({
       state.getpage = 1;
     },
     [getid.fulfilled]: (state, action) => {
+      console.log(action.payload)
       state.loadingid = false;
       state.isloading = true;
       state.Product = action.payload;

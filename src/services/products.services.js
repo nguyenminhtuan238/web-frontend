@@ -9,7 +9,7 @@ const ProductsAPI = {
     return ApiServices.get(url);
   },
   getid(id) {
-    const url = `product/${id}`;
+    const url = `product/detail/${id}`;
     return ApiServices.get(url);
   },
   search(values) {

@@ -144,11 +144,11 @@ function SortBy() {
                         {/* Hiển thị ảnh sản phẩm */}
                         <div className="flex justify-center items-center md:h-auto bg-white ">
                           <img
-                            src={
+                            src={product.custom_attributes?
                               img +
                               product.custom_attributes.find((a) => {
                                 return a.attribute_code === 'image';
-                              }).value
+                              }).value:""
                             }
                             alt={product.name}
                             className="object-contain max-w-full h-[120px] rounded-lg"
