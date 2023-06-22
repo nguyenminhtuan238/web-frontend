@@ -18,11 +18,7 @@ import Post from './components/post';
 import PaymentPage from './components/cart/payment';
 import SortBy from './components/cart/sort_by';
 import Hoadon from './components/hoadon';
-<<<<<<< HEAD
-import Chitiethd from './components/chitiethd';
 import IOT from './components/admin/iot';
-=======
->>>>>>> 956da3470ad42de3a2d6da512d13ca5dff085bb1
 function App() {
   return (
     <div className="App">
@@ -60,12 +56,9 @@ function App() {
             <Route path="/update" element={<UpdateBlog />}></Route>
             <Route path="/admin/login" element={<LoginAdminComponet />}></Route>
             <Route path="/update/:id" element={<UpdateBlog />}></Route>
-<<<<<<< HEAD
             <Route path="/payment" element={<PaymentPage />}></Route>
             <Route path="/sortby" element={<SortBy />}></Route>
             <Route path="/iot/control" element={<IOT />}></Route>
-=======
->>>>>>> 956da3470ad42de3a2d6da512d13ca5dff085bb1
           </Routes>
         </BrowserRouter>
       </SnackbarProvider>

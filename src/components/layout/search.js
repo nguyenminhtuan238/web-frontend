@@ -18,11 +18,11 @@ const Search = () => {
         const searchs = await unwrapResult(res);
         sets(searchs);
         setloading(false);
-        console.log(values);
       } catch (error) {
+        console.log(error)
         if (error) {
           sets([]);
-          setvalues('');
+          
         }
       }
     }

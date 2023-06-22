@@ -22,7 +22,7 @@ function Post() {
             <Link to={'../baiviet/' + post.blog_id}>
               <div key={post.blog_id}>
                 <img
-                  className="mb-2 object-fill h-[200px] w-[400px]"
+                  className="mb-2 object-con h-[200px] w-[400px]"
                   src={
                     'http://192.168.1.9/magento2/pub/media/catalog/blog/' +
                     post.img
