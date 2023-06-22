@@ -28,9 +28,6 @@ function Baiviet() {
             alt="Ảnh minh họa"
           />
           <p className="text-sm leading-relaxed mb-4">{Arts.Art[0].content}</p>
-          <Link href="#" className="text-blue-500 hover:underline">
-            Đọc tiếp
-          </Link>
         </div>
       )}
     </div>
