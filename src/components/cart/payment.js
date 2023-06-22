@@ -391,12 +391,19 @@ function PaymentPage() {
                 >
                   Hủy
                 </button>
-                <button
-                  className="w-1/2  px-4 py-2 mb-8 font-bold text-white bg-blue-700 rounded hover:bg-blue-900 focus:outline-none focus:shadow-outline"
-                  type="submit"
+                {
+                loading? <button
+                
+                  className="w-1/2  px-4 py-2 mb-8 font-bold cursor-pointer text-white bg-blue-700 rounded hover:bg-blue-900 focus:outline-none focus:shadow-outline"
+                >
+                  Thanh Toán
+                </button>:  <button
+                disabled
+                  className="w-1/2  px-4 py-2 mb-8 font-bold cursor-pointer text-white bg-gray-700 rounded hover:bg-blue-900 focus:outline-none focus:shadow-outline"
                 >
                   Thanh Toán
                 </button>
+              }
               </div>
             </form>
           </div>
