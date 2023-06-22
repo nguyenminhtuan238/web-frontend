@@ -126,7 +126,16 @@ function Hoadon() {
                         })}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
-                        {order.updated_at}
+                        {new Date(new Date(order.updated_at).getTime() + 7 * 60 * 60 * 1000)
+                          .toLocaleString('vi-VN', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric',
+                            hour12: false,
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            second: '2-digit',
+                        })}
                       </td>
 
                       <td
