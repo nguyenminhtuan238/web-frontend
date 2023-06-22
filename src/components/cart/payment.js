@@ -149,7 +149,7 @@ function PaymentPage() {
                     checked={payment === 'checkmo'}
                     onChange={(e) => setpayment(e.target.value)}
                   />
-                  <span className="ml-2">checkmo</span>
+                  <span className="ml-2">Thanh toán bằng tiền mặt</span>
                 </label>
                 <label className="block ml-2">
                   <input
@@ -159,7 +159,7 @@ function PaymentPage() {
                     checked={payment === 'purchaseorder'}
                     onChange={(e) => setpayment(e.target.value)}
                   />
-                  <span className="ml-2">purchaseorder</span>
+                  <span className="ml-2">Chuyển khoản ngân hàng</span>
                 </label>
                 <label className="block ml-2">
                   <input
@@ -169,7 +169,7 @@ function PaymentPage() {
                     checked={payment === 'free'}
                     onChange={(e) => setpayment(e.target.value)}
                   />
-                  <span className="ml-2">free</span>
+                  <span className="ml-2">Ví điện tử</span>
                 </label>
               </div>
               <div className="mx-auto flex justify-center">

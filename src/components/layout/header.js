@@ -25,10 +25,16 @@ function Header() {
       dispatch(getcart());
     }
   }, [dispatch, User.User]);
+
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
   return (
     <div className={hidden.changscroll ? ' hidden' : 'w-full sticky top-0 '}>
       <header>
-        <nav className="bg-black border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 z-50">
+        <nav className="bg-black border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 z-50 relative">
           <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <Link
               to="/"
@@ -54,23 +60,82 @@ function Header() {
                 </button>
               )}
               {User.User && (
-                <Link
-                  className="text-white dark:text-white cursor-pointer hover:bg-sky-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-                  to="/thongtin"
-                >
-                  {JSON.parse(localStorage.getItem(Userkey)).firstname +
-                    ' ' +
-                    JSON.parse(localStorage.getItem(Userkey)).lastname}
-                </Link>
+                <div className="absolute">
+                  <button
+                    id="dropdownDefaultButton"
+                    data-dropdown-toggle="dropdown"
+                    className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    type="button"
+                    onClick={toggleDropdown}
+                  >
+                    {JSON.parse(localStorage.getItem(Userkey)).firstname +
+                      ' ' +
+                      JSON.parse(localStorage.getItem(Userkey)).lastname}
+                    <svg
+                      className="w-4 h-4 ml-2"
+                      aria-hidden="true"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                      ></path>
+                    </svg>
+                  </button>
+                  <div
+                    id="dropdown"
+                    className={`z-50 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 ${
+                      dropdownVisible ? '' : 'hidden'
+                    }`}
+                  >
+                    <ul
+                      className="py-2 text-sm text-gray-700 dark:text-gray-200 absolute bg-white rounded-2xl mt-2 "
+                      aria-labelledby="dropdownDefaultButton"
+                    >
+                      <li>
+                        <Link
+                          to="/thongtin"
+                          className="block px-4 py-2 hover:bg-gray-100 hover:rounded-xl dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                          Thông Tin Tài Khoản
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/hoadon"
+                          className="block px-4 py-2 hover:bg-gray-100 hover:rounded-xl dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                          Thông Tin Đơn Hàng
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="#"
+                          className="block px-4 py-2 hover:bg-gray-100 hover:rounded-xl dark:hover:bg-gray-600 dark:hover:text-white"
+                          onClick={() => logout()}
+                        >
+                          Đăng Xuất
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               )}
-              {User.User && (
-                <button
-                  className="text-white dark:text-white cursor-pointer hover:bg-sky-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-                  onClick={() => logout()}
-                >
-                  Đăng Xuất
-                </button>
-              )}
+              <div>
+                {User.User && (
+                  <button
+                    className=" z-10 mr-8 text-white dark:text-white cursor-pointer hover:bg-sky-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                    onClick={() => logout()}
+                  >
+                    Đăng
+                  </button>
+                )}
+              </div>
 
               <div>
                 <Link

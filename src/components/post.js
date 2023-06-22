@@ -22,7 +22,7 @@ function Post() {
             <Link to={'../baiviet/' + post.blog_id}>
               <div key={post.blog_id}>
                 <img
-                  className="mb-2 object-fill h-[200px] w-[400px]"
+                  className="mb-2 object-con h-[200px] w-[400px]"
                   src={
                     'http://192.168.1.9/magento2/pub/media/catalog/blog/' +
                     post.img
@@ -30,18 +30,14 @@ function Post() {
                   alt="Ảnh minh họa"
                 />
                 <p className="mx-5 text-gray-700 text-sm">
-                {new Date(post.created_at).toLocaleDateString(
-                                'vi-VN',
-                                {
-                                  day: '2-digit',
-                                  month: '2-digit',
-                                  year: 'numeric',
-                                  hour: '2-digit',
-                                  minute: '2-digit',
-                                  second: '2-digit',
-                                }
-                              )}
-
+                  {new Date(post.created_at).toLocaleDateString('vi-VN', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                  })}
                 </p>
                 <p className="mx-5 text-base font-medium line-clamp-2">
                   {post.content}

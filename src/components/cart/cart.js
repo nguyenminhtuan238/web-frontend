@@ -228,7 +228,7 @@ const CartPage = () => {
                 {get.isloading
                   ? 0
                   : get.cart
-                      .reduce((a, b) => a + (b.price*b.qty), 0)
+                      .reduce((a, b) => a + b.price * b.qty, 0)
                       .toLocaleString('vi-VN', {
                         style: 'currency',
                         currency: 'VND',
@@ -247,7 +247,7 @@ const CartPage = () => {
                 {get.isloading
                   ? 0
                   : get.cart
-                      .reduce((a, b) => a + (b.price*b.qty), 0)
+                      .reduce((a, b) => a + b.price * b.qty, 0)
                       .toLocaleString('vi-VN', {
                         style: 'currency',
                         currency: 'VND',

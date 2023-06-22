@@ -18,6 +18,7 @@ import Post from './components/post';
 import PaymentPage from './components/cart/payment';
 import SortBy from './components/cart/sort_by';
 import Hoadon from './components/hoadon';
+import IOT from './components/admin/iot';
 function App() {
   return (
     <div className="App">
@@ -55,6 +56,9 @@ function App() {
             <Route path="/update" element={<UpdateBlog />}></Route>
             <Route path="/admin/login" element={<LoginAdminComponet />}></Route>
             <Route path="/update/:id" element={<UpdateBlog />}></Route>
+            <Route path="/payment" element={<PaymentPage />}></Route>
+            <Route path="/sortby" element={<SortBy />}></Route>
+            <Route path="/iot/control" element={<IOT />}></Route>
           </Routes>
         </BrowserRouter>
       </SnackbarProvider>

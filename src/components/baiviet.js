@@ -19,18 +19,14 @@ function Baiviet() {
             {Arts.Art[0].title}
           </h1>
           <p className="text-gray-700 text-sm mb-4">
-            {new Date(Arts.Art[0].created_at).toLocaleDateString(
-                                'vi-VN',
-                                {
-                                  day: '2-digit',
-                                  month: '2-digit',
-                                  year: 'numeric',
-                                  hour: '2-digit',
-                                  minute: '2-digit',
-                                  second: '2-digit',
-                                }
-                              )}
-
+            {new Date(Arts.Art[0].created_at).toLocaleDateString('vi-VN', {
+              day: '2-digit',
+              month: '2-digit',
+              year: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+            })}
           </p>
           <img
             className="mb-4 object-fill h-[350px] w-[694px]"

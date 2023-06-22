@@ -123,10 +123,9 @@ const cart = createSlice({
       state.err = null;
     });
     builercart.addCase(updatecart.fulfilled, (state, action) => {
-        state.cart = action.payload;
-        state.isloading = false;
-        state.err = null;
-
+      state.cart = action.payload;
+      state.isloading = false;
+      state.err = null;
     });
     builercart.addCase(updatecart.rejected, (state, action) => {
       state.err = action.error;

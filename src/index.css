@@ -21,3 +21,29 @@ code {
   align-items: center;
   height: 100vh;
 }
+
+td {
+  font-weight: bold;
+  text-align: center;
+  padding: 6px 12px;
+}
+
+td.pending {
+  background-color: #ff0000; /* Đỏ */
+  color: #ffffff; /* Trắng */
+}
+
+td.confirmed {
+  background-color: #008000; /* Xanh */
+  color: #ffffff; /* Trắng */
+}
+
+td.shipped {
+  background-color: #0000ff; /* Xanh dương */
+  color: #ffffff; /* Trắng */
+}
+
+td.delivered {
+  background-color: #000000; /* Đen */
+  color: #ffffff; /* Trắng */
+}
