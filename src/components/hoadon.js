@@ -87,7 +87,7 @@ function Hoadon() {
                       onClick={() => handleRowClick(index)}
                     >
                       <td className="whitespace-nowrap px-6 py-4 font-medium">
-                        {order.entity_id}
+                        {order.entity_id-4}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
                         {order.customer_firstname} {order.customer_lastname}

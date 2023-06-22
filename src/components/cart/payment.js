@@ -213,7 +213,6 @@ function PaymentPage() {
                 onChange={(event) => setFirstname(event.target.value)}
                 required
                 title="Vui lòng nhập họ của bạn"
-                pattern="([a-zA-Z]+\s)*[a-zA-Z]+"
               />
 
               <label
@@ -231,7 +230,6 @@ function PaymentPage() {
                 onChange={(event) => setLastname(event.target.value)}
                 required
                 title="Vui lòng nhập tên của bạn"
-                pattern="([a-zA-Z]+\s)*[a-zA-Z]+"
               />
 
               <label

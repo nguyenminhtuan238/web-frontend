@@ -36,7 +36,10 @@ function Baiviet() {
             }
             alt="Ảnh minh họa"
           />
-          <p className="text-sm leading-relaxed mb-4">{Arts.Art[0].content}</p>
+          {/* <span className="text-sm leading-relaxed mb-4">{Arts.Art[0].content}</span> */}
+          {Arts.Art.map((art) => (
+            <span className="text-sm leading-relaxed mb-4">{art.content}</span>
+          ))}
         </div>
       )}
     </div>

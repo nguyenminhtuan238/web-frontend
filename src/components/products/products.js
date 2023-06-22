@@ -84,7 +84,6 @@ const ProductsPage = () => {
                         />
                       </div>
                     </div>
-                    <hr className="border-gray-200"></hr>
 
                     {/* Hiển thị tên sản phẩm */}
                     <div
@@ -111,9 +110,9 @@ const ProductsPage = () => {
                     </Link>
                   </div>
                   <div className="rounded-full bg-red-400 ml-2 mr-2 mb-2 flex items-center justify-center">
-                    <span className=" text-white">
-                      {product.qty} sản phẩm có sẵn
-                    </span>
+                  <span className="text-white">
+                    {product.qty === 0 ? "Hết hàng" : `${product.qty} sản phẩm có sẵn`}
+                  </span>
                   </div>
                 </div>
               </div>
