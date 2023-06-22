@@ -18,11 +18,10 @@ function Header() {
   const dispatch = useDispatch();
   const logout = () => {
     dispatch(Logout());
+    dispatch(getcart());
   };
   useEffect(() => {
     if (User.User) {
-      dispatch(getcart());
-    } else {
       dispatch(getcart());
     }
   }, [dispatch, User.User]);
@@ -139,6 +138,15 @@ function Header() {
                     onClick={() => setIsVisible(!isVisible)}
                   >
                     Sản phẩm
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="block cursor-pointer py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
+                    aria-current="page"
+                    to="post"
+                  >
+                    Bài Viết
                   </Link>
                 </li>
               </ul>

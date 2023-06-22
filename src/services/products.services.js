@@ -13,7 +13,7 @@ const ProductsAPI = {
     return ApiServices.get(url);
   },
   search(values) {
-    const url = `product/list/name/${values}`;
+    const url = `product/list/name/?name=${values}`;
     return ApiServices.get(url);
   },
   searchPrice(data) {

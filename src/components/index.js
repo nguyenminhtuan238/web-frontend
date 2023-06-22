@@ -55,7 +55,7 @@ const Home = () => {
                   }
                   onClick={() => setActiveTab('/SP')}
                 >
-                  Product specifications
+                  Sản phẩm
                 </Link>
               </li>
 

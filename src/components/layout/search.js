@@ -1,5 +1,5 @@
 import { setIsSearch } from '../../store/hidden';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { search } from '../../store/products';
 import { useEffect, useState } from 'react';
@@ -18,11 +18,14 @@ const Search = () => {
         const searchs = await unwrapResult(res);
         sets(searchs);
         setloading(false);
+        if(values===""){
+          setloading(true);
+        }
         console.log(values);
       } catch (error) {
+        console.log(error)
         if (error) {
           sets([]);
-          setvalues('');
         }
       }
     }
