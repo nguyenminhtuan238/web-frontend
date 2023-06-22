@@ -138,7 +138,7 @@ function SortBy() {
                   <div className="product-item col-span-1 border-2 rounded-lg">
                     <Link
                       onClick={() => handle()}
-                      to={`chitietsp/${product.sku}`}
+                      to={`../SP/chitietsp/${product.sku}`}
                     >
                       <div className="product-image py-2 px-4 ">
                         {/* Hiển thị ảnh sản phẩm */}

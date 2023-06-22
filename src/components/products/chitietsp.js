@@ -8,6 +8,8 @@ import { getid } from '../../store/products';
 import { useSnackbar } from 'notistack';
 import { addcart } from '../../store/cart';
 import { unwrapResult } from '@reduxjs/toolkit';
+import { Link } from 'react-router-dom';
+
 function Chitiet() {
   const get = useSelector((state) => state.products);
   const [count, setCount] = useState(1);
@@ -52,6 +54,7 @@ function Chitiet() {
     getpdbyid();
   }, [dispatch, pdid]);
 
+  
   return (
     <div>
       {get.loadingid ? (
@@ -112,12 +115,22 @@ function Chitiet() {
               <button
                 className="bg-gray-300 text-green-700 px-4 py-2 rounded-md"
                 onClick={handlecart}
+                // onClick={() => handlecart(product.sku)}
+
               >
                 Thêm vào giỏ hàng
               </button>
-              <button className="ml-2 mb-2 bg-red-500 text-white px-4 py-2 rounded-md">
-                Đặt mua ngay
-              </button>
+              <Link to="/cart">
+                <button 
+                  className="ml-2 mb-2 bg-red-500 text-white px-4 py-2 rounded-md"
+                  onClick={handlecart}
+                  // onClick={() => handlecart(product.sku)}
+
+                >
+                  Đặt mua ngay
+                </button>
+              </Link>
+              
               <hr></hr>
               <p className="font-medium">Mô tả chi tiết sản phẩm</p>
             </div>

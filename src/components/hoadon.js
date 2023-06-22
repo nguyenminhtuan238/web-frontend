@@ -15,8 +15,7 @@ function Hoadon() {
     }
   }, [user.User, navigate]);
   useEffect(() => {
-    dispatch(GetOrder());
-    console.log(get);
+    dispatch(GetOrder());   
   }, [dispatch, get]);
 
   const handleRowClick = (index) => {
