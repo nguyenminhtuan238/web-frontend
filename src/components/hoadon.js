@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { GetOrder } from '../store/order';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import '../index.css'
+import '../index.css';
 function Hoadon() {
   const [selectedRowIndex, setSelectedRowIndex] = useState(null);
   const get = useSelector((state) => state.order);
@@ -93,7 +93,8 @@ function Hoadon() {
                         {order.customer_firstname} {order.customer_lastname}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
-                        {order.billing_address.street} , {order.billing_address.city}
+                        {order.billing_address.street} ,{' '}
+                        {order.billing_address.city}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
                         {order.billing_address.postcode}
@@ -127,16 +128,20 @@ function Hoadon() {
                       <td className="whitespace-nowrap px-6 py-4">
                         {order.updated_at}
                       </td>
-                      
-                      <td className={`whitespace-nowrap px-6 py-4 ${order.status}`}>
-                      {
-                          order.status === "pending" ? "Chờ xử lý" :
-                          order.status === "confirmed" ? "Đã xác nhận" :
-                          order.status === "shipped" ? "Đang vận chuyển" :
-                          order.status === "delivered" ? "Đã giao hàng" :
-                          order.status
-                        }
-</td>
+
+                      <td
+                        className={`whitespace-nowrap px-6 py-4 ${order.status}`}
+                      >
+                        {order.status === 'pending'
+                          ? 'Chờ xử lý'
+                          : order.status === 'confirmed'
+                          ? 'Đã xác nhận'
+                          : order.status === 'shipped'
+                          ? 'Đang vận chuyển'
+                          : order.status === 'delivered'
+                          ? 'Đã giao hàng'
+                          : order.status}
+                      </td>
                     </tr>
                   ))}
                 </tbody>

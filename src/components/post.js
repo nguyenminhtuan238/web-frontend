@@ -30,7 +30,14 @@ function Post() {
                   alt="Ảnh minh họa"
                 />
                 <p className="mx-5 text-gray-700 text-sm">
-                  {new Date(post.created_at).getDay()}
+                  {new Date(post.created_at).toLocaleDateString('vi-VN', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                  })}
                 </p>
                 <p className="mx-5 text-base font-medium line-clamp-2">
                   {post.content}

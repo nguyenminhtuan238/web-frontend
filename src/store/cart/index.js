@@ -117,6 +117,11 @@ const cart = createSlice({
       state.isloading = false;
       state.err = action.error;
     });
+    builercart.addCase(updatecart.pending, (state, action) => {
+      state.cart.length = 1;
+      state.isloading = true;
+      state.err = null;
+    });
     builercart.addCase(updatecart.fulfilled, (state, action) => {
       state.cart = action.payload;
       state.isloading = false;
