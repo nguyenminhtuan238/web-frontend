@@ -71,14 +71,15 @@ function PaymentPage() {
         }
       }
       if (selectedOption === 'new-information') {
+        setloading(false)
         const data = {
-          firstname,
-          lastname,
-          countryId,
-          street,
-          city,
-          telephone,
-          postcode,
+         firstname: firstname,
+          lastname: lastname,
+          countryId: countryId,
+          street: street,
+          city: city,
+          telephone: telephone,
+          postcode: postcode,
           email: User.User.email,
         };
         await dispatch(CartAddress(data));

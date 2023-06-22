@@ -97,7 +97,7 @@ function Hoadon() {
                         {order.billing_address.city}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
-                        {order.billing_address.postcode}
+                        {order.billing_address.telephone}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
                         {order.items.map((item) => (
