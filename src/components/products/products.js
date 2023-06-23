@@ -80,7 +80,7 @@ const ProductsPage = () => {
                             }).value
                           }
                           alt={product.name}
-                          className="object-contain max-w-full h-[120px] rounded-lg"
+                          className="object-cover max-w-full h-[120px] rounded-lg"
                         />
                       </div>
                     </div>

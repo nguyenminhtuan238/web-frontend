@@ -29,7 +29,7 @@ function Baiviet() {
             })}
           </p>
           <img
-            className="mb-4 object-fill h-[350px] w-[694px]"
+            className="mb-4 object-cover h-[350px] w-[694px]"
             src={
               'http://192.168.1.9/magento2/pub/media/catalog/blog/' +
               Arts.Art[0].img
@@ -37,8 +37,14 @@ function Baiviet() {
             alt="Ảnh minh họa"
           />
           {/* <span className="text-sm leading-relaxed mb-4">{Arts.Art[0].content}</span> */}
-          {Arts.Art.map((art) => (
-            <span className="text-sm leading-relaxed mb-4">{art.content}</span>
+          {Arts.Art.map((art, index) => (
+            <div key={index} className="mb-4">
+              {art.content.split('\n').map((paragraph, i) => (
+                <p key={i} className="text-sm leading-relaxed">
+                  <span className="first-line:text-indent-2 ml-5 ">{paragraph}</span>
+                </p>
+              ))}
+            </div>
           ))}
         </div>
       )}
