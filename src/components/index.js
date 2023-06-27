@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { setScroll } from '../store/hidden';
 import { Outlet } from 'react-router-dom';
 //import { defaultimg } from '../unilt/key';
-import '../index.css'
 const Home = () => {
   const myElementRef = useRef(null);
   const dispatch = useDispatch();

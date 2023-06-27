@@ -9,7 +9,6 @@ import { setloading } from '../../store/products';
 import Directory from './Directory';
 import Badge from '@mui/material/Badge';
 import { getcart } from '../../store/cart';
-import '../../index.css'
 function Header() {
   const [isVisible, setIsVisible] = useState(false);
   const hidden = useSelector((state) => state.hidden);
