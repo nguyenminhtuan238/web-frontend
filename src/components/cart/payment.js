@@ -248,7 +248,7 @@ function PaymentPage() {
                 className=" block mb-2 font-bold text-gray-700"
                 htmlFor="street"
               >
-                Địa chỉ nhà:
+                Đường:
               </label>
               <input
                 className="w-full block px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"

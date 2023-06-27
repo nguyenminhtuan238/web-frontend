@@ -133,6 +133,7 @@ function Chitiet() {
               
               <hr></hr>
               <p className="font-medium">Mô tả chi tiết sản phẩm</p>
+              <p>{get.Product.custom_attributes[0].value}</p>
             </div>
           </div>
         </section>

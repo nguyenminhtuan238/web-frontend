@@ -89,12 +89,12 @@ function Header() {
                   </button>
                   <div
                     id="dropdown"
-                    className={`z-50 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 ${
+                    className={`z-50 bg-white divide-y divide-gray-100 rounded-lg w-44 dark:bg-gray-700 ${
                       dropdownVisible ? '' : 'hidden'
                     }`}
                   >
                     <ul
-                      className="py-2 text-sm text-gray-700 dark:text-gray-200 absolute bg-white rounded-2xl mt-2 "
+                      className="py-2 text-sm text-gray-700 dark:text-gray-200 absolute bg-white shadow-xl rounded-2xl mt-2 "
                       aria-labelledby="dropdownDefaultButton"
                     >
                       <li>

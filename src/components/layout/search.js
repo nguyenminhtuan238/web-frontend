@@ -31,7 +31,7 @@ const Search = () => {
     setsearch();
   }, [dispatch, values]);
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col justify-center   py-12 sm:px-6 lg:px-8 fixed inset-0  bg-opacity-30 backdrop-blur-sm z-50  ">
+    <div className="min-h-screen bg-gray-100 flex flex-col justify-center   py-12 sm:px-6 lg:px-8 fixed inset-0  bg-opacity-30 backdrop-blur-sm z-50  " >
       <div
         className=" w-[640px] bg-gray-100  animate-slideRight min-h-screen ml-auto  absolute top-0 right-0 z-50 shadow-lg "
         style={{ boxShadow: '0 0 1000px rgba(0, 0, 0,0.5)' }}
@@ -41,7 +41,13 @@ const Search = () => {
             onClick={() => dispatch(setIsSearch())}
             className="cursor-pointer"
           >
-            close
+            <button
+            className=" hover:bg-gray-300 text-black font-bold py-2 px-4 rounded"
+            type="submit"
+          >
+            CLOSE
+          </button>
+            
           </Link>
         </div>
         <div className=" absolute mx-auto text-gray-600 top-[80px] right-[50px] w-[550px]">

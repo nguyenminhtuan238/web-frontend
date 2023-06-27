@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setScroll } from '../store/hidden';
 import { Outlet } from 'react-router-dom';
-import { defaultimg } from '../unilt/key';
+//import { defaultimg } from '../unilt/key';
 const Home = () => {
   const myElementRef = useRef(null);
   const dispatch = useDispatch();
   const hidden = useSelector((state) => state.hidden);
-  const [activeTab, setActiveTab] = useState(window.location.pathname);
+  const [activeTab, setActiveTab] = useState("/SP");
   useEffect(() => {
     window.addEventListener('scroll', () => {
       var crollw = window.scrollY;
@@ -17,6 +17,9 @@ const Home = () => {
           dispatch(setScroll(true));
         } else {
           dispatch(setScroll(false));
+          <video src="">
+
+          </video>
         }
       }
     });
@@ -26,13 +29,17 @@ const Home = () => {
   };
   return (
     <div>
-      <img
-        src={defaultimg}
-        alt="Lỗi hình"
-        ref={myElementRef}
-        id="Scroll"
-        onClick={handle}
+      
+        <video 
+        src={require("./video/media2.mp4")} autoPlay loop muted
+        className="object-fill min-w-full h-[550px] rounded-lg"
+          ref={myElementRef}
+          id="Scroll"
+          onClick={handle}
       />
+          
+     
+      
       <header
         className={`w-full ${
           hidden.changscroll ? 'sticky top-0' : ''
