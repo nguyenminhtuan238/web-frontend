@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 import { setScroll } from '../store/hidden';
 import { Outlet } from 'react-router-dom';
 //import { defaultimg } from '../unilt/key';
+import '../index.css'
 const Home = () => {
   const myElementRef = useRef(null);
   const dispatch = useDispatch();
   const hidden = useSelector((state) => state.hidden);
-  const [activeTab, setActiveTab] = useState("/SP");
+  const [activeTab, setActiveTab] = useState(window.location.pathname);
   useEffect(() => {
     window.addEventListener('scroll', () => {
       var crollw = window.scrollY;
@@ -28,23 +29,22 @@ const Home = () => {
     console.log(window.location.pathname);
   };
   return (
-    <div>
+    <div className="z-10">
       
         <video 
         src={require("./video/media2.mp4")} autoPlay loop muted
-        className="object-fill min-w-full h-[550px] rounded-lg"
+        className="object-fill w-screen h-[550px] "
           ref={myElementRef}
           id="Scroll"
           onClick={handle}
       />
-          
-     
       
       <header
         className={`w-full ${
           hidden.changscroll ? 'sticky top-0' : ''
-        }  sm:hidden lg:block bg-white `}
+        }  sm:hidden lg:block bg-white`}
       >
+        
         <nav className="flex  flex-wrap items-center p-5 justify-between mx-auto   max-w-screen-xl  ">
           <div>
             <ul className="list-none p-2 m-0 flex overflow-x-auto flex justify-between">
