@@ -8,6 +8,7 @@ import { getid } from '../../store/products';
 import { useSnackbar } from 'notistack';
 import { addcart } from '../../store/cart';
 import { unwrapResult } from '@reduxjs/toolkit';
+import CheckIcon from '@mui/icons-material/Check';
 
 function Chitiet() {
   const get = useSelector((state) => state.products);
@@ -100,13 +101,13 @@ function Chitiet() {
                                 </p>
                                 <hr></hr>
                                 <div className="mt-8 bg-red-50 mr-2 p-4 mb-8 rounded-2xl">
-                                  <p className="ml-4">Giao hàng trên toàn quốc</p>
-                                  <p className="mt-4 mb-4 ml-4">Vận chuyển: 24/7</p>
-                                  <p className="ml-4"> Được kiểm tra sản phẩm khi nhận hàng</p>
+                                  <p className="ml-4 mb-4"> <CheckIcon/> Giao hàng trên toàn quốc</p>
+                                  <p className="ml-4"> <CheckIcon/> Vận chuyển: 24/7</p>
+                                  <p className="ml-4 mt-4"> <CheckIcon/> Được kiểm tra khi nhận hàng</p>
                                 </div>
                                 <hr></hr>
                                 
-                                <div className="py-5 ml-4 flex items-center">
+                                <div className="py-5 ml-4 mt-2 flex items-center">
                                   <p>Số lượng:</p>
                                   <button
                                     className="px-2 py-1 ml-4 bg-gray-200 rounded-l increment"
