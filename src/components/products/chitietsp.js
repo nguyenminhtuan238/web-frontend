@@ -161,12 +161,12 @@ function Chitiet() {
                                 <table className="table-auto mt-4">
                                     <tbody className="flex flex-col">
                                         <tr className="flex flex-row">
-                                            <td className="min-w-[200px] text-left bg-gray-200  border-t border-l  px-4 py-2">Công ty phát hành</td>
+                                            <td className="min-w-[200px] text-left bg-red-50  px-4 py-2">Công ty phát hành</td>
                                             <td className="min-w-full text-left font-light px-4 py-2">Mekong Group</td>
                                         </tr>
                                         <tr className="flex flex-row">
-                                            <td className="min-w-[200px] text-left bg-gray-200  border-l px-4 py-2">Ngày cập nhật </td>
-                                            <td className="min-w-full text-left bg-red-50 font-light px-4 py-2">
+                                            <td className="min-w-[200px] text-left bg-red-50 px-4 py-2">Ngày cập nhật </td>
+                                            <td className="min-w-full text-left bg-gray-50 font-light px-4 py-2">
                                               {new Date(get.Product.updated_at).toLocaleDateString(
                                                 'vi-VN',
                                                 {
@@ -181,26 +181,26 @@ function Chitiet() {
                                             </td>
                                         </tr>
                                         <tr className="flex flex-row">
-                                            <td className="min-w-[200px] text-left bg-gray-200  border-l px-4 py-2">Số lượng</td>
+                                            <td className="min-w-[200px] text-left bg-red-50 px-4 py-2">Số lượng</td>
                                             <td className="min-w-full text-left font-light px-4 py-2">{get.Product.qty} sản phẩm</td>
                                         </tr>
                                         <tr className="flex flex-row">
-                                            <td className="min-w-[200px] text-left bg-gray-200 border-b border-l px-4 py-2">Trọng lượng </td>
-                                            <td className="min-w-full text-left bg-red-50 font-light px-4 py-2 ">{get.Product.weight} kg</td>
+                                            <td className="min-w-[200px] text-left bg-red-50 px-4 py-2">Trọng lượng </td>
+                                            <td className="min-w-full text-left bg-gray-50 font-light px-4 py-2 ">{get.Product.weight} kg</td>
                                         </tr>
                                         <tr className="flex flex-row">
-                                            <td className="min-w-[200px] text-left bg-gray-200 border-b border-l px-4 py-2">Mã sản phẩm </td>
+                                            <td className="min-w-[200px] text-left bg-red-50 px-4 py-2">Mã sản phẩm </td>
                                             <td className="min-w-full text-left font-light px-4 py-2">{get.Product.sku}</td>
                                         </tr>
                                         <tr className="flex flex-row">
-                                            <td className="min-w-[200px] text-left bg-gray-200  border-b border-l px-4 py-2">Nhà cung cấp </td>
-                                            <td className="min-w-full text-left bg-red-50 font-light px-4 py-2">Mekong's subsidiary</td>
+                                            <td className="min-w-[200px] text-left bg-red-50 px-4 py-2">Nhà cung cấp </td>
+                                            <td className="min-w-full text-left bg-gray-50 font-light px-4 py-2">Mekong's subsidiary</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
 
-                            <div class="w-full col-span-3 bg-white p-4">
+                            <div class="w-full col-span-3 bg-white p-4 ml-8">
                                 <h1 className="text-lg">Mô Tả Sản Phẩm</h1>
                                 <p className="ml-2 mt-2">{get.Product.custom_attributes[0].value.replace(/<\/?p>/g, '')}</p>
                             </div>
