@@ -31,7 +31,7 @@ const Home = () => {
     <div className="z-10">
       
         <video 
-        src={require("./video/media2.mp4")} autoPlay loop muted
+        src={require("./video/media2.mp4")} autoPlay loop muted controls
         className="object-fill w-screen h-[550px] "
           ref={myElementRef}
           id="Scroll"
