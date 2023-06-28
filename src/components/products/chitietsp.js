@@ -201,7 +201,7 @@ function Chitiet() {
                                 </table>
                             </div>
 
-                            <div class="w-full col-span-3 bg-white p-4 ml-8">
+                            <div class="w-full col-span-3 bg-white p-4">
                                 <h1 className="text-lg">Mô Tả Sản Phẩm</h1>
                                 <p className="ml-2 mt-2">{get.Product.custom_attributes[0].value.replace(/<\/?p>/g, '')}</p>
                             </div>
