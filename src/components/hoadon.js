@@ -16,7 +16,6 @@ function Hoadon() {
   }, [user.User, navigate]);
   useEffect(() => {
     dispatch(GetOrder());
-    console.log(get);
   }, [dispatch, get]);
 
   const handleRowClick = (index) => {
@@ -38,7 +37,7 @@ function Hoadon() {
                     #
                   </th>
                   <th scope="col" className="px-6 py-4">
-                    Tài khoản
+                    Khách Hàng
                   </th>
                   <th scope="col" className="px-6 py-4">
                     Địa chỉ
@@ -59,7 +58,7 @@ function Hoadon() {
                     Tổng tiền
                   </th>
                   <th scope="col" className="px-6 py-4">
-                    Ngày lập hóa đơn
+                    Ngày đặt hàng
                   </th>
                   <th scope="col" className="px-6 py-4">
                     Trạng thái
@@ -87,17 +86,21 @@ function Hoadon() {
                       onClick={() => handleRowClick(index)}
                     >
                       <td className="whitespace-nowrap px-6 py-4 font-medium">
-                        {order.entity_id}
+                        {order.entity_id - 4}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
-                        {order.customer_firstname} {order.customer_lastname}
+                        {order.billing_address.firstname}{' '}
+                        {order.billing_address.lastname}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
                         {order.billing_address.street} ,{' '}
-                        {order.billing_address.city}
+                        {order.billing_address.city},{' '}
+                        {order.billing_address.country_id === 'VN'
+                          ? 'Việt Nam'
+                          : ''}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
-                        {order.billing_address.postcode}
+                        {order.billing_address.telephone}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
                         {order.items.map((item) => (
@@ -126,7 +129,18 @@ function Hoadon() {
                         })}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
-                        {order.updated_at}
+                        {new Date(
+                          new Date(order.updated_at).getTime() +
+                            7 * 60 * 60 * 1000
+                        ).toLocaleString('vi-VN', {
+                          day: '2-digit',
+                          month: '2-digit',
+                          year: 'numeric',
+                          hour12: false,
+                          hour: '2-digit',
+                          minute: '2-digit',
+                          second: '2-digit',
+                        })}
                       </td>
 
                       <td

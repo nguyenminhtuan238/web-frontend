@@ -17,34 +17,39 @@ function Post() {
       {Arts.isloading ? (
         'lỗi'
       ) : (
-        <div className="grid grid-cols-3 gap-4 ">
-          {Arts.Arts.map((post) => (
-            <Link to={'../baiviet/' + post.blog_id}>
-              <div key={post.blog_id}>
-                <img
-                  className="mb-2 object-con h-[200px] w-[400px]"
-                  src={
-                    'http://192.168.1.9/magento2/pub/media/catalog/blog/' +
-                    post.img
-                  }
-                  alt="Ảnh minh họa"
-                />
-                <p className="mx-5 text-gray-700 text-sm">
-                  {new Date(post.created_at).toLocaleDateString('vi-VN', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit',
-                  })}
-                </p>
-                <p className="mx-5 text-base font-medium line-clamp-2">
-                  {post.content}
-                </p>
-              </div>
-            </Link>
-          ))}
+        <div className="grid grid-cols-3 gap-4">
+          {Arts.Arts.slice()
+            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+            .map((post) => (
+              <Link to={'../baiviet/' + post.blog_id}>
+                <div
+                  key={post.blog_id}
+                  className="border-2 shadow-2xl rounded-xl hover:grayscale"
+                >
+                  <img
+                    className="mb-2 object-cover h-[200px] w-[400px] rounded-t-xl "
+                    src={
+                      'http://192.168.1.9/magento2/pub/media/catalog/blog/' +
+                      post.img
+                    }
+                    alt="Ảnh minh họa"
+                  />
+                  <p className="mx-5 min-h-[50px] text-base font-medium line-clamp-2">
+                    {post.content}
+                  </p>
+                  <p className="mx-5 mb-4 text-gray-700 text-sm text-right">
+                    {new Date(post.created_at).toLocaleDateString('vi-VN', {
+                      day: '2-digit',
+                      month: '2-digit',
+                      year: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit',
+                      second: '2-digit',
+                    })}
+                  </p>
+                </div>
+              </Link>
+            ))}
         </div>
       )}
     </div>

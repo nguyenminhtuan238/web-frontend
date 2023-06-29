@@ -8,21 +8,24 @@ export const getDirectory = createAsyncThunk('get/Directory', async () => {
     console.log(error);
   }
 });
-export const getnameDirectory = createAsyncThunk('get/SearchDirectory', async (id) => {
-  try {
-    const res = await ProductsAPI.searchidDiretory(id);
-    return res.product?.items ? res.product.items : [];
-  } catch (error) {
-    console.log(error);
+export const getnameDirectory = createAsyncThunk(
+  'get/SearchDirectory',
+  async (id) => {
+    try {
+      const res = await ProductsAPI.searchidDiretory(id);
+      return res.product?.items ? res.product.items : [];
+    } catch (error) {
+      console.log(error);
+    }
   }
-});
+);
 
 const product = createSlice({
   name: 'product',
   initialState: {
     isloading: true,
     Product: [],
-    Directory:[],
+    Directory: [],
   },
   reducers: {},
   extraReducers: {
@@ -45,8 +48,7 @@ const product = createSlice({
     [getnameDirectory.rejected]: (state, action) => {
       state.isloading = true;
       state.Product = [];
-    }
-    
+    },
   },
 });
 export default product.reducer;

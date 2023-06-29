@@ -31,9 +31,13 @@ function Header() {
     setDropdownVisible(!dropdownVisible);
   };
   return (
-    <div className={hidden.changscroll ? ' hidden' : 'w-full sticky top-0 '}>
+    <div
+      className={
+        hidden.changscroll ? ' hidden z-50' : 'w-full sticky top-0 z-50'
+      }
+    >
       <header>
-        <nav className="bg-black border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 z-50 relative">
+        <nav className="bg-black border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
           <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <Link
               to="/"
@@ -88,12 +92,12 @@ function Header() {
                   </button>
                   <div
                     id="dropdown"
-                    className={`z-50 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 ${
+                    className={`z-50 bg-white divide-y divide-gray-100 rounded-lg  w-44 dark:bg-gray-700 ${
                       dropdownVisible ? '' : 'hidden'
                     }`}
                   >
                     <ul
-                      className="py-2 text-sm text-gray-700 dark:text-gray-200 absolute bg-white rounded-2xl mt-2 "
+                      className="py-2 text-sm text-gray-700 dark:text-gray-200 absolute shadow-2xl bg-white rounded-2xl mt-2 "
                       aria-labelledby="dropdownDefaultButton"
                     >
                       <li>
@@ -125,17 +129,6 @@ function Header() {
                   </div>
                 </div>
               )}
-              <div>
-                {User.User && (
-                  <button
-                    className=" z-10 mr-8 text-white dark:text-white cursor-pointer hover:bg-sky-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-                    onClick={() => logout()}
-                  >
-                    Đăng
-                  </button>
-                )}
-              </div>
-
               <div>
                 <Link
                   className="block cursor-pointer py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
@@ -199,9 +192,9 @@ function Header() {
                   <Link
                     className="block cursor-pointer py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
                     aria-current="page"
-                    onClick={() =>dispatch(setIsVisible())}
+                    onClick={() => dispatch(setIsVisible())}
                   >
-                    Sản phẩm
+                    Danh Mục
                   </Link>
                 </li>
                 <li>

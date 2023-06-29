@@ -63,7 +63,7 @@ const ProductsPage = () => {
           <div className="product-grid grid grid-cols-1 md:grid-cols-5 gap-4 mt-8 flex">
             {/* Hiển thị danh sách sản phẩm */}
             {get.Product.map((product) => (
-              <div key={product.id}>
+              <div key={product.id} className="hover:shadow-xl">
                 <div className="product-item col-span-1 border-2 rounded-lg">
                   <Link
                     onClick={() => handle()}
@@ -80,11 +80,10 @@ const ProductsPage = () => {
                             }).value
                           }
                           alt={product.name}
-                          className="object-contain max-w-full h-[120px] rounded-lg"
+                          className="object-cover max-w-full h-[120px] rounded-lg"
                         />
                       </div>
                     </div>
-                    <hr className="border-gray-200"></hr>
 
                     {/* Hiển thị tên sản phẩm */}
                     <div
@@ -110,18 +109,17 @@ const ProductsPage = () => {
                       <AddShoppingCartIcon />
                     </Link>
                   </div>
-                  {
-                    product.qty===0?  <div className="rounded-full bg-gray-700 ml-2 mr-2 mb-2 flex items-center justify-center">
-                    <span className=" text-white">
-                       sản phẩm Đã Hết Hàng
-                    </span>
-                    </div>:  <div className="rounded-full bg-red-700 ml-2 mr-2 mb-2 flex items-center justify-center">
-                    <span className=" text-white">
-                      {product.qty} sản phẩm có sẵn
-                    </span>
+                  {product.qty === 0 ? (
+                    <div className="rounded-full bg-gray-700 ml-2 mr-2 mb-2 flex items-center justify-center">
+                      <span className=" text-white">sản phẩm Đã Hết Hàng</span>
                     </div>
-                  }
-                  
+                  ) : (
+                    <div className="rounded-full bg-red-700 ml-2 mr-2 mb-2 flex items-center justify-center">
+                      <span className=" text-white">
+                        {product.qty} sản phẩm có sẵn
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}

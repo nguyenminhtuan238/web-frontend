@@ -32,7 +32,7 @@ function PaymentPage() {
     // console.log(payment)
     try {
       if (selectedOption === 'existing-information') {
-        setloading(false)
+        setloading(false);
         const data = {
           firstname: User.User.firstname,
           lastname: User.User.lastname,
@@ -59,26 +59,26 @@ function PaymentPage() {
         if (kq) {
           const res = await dispatch(Checkout({ method: payment }));
           const check = unwrapResult(res);
-            enqueueSnackbar('Thanh Toán Thành Công', {
-              variant: 'success',
-              autoHideDuration: 1200,
-              anchorOrigin: { vertical: 'top', horizontal: 'right' },
-            });
-            navigate('/');
-          
-        
+          enqueueSnackbar('Thanh Toán Thành Công', {
+            variant: 'success',
+            autoHideDuration: 1200,
+            anchorOrigin: { vertical: 'top', horizontal: 'right' },
+          });
+          navigate('/');
+
           return check;
         }
       }
       if (selectedOption === 'new-information') {
+        setloading(false);
         const data = {
-          firstname,
-          lastname,
-          countryId,
-          street,
-          city,
-          telephone,
-          postcode,
+          firstname: firstname,
+          lastname: lastname,
+          countryId: countryId,
+          street: street,
+          city: city,
+          telephone: telephone,
+          postcode: postcode,
           email: User.User.email,
         };
         await dispatch(CartAddress(data));
@@ -183,19 +183,18 @@ function PaymentPage() {
                 >
                   Hủy
                 </button>
-              {
-                loading? <button
-                
-                  className="w-1/2  px-4 py-2 mb-8 font-bold cursor-pointer text-white bg-blue-700 rounded hover:bg-blue-900 focus:outline-none focus:shadow-outline"
-                >
-                  Thanh Toán
-                </button>:  <button
-                disabled
-                  className="w-1/2  px-4 py-2 mb-8 font-bold cursor-pointer text-white bg-gray-700 rounded hover:bg-blue-900 focus:outline-none focus:shadow-outline"
-                >
-                  Thanh Toán
-                </button>
-              }
+                {loading ? (
+                  <button className="w-1/2  px-4 py-2 mb-8 font-bold cursor-pointer text-white bg-blue-700 rounded hover:bg-blue-900 focus:outline-none focus:shadow-outline">
+                    Thanh Toán
+                  </button>
+                ) : (
+                  <button
+                    disabled
+                    className="w-1/2  px-4 py-2 mb-8 font-bold cursor-pointer text-white bg-gray-700 rounded hover:bg-blue-900 focus:outline-none focus:shadow-outline"
+                  >
+                    Thanh Toán
+                  </button>
+                )}
               </div>
             </form>
           </div>
@@ -224,7 +223,6 @@ function PaymentPage() {
                 onChange={(event) => setFirstname(event.target.value)}
                 required
                 title="Vui lòng nhập họ của bạn"
-                pattern="([a-zA-Z]+\s)*[a-zA-Z]+"
               />
 
               <label
@@ -242,14 +240,13 @@ function PaymentPage() {
                 onChange={(event) => setLastname(event.target.value)}
                 required
                 title="Vui lòng nhập tên của bạn"
-                pattern="([a-zA-Z]+\s)*[a-zA-Z]+"
               />
 
               <label
                 className=" block mb-2 font-bold text-gray-700"
                 htmlFor="street"
               >
-                Địa chỉ nhà:
+                Đường:
               </label>
               <input
                 className="w-full block px-3 py-2 mb-5 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -393,19 +390,18 @@ function PaymentPage() {
                 >
                   Hủy
                 </button>
-                {
-                loading? <button
-                
-                  className="w-1/2  px-4 py-2 mb-8 font-bold cursor-pointer text-white bg-blue-700 rounded hover:bg-blue-900 focus:outline-none focus:shadow-outline"
-                >
-                  Thanh Toán
-                </button>:  <button
-                disabled
-                  className="w-1/2  px-4 py-2 mb-8 font-bold cursor-pointer text-white bg-gray-700 rounded hover:bg-blue-900 focus:outline-none focus:shadow-outline"
-                >
-                  Thanh Toán
-                </button>
-              }
+                {loading ? (
+                  <button className="w-1/2  px-4 py-2 mb-8 font-bold cursor-pointer text-white bg-blue-700 rounded hover:bg-blue-900 focus:outline-none focus:shadow-outline">
+                    Thanh Toán
+                  </button>
+                ) : (
+                  <button
+                    disabled
+                    className="w-1/2  px-4 py-2 mb-8 font-bold cursor-pointer text-white bg-gray-700 rounded hover:bg-blue-900 focus:outline-none focus:shadow-outline"
+                  >
+                    Thanh Toán
+                  </button>
+                )}
               </div>
             </form>
           </div>

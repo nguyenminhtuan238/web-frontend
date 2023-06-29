@@ -6,7 +6,7 @@ const clice = createSlice({
     isSearch: false,
     modal: false,
     changscroll: false,
-    isVisible:false,
+    isVisible: false,
   },
   reducers: {
     setmodal: (state) => {
@@ -23,5 +23,5 @@ const clice = createSlice({
     },
   },
 });
-export const { setIsSearch, setmodal, setScroll,setIsVisible } = clice.actions;
+export const { setIsSearch, setmodal, setScroll, setIsVisible } = clice.actions;
 export default clice.reducer;

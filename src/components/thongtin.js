@@ -2,7 +2,6 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
 import { updateif } from '../store/auth';
 const Thongtin = () => {
   const User = useSelector((state) => state.User);
@@ -100,21 +99,7 @@ const Thongtin = () => {
             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
-        <div>
-          <label
-            className="block text-gray-700 font-bold mb-2"
-            htmlFor="country"
-          >
-            Quốc Gia
-          </label>
-          <input
-            type="text"
-            value={countryId}
-            required
-            onChange={(e) => setcountry_id(e.target.value)}
-            className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </div>
+
         <div>
           <label
             className="block text-gray-700 font-bold mb-2"
@@ -145,18 +130,19 @@ const Thongtin = () => {
         <div>
           <label
             className="block text-gray-700 font-bold mb-2"
-            htmlFor="postcode"
+            htmlFor="country"
           >
-            Mã Bưu điện
+            Quốc Gia
           </label>
           <input
-            type="number"
+            type="text"
+            value={countryId}
             required
-            value={postcode}
-            onChange={(e) => setpostcode(e.target.value)}
+            onChange={(e) => setcountry_id(e.target.value)}
             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
+
         <div>
           <label className="block text-gray-700 font-bold mb-2" htmlFor="phone">
             Số điện thoại:
@@ -171,22 +157,26 @@ const Thongtin = () => {
             placeholder="(123) 456-7890"
           />
         </div>
+
+        <div>
+          <label
+            className="block text-gray-700 font-bold mb-2"
+            htmlFor="postcode"
+          >
+            Mã Bưu điện
+          </label>
+          <input
+            type="number"
+            required
+            value={postcode}
+            onChange={(e) => setpostcode(e.target.value)}
+            className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
         <div className="py-6 w-full flex justify-center   ">
-          <Link
-            to="/"
-            className="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 mr-5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Quản lí IOT
-          </Link>
-          <Link
-            to="/hoadon"
-            className="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 mr-5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Quản lí Hóa Đơn
-          </Link>
           <button
             type="submit"
-            className=" py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="w-full py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Cập Nhật
           </button>

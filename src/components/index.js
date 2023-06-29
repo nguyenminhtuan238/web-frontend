@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setScroll } from '../store/hidden';
 import { Outlet } from 'react-router-dom';
-import { defaultimg } from '../unilt/key';
+//import { defaultimg } from '../unilt/key';
 const Home = () => {
   const myElementRef = useRef(null);
   const dispatch = useDispatch();
@@ -13,30 +13,33 @@ const Home = () => {
     window.addEventListener('scroll', () => {
       var crollw = window.scrollY;
       if (myElementRef.current) {
-        if (crollw > myElementRef.current.offsetHeight) {
+        if (crollw > myElementRef.current.offsetHeight + 20) {
           dispatch(setScroll(true));
+          document.getElementById('Scroll').pause();
         } else {
           dispatch(setScroll(false));
+          document.getElementById('Scroll').play();
         }
       }
     });
   }, [dispatch]);
-  const handle = () => {
-    console.log(window.location.pathname);
-  };
   return (
-    <div>
-      <img
-        src={defaultimg}
-        alt="Lỗi hình"
+    <div className="z-10">
+      <video
+        src={require('./video/media2.mp4')}
+        autoPlay
+        loop
+        muted
+        controls
+        className="object-fill w-screen h-[550px] "
         ref={myElementRef}
         id="Scroll"
-        onClick={handle}
       />
+
       <header
         className={`w-full ${
           hidden.changscroll ? 'sticky top-0' : ''
-        }  sm:hidden lg:block bg-white `}
+        }  sm:hidden lg:block bg-white`}
       >
         <nav className="flex  flex-wrap items-center p-5 justify-between mx-auto   max-w-screen-xl  ">
           <div>

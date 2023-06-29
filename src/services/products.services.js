@@ -24,9 +24,9 @@ const ProductsAPI = {
     const url = `product/price?min=${data.min}&max=${data.max}`;
     return ApiServices.get(url);
   },
-  searchidDiretory(id){
-    const url=`product/search/category_id/${id}`
-    return ApiServices.get(url)
+  searchidDiretory(id) {
+    const url = `product/search/category_id/${id}`;
+    return ApiServices.get(url);
   },
   searchtype(type) {
     if (type) {
