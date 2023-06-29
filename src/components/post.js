@@ -17,12 +17,12 @@ function Post() {
       {Arts.isloading ? (
         'lỗi'
       ) : (
-        <div className="grid grid-cols-3 gap-4 ">
-{Arts.Arts.slice().sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map((post) => (
+        <div className="grid grid-cols-3 gap-4">
+          {Arts.Arts.slice().sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map((post) => (
             <Link to={'../baiviet/' + post.blog_id}>
-              <div key={post.blog_id} className="border-2 shadow-2xl rounded-xl">
+              <div key={post.blog_id} className="border-2 shadow-2xl rounded-xl hover:grayscale">
                 <img
-                  className="mb-2 object-cover h-[200px] w-[400px] rounded-t-xl"
+                  className="mb-2 object-cover h-[200px] w-[400px] rounded-t-xl "
                   src={
                     'http://192.168.1.9/magento2/pub/media/catalog/blog/' +
                     post.img

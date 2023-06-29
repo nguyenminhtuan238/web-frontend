@@ -136,14 +136,14 @@ function Chitiet() {
                       </div>
                       <div className="flex justify-center items-center mt-4">
                         <button
-                          className=" px-4 py-2 rounded-full bg-amber-600 text-white hover:shadow-lg "
+                          className=" px-4 py-2 rounded-full bg-amber-600 hover:text-white text-black hover:shadow-lg text-lg "
                           onClick={handlecart}
                           // onClick={() => handlecart(product.sku)}
                         >
                           Thêm giỏ hàng
                         </button>
                           <button 
-                            className="ml-6 bg-red-500 text-white px-4 py-2 rounded-full hover:shadow-lg "
+                            className="ml-6 bg-red-500 px-4 py-2 rounded-full hover:text-white text-black hover:shadow-lg text-lg"
                             onClick={handlecart}
                             // onClick={() => handlecart(product.sku)}
                           >
