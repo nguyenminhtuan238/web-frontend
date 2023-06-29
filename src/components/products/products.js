@@ -63,7 +63,7 @@ const ProductsPage = () => {
           <div className="product-grid grid grid-cols-1 md:grid-cols-5 gap-4 mt-8 flex">
             {/* Hiển thị danh sách sản phẩm */}
             {get.Product.map((product) => (
-              <div key={product.id}>
+              <div key={product.id} className="hover:shadow-xl">
                 <div className="product-item col-span-1 border-2 rounded-lg">
                   <Link
                     onClick={() => handle()}
