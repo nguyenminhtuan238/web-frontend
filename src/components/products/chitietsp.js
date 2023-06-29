@@ -102,7 +102,7 @@ function Chitiet() {
 
                   <div class="col-span-1 bg-white mt-8 ml-8">
                       <h1 className="text-2xl">{get.Product.name}</h1>
-                      <p className="text-black font-semibold ml-4 mt-8 mb-4 text-3xl">
+                      <p className="text-black font-semibold ml-4 mt-6 mb-6 text-3xl">
                         {get.Product.price.toLocaleString('vi-VN', {
                           style: 'currency',
                           currency: 'VND',
@@ -117,16 +117,16 @@ function Chitiet() {
                       <hr></hr>
                       
                       <div className="py-5 ml-4 mt-2 flex items-center">
-                        <p>Số lượng:</p>
+                        <p className="mr-4">Số lượng:</p>
                         <button
-                          className="px-2 py-1 ml-4 bg-gray-200 rounded-l increment"
+                          className="px-2 py-1 bg-gray-200 rounded-l-full border-r border-white increment pl-4 pr-2 hover:shadow-md"
                           onClick={() => decreaseCount()}
                         >
                           -
                         </button>
-                        <span className="px-2 py-1 bg-gray-200">{count}</span>
+                        <span className="px-2 py-1 bg-gray-200 w-[35px] text-center">{count}</span>
                         <button
-                          className="px-2 py-1 bg-gray-200 rounded-r decrement"
+                          className="px-2 py-1 bg-gray-200 rounded-r-full border-l border-white decrement pr-3 hover:shadow-md"
                           onClick={() => increaseCount()}
                         >
                           +
