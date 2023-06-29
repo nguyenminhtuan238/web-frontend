@@ -9,9 +9,8 @@ import { setloading } from '../../store/products';
 import Directory from './Directory';
 import Badge from '@mui/material/Badge';
 import { getcart } from '../../store/cart';
-
+import { setIsVisible } from '../../store/hidden';
 function Header() {
-  const [isVisible, setIsVisible] = useState(false);
   const hidden = useSelector((state) => state.hidden);
   const User = useSelector((state) => state.User);
   const cart = useSelector((state) => state.cart);
@@ -200,7 +199,7 @@ function Header() {
                   <Link
                     className="block cursor-pointer py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
                     aria-current="page"
-                    onClick={() => setIsVisible(!isVisible)}
+                    onClick={() =>dispatch(setIsVisible())}
                   >
                     Sản phẩm
                   </Link>
@@ -220,7 +219,7 @@ function Header() {
         </nav>
       </header>
 
-      {isVisible && <Directory />}
+      {hidden.isVisible && <Directory />}
     </div>
   );
 }

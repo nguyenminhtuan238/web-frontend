@@ -4,6 +4,10 @@ const ProductsAPI = {
     const url = `product/list?currentPage= ${page}`;
     return ApiServices.get(url);
   },
+  getDirectory() {
+    const url = `category/list`;
+    return ApiServices.get(url);
+  },
   getALL() {
     const url = `product/list1/`;
     return ApiServices.get(url);
@@ -19,6 +23,10 @@ const ProductsAPI = {
   searchPrice(data) {
     const url = `product/price?min=${data.min}&max=${data.max}`;
     return ApiServices.get(url);
+  },
+  searchidDiretory(id){
+    const url=`product/search/category_id/${id}`
+    return ApiServices.get(url)
   },
   searchtype(type) {
     if (type) {

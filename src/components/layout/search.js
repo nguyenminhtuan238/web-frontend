@@ -105,11 +105,13 @@ const Search = () => {
                 'Không thể tìm kiếm'
               ) : (
                 <ul className="list-disc">
+               
                   {gets.map((item) => (
                     <Link
                       to={`SP/chitietsp/${item.sku}`}
                       className="py-4 px-2  text-blue-600 hover:text-black"
                       key={item.id}
+                      onClick={()=>dispatch(setIsSearch())}
                     >
                       {item.name}
                       <hr className="mt-6"></hr>

@@ -110,11 +110,18 @@ const ProductsPage = () => {
                       <AddShoppingCartIcon />
                     </Link>
                   </div>
-                  <div className="rounded-full bg-red-400 ml-2 mr-2 mb-2 flex items-center justify-center">
+                  {
+                    product.qty===0?  <div className="rounded-full bg-gray-700 ml-2 mr-2 mb-2 flex items-center justify-center">
+                    <span className=" text-white">
+                       sản phẩm Đã Hết Hàng
+                    </span>
+                    </div>:  <div className="rounded-full bg-red-700 ml-2 mr-2 mb-2 flex items-center justify-center">
                     <span className=" text-white">
                       {product.qty} sản phẩm có sẵn
                     </span>
-                  </div>
+                    </div>
+                  }
+                  
                 </div>
               </div>
             ))}

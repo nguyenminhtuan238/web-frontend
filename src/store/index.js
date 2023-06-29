@@ -6,6 +6,7 @@ import products from './products';
 import cart from './cart';
 import Art from './Article';
 import order from './order';
+import Directory from './Directory';
 const reducer = combineReducers({
   hidden,
   User,
@@ -13,6 +14,7 @@ const reducer = combineReducers({
   cart,
   Art,
   order,
+  Directory,
 });
 const store = configureStore({
   reducer,
