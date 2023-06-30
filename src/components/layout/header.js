@@ -131,7 +131,7 @@ function Header() {
               )}
               <div className={`${User.User?"ml-[100px]":""}`}>
                 <Link
-                  className="block cursor-pointer py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
+                  className="block cursor-pointer ml-8 py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
                   aria-current="page"
                   onClick={() => dispatch(setIsSearch())}
                 >

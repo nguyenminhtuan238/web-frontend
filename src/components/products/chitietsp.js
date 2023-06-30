@@ -63,9 +63,8 @@ function Chitiet() {
       ) : (
         <div className="bg-gray-100 pt-8 pb-8">
           <div className="w-[1250px] h-[550px] bg-white mx-auto container mb-8">
-            <div class="grid grid-cols-2 gap-3 ">
-
-              <div class="col-span-1 bg-white p-4 ml-8 mr-16 border-r border-gray-200">
+            <div class="grid grid-cols-3 gap-4 ">
+              <div class="col-span-1 bg-white p-4 border-r border-gray-200">
                 <img
                   src={
                     img +
@@ -74,7 +73,7 @@ function Chitiet() {
                     }).value
                   }
                   alt={get.Product.name}
-                  className="w-full h-[440px] object-contain"
+                  className="h-[440px] object-contain"
                 />
                 <div className="flex">
                   <img
@@ -100,7 +99,7 @@ function Chitiet() {
                 </div>
               </div>
 
-              <div class="col-span-1 bg-white mt-8 ml-4 mr-16">
+              <div class="col-span-1 bg-white mt-8 ml-8">
                 <h1 className="text-2xl">{get.Product.name}</h1>
                 <p className="text-black font-semibold ml-4 mt-6 mb-6 text-3xl">
                   {get.Product.price.toLocaleString('vi-VN', {
@@ -145,7 +144,7 @@ function Chitiet() {
                 </div>
                 <div className="flex justify-center items-center mt-4">
                   <button
-                    className=" px-4 py-2 rounded-full bg-amber-600 hover:text-white text-black hover:shadow-lg text-lg "
+                    className=" px-4 py-2 rounded-full bg-amber-500 hover:text-white text-black hover:shadow-lg text-lg "
                     onClick={handlecart}
                     // onClick={() => handlecart(product.sku)}
                   >
@@ -161,13 +160,13 @@ function Chitiet() {
                 </div>
               </div>
 
-              {/* <div class="col-span-1 pl-12 bg-white p-4 flex items-center">
+              <div class="col-span-1 pl-12 bg-white p-4 flex items-center">
                 <img
                   src={require('./mekong.JPG')}
                   alt="ảnh"
                   className="object-fill h-[350px] border-2 shadow-xl "
                 />
-              </div> */}
+              </div>
             </div>
           </div>
 
