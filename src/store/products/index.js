@@ -98,8 +98,12 @@ const product = createSlice({
       state.Product = [];
       state.getpage = 1;
     },
+    [getid.pending]: (state, action) => {
+      state.loadingid = true;
+      state.isloading = false;
+      state.Product = [];
+    },
     [getid.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.loadingid = false;
       state.isloading = true;
       state.Product = action.payload;

@@ -21,13 +21,11 @@ const Directory = () => {
     dispatch(setIsVisible(false));
   };
   return (
-    <div>
+    <div className="">
       {get.isloading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="max-w-screen-2xl absolute  mx-auto px-4 sm:px-6 lg:px-8 border-b-4 border-indigo-500  animate-slideDown z-10 bg-white ">
-            <div className="w-16 h-16 border-4 border-t-4 border-blue-500 rounded-full animate-spin mb-8"></div>
+          <div className="flex justify-center items-center absolute w-full bg-white animate-slideDown ">
+            <div className="w-16 h-16 border-4 border-t-4 border-blue-500 rounded-full animate-spin mb-8 mt-5"></div>
           </div>
-        </div>
       ) : (
         <div className="max-w-screen-2xl absolute  mx-auto px-4 sm:px-6 lg:px-8 border-b-4 border-indigo-500  animate-slideDown z-10 bg-white">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -52,14 +50,15 @@ const Directory = () => {
                 ))}
               </ul>
             </div>
-            <div className="grid grid-cols-4 gap-4 col-span-2 mt-4 mb-4">
-              {get.Product.length === 0 ? (
-                <div className="hover:bg-gray-300 ">
-                  <p className="ml-2 font-semibold">
+            {get.Product.length === 0 ? (
+                <div className="hover:bg-gray-300 grid grid-cols-4 gap-4 col-span-2 mt-4 mb-4 w-full ">
+                  <p className="ml-2 font-semibold ">
                     Không có sản phẩm trong danh mục này
                   </p>
                 </div>
               ) : (
+            <div className="grid grid-cols-4 gap-4 col-span-2 mt-4 mb-4">
+            { 
                 get.Product.map((item) => (
                   <Link
                     to={`SP/chitietsp/${item.sku}`}
@@ -80,8 +79,10 @@ const Directory = () => {
                     </div>
                   </Link>
                 ))
-              )}
+            }
             </div>
+            )}
+
           </div>
         </div>
       )}
