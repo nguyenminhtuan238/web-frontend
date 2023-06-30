@@ -63,7 +63,7 @@ function Header() {
                 </button>
               )}
               {User.User && (
-                <div className="absolute">
+                <div className="absolute ">
                   <button
                     id="dropdownDefaultButton"
                     data-dropdown-toggle="dropdown"
@@ -129,7 +129,7 @@ function Header() {
                   </div>
                 </div>
               )}
-              <div>
+              <div className={`${User.User?"ml-[100px]":""}`}>
                 <Link
                   className="block cursor-pointer py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
                   aria-current="page"
