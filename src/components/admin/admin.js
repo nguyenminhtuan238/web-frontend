@@ -158,7 +158,7 @@ function Admin() {
                             <td className="whitespace-nowrap px-6 py-4 font-medium text-center">
                               {blog.blog_id}
                             </td>
-                            <td className="whitespace-nowrap px-6 py-4 text-center">
+                            <td className="whitespace-normal px-6 py-4 overflow-hidden line-clamp-5 max-w-[300px] min-w-[300px] max-h-[120px] ">
                               {blog.title}
                             </td>
                             <td className="whitespace-nowrap px-8 py-4 ">
@@ -168,7 +168,7 @@ function Admin() {
                                 alt="Lỗi Hình"
                               />
                             </td>
-                            <td className="whitespace-normal px-6 py-4 overflow-hidden max-w-[600px] min-w-[600px] max-h-[120px] line-clamp-5 ">
+                            <td className="whitespace-normal px-6 py-4 overflow-hidden line-clamp-5 max-w-[600px] min-w-[600px] max-h-[120px]  ">
                               {blog.content}
                             </td>
 
